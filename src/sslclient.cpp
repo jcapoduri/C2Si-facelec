@@ -233,15 +233,30 @@ void SslClient::socketReadyRead()
 void SslClient::socketFacReadyRead()
 {
     QString data = QString::fromUtf8(socket->readAll());
-    int caeStart = data.indexOf("<ar:cae>") + 8;
-    int caeLength = data.indexOf("</ar:cae>") - caeStart;
-    int errorStart = data.indexOf("<ar:percode>") + 12;
-    int errorLength = data.indexOf("</ar:percode>") - errorLength;
+    QString caeBeginToken = "<cae>";
+    QString caeEndToken = "</cae>";
+    QString fecvenBeginToken = "fecha_vto>";
+    QString fecvenEndToken = "</fecha_vto>";
+    QString pererrBeginToken = "<percode>";
+    QString pererrEndToken = "</percode>";
+
+    int caeStart = data.indexOf(caeBeginToken) + caeBeginToken.length();
+    int caeLength = data.indexOf(caeEndToken) - caeStart;
+    int fecvenStart = data.indexOf(fecvenBeginToken) + fecvenBeginToken.length();
+    int fecvenLength = data.indexOf(fecvenEndToken) - fecvenStart;
+    int errorStart = data.indexOf(pererrBeginToken) + pererrBeginToken.length();
+    int errorLength = data.indexOf(pererrEndToken) - errorStart;
+
     QFile file("cae.txt");
     file.open(QIODevice::WriteOnly);
     file.write(data.mid(caeStart, caeLength).toLatin1());
-    file.write(" ");
+    file.write(data.mid(fecvenStart, fecvenLength).toLatin1());
     file.write(data.mid(errorStart, errorLength).toLatin1());
+
+    QFile fileRes("wsferesponse.txt");
+    fileRes.open(QIODevice::WriteOnly);
+    fileRes.write(data.toLatin1());
+
     qDebug() << data;
     appendString(data);
     this->show();
@@ -525,10 +540,10 @@ QString SslClient::parseFactura(QString fileLocation)
     Resp += "             <nro_doc>"+buffer.mid(37, 11)+"</nro_doc>\n";
     Resp += "             <tipo_cbte>"+buffer.mid(9, 2)+"</tipo_cbte>\n";
     Resp += "             <punto_vta>"+buffer.mid(12, 4)+"</punto_vta>\n";
-    //Resp += "             <cbt_desde>"+buffer.mid(16, 8)+"</cbt_desde>\n";
-    //Resp += "             <cbt_hasta>"+buffer.mid(16, 8)+"</cbt_hasta>\n";
-    Resp += "             <cbt_desde>00000001</cbt_desde>\n";
-    Resp += "             <cbt_hasta>00000001</cbt_hasta>\n";
+    Resp += "             <cbt_desde>"+buffer.mid(16, 8)+"</cbt_desde>\n";
+    Resp += "             <cbt_hasta>"+buffer.mid(16, 8)+"</cbt_hasta>\n";
+    //Resp += "             <cbt_desde>00000001</cbt_desde>\n";
+    //Resp += "             <cbt_hasta>00000001</cbt_hasta>\n";
     Resp += "             <imp_total>"+buffer.mid(78, 15)+"</imp_total>\n";
     Resp += "             <imp_tot_conc>"+buffer.mid(93, 15)+"</imp_tot_conc>\n";
     Resp += "             <imp_neto>"+buffer.mid(108, 15)+"</imp_neto>\n";
