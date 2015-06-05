@@ -7,7 +7,7 @@
 #include <QFileDialog>
 
 SslClient::SslClient(QWidget *parent)
-    : QWidget(parent), socket(0), padLock(0), executingDialog(false)
+    : QWidget(parent), socket(0), padLock(0), executingDialog(false), _justcae(false)
 {
     wsaaok = false;
     form = new Ui_Form;
@@ -26,7 +26,7 @@ SslClient::SslClient(QWidget *parent)
 }
 
 SslClient::SslClient(QString wsaa, QString wsfe, QString inker, QString pass, QString cert, QString x509, QString pedido, QString source, int port, int ptoventa, bool testing, bool prestaserv, QWidget *parent)
-    :QWidget(parent), socket(0), padLock(0), executingDialog(false){
+    :QWidget(parent), socket(0), padLock(0), executingDialog(false), _justcae(false) {
     wsaaok = false;
     this->wsaa = wsaa;
     this->wsfe = wsfe;
@@ -259,7 +259,12 @@ void SslClient::socketFacReadyRead()
 
     qDebug() << data;
     appendString(data);
-    this->show();
+    if (_justcae) {
+        this->close();
+    } else {
+        this->show();
+    };
+
 }
 
 void SslClient::sendData()
@@ -560,5 +565,6 @@ QString SslClient::parseFactura(QString fileLocation)
 
 void SslClient::justcae(){
     connect(this, SIGNAL(wsaalogon(bool)), this, SLOT(connectWsfe(bool)));
+    _justcae = true;
     this->secureConnect();
 }

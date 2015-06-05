@@ -105,6 +105,7 @@ private:
     QString pedido;
     int port;
     bool testing;
+    bool _justcae;
 };
 
 #endif
