@@ -289,23 +289,6 @@ void SslClient::sendFacData()
 {
     QString data;
 
-    /*data = "<?xml version=\"1.0\" encoding=\"utf-8\"?>"
-    "<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\" xmlns:ar=\"http://ar.gov.afip.dif.facturaelectronica/\">\n"
-    "<soap:Body>\n"
-    "<FERecuperaLastCMPRequest xmlns=\"http://ar.gov.afip.dif.facturaelectronica/\">\n"
-    "<argAuth>\n"
-    "        <Token>"+token+"</Token>\n"
-    "        <Sign>"+sign+"</Sign>\n"
-    "        <cuit>30664156489</cuit>\n"
-    "</argAuth>\n"
-    "<argTCMP>\n"
-    "<PtoVta>0002</PtoVta>\n"
-    "<TipoCbte>01</TipoCbte>\n"
-    "</argTCMP>\n"
-    "</FERecuperaLastCMPRequest>\n"
-    "</soap:Body>\n"
-    "</soap:Envelope>";*/
-
     data = ""
     "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
     "<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n"
@@ -547,8 +530,6 @@ QString SslClient::parseFactura(QString fileLocation)
     Resp += "             <punto_vta>"+buffer.mid(12, 4)+"</punto_vta>\n";
     Resp += "             <cbt_desde>"+buffer.mid(16, 8)+"</cbt_desde>\n";
     Resp += "             <cbt_hasta>"+buffer.mid(16, 8)+"</cbt_hasta>\n";
-    //Resp += "             <cbt_desde>00000001</cbt_desde>\n";
-    //Resp += "             <cbt_hasta>00000001</cbt_hasta>\n";
     Resp += "             <imp_total>"+buffer.mid(78, 15)+"</imp_total>\n";
     Resp += "             <imp_tot_conc>"+buffer.mid(93, 15)+"</imp_tot_conc>\n";
     Resp += "             <imp_neto>"+buffer.mid(108, 15)+"</imp_neto>\n";
