@@ -10,6 +10,7 @@ SslClient::SslClient(QWidget *parent)
     : QWidget(parent), socket(0), padLock(0), executingDialog(false), _justcae(false)
 {
     wsaaok = false;
+
     form = new Ui_Form;
     form->setupUi(this);
     form->hostNameEdit->setSelection(0, form->hostNameEdit->text().size());

@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
                                                  "      -pass=<\"string\">: clave de la firma digital\n"
                                                  "      -port=<entero>: numero de puerto de conexion, si no se especifica, se toma por defecto 443\n"
                                                  "      -ptoventa=<entero>: punto de venta de la factura, de no especificarse se tomara el valor 1\n"
-                                                 "      -justcae: no muestra interfaz grafica, pide cae automaticamente con los parametros pasado\n";
+                                                 "      -justcae: no muestra interfaz grafica, pide cae automaticamente con los parametros pasado\n"
                                                  "      -prestaserv: indica si el pedido es pedido de servicio\n";
 
     };
