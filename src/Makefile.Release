@@ -83,7 +83,7 @@ $(DESTDIR_TARGET): ui_sslclient.h $(OBJECTS)
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) $(OBJECTS)  $(LIBS)
 
 qmake: FORCE
-	@$(QMAKE) -spec win32-g++ -o Makefile.Release src.pro
+	@$(QMAKE) -spec win32-g++ CONFIG+=debug -o Makefile.Release src.pro
 
 qmake_all: FORCE
 

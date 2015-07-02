@@ -10,6 +10,7 @@ SslClient::SslClient(QWidget *parent)
     : QWidget(parent), socket(0), padLock(0), executingDialog(false), _justcae(false)
 {
     wsaaok = false;
+
     form = new Ui_Form;
     form->setupUi(this);
     form->hostNameEdit->setSelection(0, form->hostNameEdit->text().size());
@@ -301,7 +302,7 @@ void SslClient::sendFacData()
     "      </argAuth>\n"
     "      <Fer>\n"
     "        <Fecr>\n"
-    "          <id>123456</id>\n"
+    "          <id>"+QString("%1").arg(QDateTime::currentMSecsSinceEpoch())+"</id>\n"
     "          <cantidadreg>1</cantidadreg>\n"
     "          <presta_serv>0</presta_serv>\n"
     "        </Fecr>\n"
@@ -372,7 +373,7 @@ QString SslClient::makeTRA(){
           //"<source>C = AR, O = Rex agencia de publicidad sociedad colectiva, SERIALNUMBER = CUIT 30664156489, CN = Ciamberlani Guillermo</source>\n"
           "<source>"+this->sourceEmpresa+"</source>\n"
             "<destination>CN=wsaa"+(this->testing ? "homo" : "")+", O=AFIP, C=AR, SERIALNUMBER=CUIT 33693450239</destination>\n"
-            "<uniqueId>123456</uniqueId>\n"
+            "<uniqueId>"+QString("%1").arg(QDateTime::currentMSecsSinceEpoch())+"</uniqueId>\n"
             "<generationTime>"+QDateTime::currentDateTime().addSecs(-300).toString(Qt::ISODate)+"-03:00</generationTime>\n"
             "<expirationTime>"+QDateTime::currentDateTime().addSecs(300).toString(Qt::ISODate)+"-03:00</expirationTime>\n"
           "</header>\n"
