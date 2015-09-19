@@ -36,7 +36,7 @@ SslClient::SslClient(QString wsaa, QString wsfe, QString inker, QString pass, QS
     this->sourceEmpresa = source;
     this->pass = pass;
     this->inker = inker;
-    this->cuit = source.mid(source.indexOf("CUIT")+5, 11); qDebug() << cuit;
+    this->cuit = source.mid(source.indexOf("CUIT")+5, 11);
     this->port = port;
     this->pedido = pedido;
     this->testing = testing;
@@ -78,7 +78,6 @@ void SslClient::updateEnabledState()
         form->connectButton->setEnabled(unconnected && !form->hostNameEdit->text().isEmpty());
     };
     bool connected = socket && socket->state() == QAbstractSocket::ConnectedState;
-    /*form->sessionBox->setEnabled(connected);*/
     form->sessionOutput->setEnabled(connected);    
     if(this->wsaaok){
         form->connectButton->setEnabled(false);
@@ -98,19 +97,11 @@ void SslClient::secureConnect()
             QFile certFile(file);
             certFile.open(QIODevice::ReadOnly);
         };
-        qDebug() << "before cert";
-        appendString("before cert");
         QSslCertificate cert(&certFile, QSsl::Pem);
-        qDebug() << "after cert";
-        appendString("after cert");
 
         socket = new QSslSocket(this);
 
-        appendString("before add cert");
-        qDebug() << "before add cert";
         socket->addCaCertificate(cert);
-        qDebug() << "after add cert";
-        appendString("after add cert");
 
         connect(socket, SIGNAL(stateChanged(QAbstractSocket::SocketState)),
                 this, SLOT(socketStateChanged(QAbstractSocket::SocketState)));
@@ -131,7 +122,6 @@ void SslClient::secureConnect()
         sendData();
      }else{
         sendFacData();
-        //sendLastFac();
      };
 
 }
@@ -160,7 +150,6 @@ void SslClient::socketEncrypted()
         return;                 // might have disconnected already
 
     form->sessionOutput->clear();
-    /*form->sessionInput->setFocus();*/
 
     QPalette palette;
     palette.setColor(QPalette::Base, QColor(255, 255, 192));
@@ -270,19 +259,12 @@ void SslClient::socketFacReadyRead()
 
 void SslClient::sendData()
 {
-    /*QString input = form->sessionInput->text();
-    appendString(input + "\n");
-    socket->write(input.toUtf8() + "\n");
-    form->sessionInput->clear();*/
-
     /* Creo el ticket */
     QString cms = makeTRA();
     if(cms != ""){
         QString input = makeTicket(cms);
-        //QMessageBox::warning(this, QString("test"), QString("%1").arg(input.length()), QMessageBox::Yes);
         appendString(input + "\n");
         socket->write(input.toUtf8() + "\n");
-        /*form->sessionInput->clear();*/
     };
 }
 
@@ -317,52 +299,14 @@ void SslClient::sendFacData()
                 "</soap:Envelope>";
 
     data =
-    //"POST /wsfe/service.asmx HTTP/1.1\n"
-    //"Host: servicios1.afip.gov.ar\n"
     "POST /wsfe/service.asmx?op=FEAutRequest HTTP/1.1\n"
-    //"POST /wsfe/service.asmx?op= HTTP/1.1\n"
-    //"SOAPAction: \"http://ar.gov.afip.dif.facturaelectronica/FERecuperaLastCMPRequest\"\n"
-    //"Host: wswhomo.afip.gov.ar\n"
-    "Host: "+this->wsfe+"\n"
-    "Content-Type: text/xml; charset=utf-8\n"
-    "Content-Length: "+QString("%1").arg(data.length())+"\n\n" + data;
-
-    //"SOAPAction: \"http://ar.gov.afip.dif.facturaelectronica/FEAutRequest\"\n"
-    appendString(data + "\n");
-    qDebug() << data;
-    socket->write(data.toUtf8() + "\n");
-    /*form->sessionInput->clear();*/
-}
-
-void SslClient::sendLastFac(){
-    QString data;
-    data = ""
-           "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
-           "<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\" xmlns:ar=\"http://ar.gov.afip.dif.facturaelectronica/\">\n"
-           "  <soap:Body>\n"
-           "    <ar:FERecuperaLastCMPRequest>\n"
-           "      <ar:argAuth>\n"
-           "        <ar:Token>"+token+"</ar:Token>\n"
-           "        <ar:Sign>"+sign+"</ar:Sign>\n"
-           "        <ar:cuit>"+this->cuit+"</ar:cuit>\n"
-           "      </ar:argAuth>\n"
-           "      <ar:argTCMP>\n"
-           "        <ar:PtoVta>1</ar:PtoVta>\n"
-           "        <ar:TipoCbte>1</ar:TipoCbte>\n"
-           "      </ar:argTCMP>\n"
-           "    </ar:FERecuperaLastCMPRequest>\n"
-           "  </soap:Body>\n"
-           "</soap:Envelope>";
-
-    data =
-    "POST /wsfe/service.asmx?op=FERecuperaLastCMPRequest HTTP/1.1\n"
     "Host: "+this->wsfe+"\n"
     "Content-Type: text/xml; charset=utf-8\n"
     "Content-Length: "+QString("%1").arg(data.length())+"\n\n" + data;
 
     appendString(data + "\n");
-    socket->write(data.toUtf8() + "\n");
     qDebug() << data;
+    socket->write(data.toUtf8() + "\n");
 }
 
 QString SslClient::makeTRA(){
@@ -370,7 +314,6 @@ QString SslClient::makeTRA(){
     TRA = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n"
         "<loginTicketRequest version=\"1.0\">\n"
           "<header>\n"
-          //"<source>C = AR, O = Rex agencia de publicidad sociedad colectiva, SERIALNUMBER = CUIT 30664156489, CN = Ciamberlani Guillermo</source>\n"
           "<source>"+this->sourceEmpresa+"</source>\n"
             "<destination>CN=wsaa"+(this->testing ? "homo" : "")+", O=AFIP, C=AR, SERIALNUMBER=CUIT 33693450239</destination>\n"
             "<uniqueId>"+QString("%1").arg(QDateTime::currentMSecsSinceEpoch())+"</uniqueId>\n"
@@ -380,9 +323,6 @@ QString SslClient::makeTRA(){
           "<service>wsfe</service>\n"
         "</loginTicketRequest>";
 
-    //TRA.arg(QDateTime::currentDateTime().addSecs(-3600).toString(Qt::ISODate));
-    //TRA.arg(QDateTime::currentDateTime().addSecs(3600*3).toString(Qt::ISODate));
-
     QFile TRAfile(QString("ticket.xml"));
     if (!TRAfile.open(QIODevice::WriteOnly | QIODevice::Text)){
         QMessageBox::warning(this, QString("Error"), QString("no puede generarse TRA, cierre cualquier programa que pudiera estar utilizandolo"), QMessageBox::Yes);
@@ -391,10 +331,8 @@ QString SslClient::makeTRA(){
 
     TRAfile.write(TRA.toLatin1());
     TRAfile.close();
-    //qDebug() << TRA;
 
     QProcess openssl;
-    //QMessageBox::warning(this, QString("uepa"), QString("openssl smime -sign -signer "+this->x509+" -inkey "+this->inker+" -out ticket.xml.cms -in ticket.xml -outform PEM -nodetach -passin pass:"+this->pass), QMessageBox::Yes);
     openssl.execute("openssl smime -sign -signer "+this->x509+" -inkey "+this->inker+" -out ticket.xml.cms -in ticket.xml -outform PEM -nodetach -passin pass:"+this->pass);
     appendString("openssl smime -sign -signer "+this->x509+" -inkey "+this->inker+" -out ticket.xml.cms -in ticket.xml -outform PEM -nodetach -passin pass:"+this->pass);
     qDebug() << "openssl smime -sign -signer "+this->x509+" -inkey "+this->inker+" -out ticket.xml.cms -in ticket.xml -outform PEM -nodetach -passin pass:"+this->pass;
@@ -411,7 +349,7 @@ QString SslClient::makeTRA(){
 
     QString cms;
     char buf[1024];
-    qint64 lineLength = TRAcms.readLine(buf, sizeof(buf));
+    TRAcms.readLine(buf, sizeof(buf));
     while(!TRAcms.atEnd()){
         qint64 lineLength = TRAcms.readLine(buf, sizeof(buf));
         if(lineLength != -1){ //si no dio error
@@ -420,18 +358,11 @@ QString SslClient::makeTRA(){
         }
     };
     cms = cms.trimmed();
-    //qDebug() << cms;
     return cms;
 }
 
 QString SslClient::makeTicket(QString firma){
     QString Ticket, cabezera;
-    //"Content-Length: 3178\n"
-    /*Ticket = "<soapenv:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ser=\"http://services.authws.sua.dvadac.desein.afip.gov\">\n"
-                "   <soapenv:Header/>\n"
-                "   <soapenv:Body>\n"
-                "      <ser:loginCms soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">\n"
-                "         <request xsi:type=\"xsd:string\">\n";*/
     Ticket =   "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:wsaa=\"http://wsaa.view.sua.dvadac.desein.afip.gov\">\n"
                   "<soapenv:Header/>\n"
                   "<soapenv:Body>\n"
@@ -443,10 +374,6 @@ QString SslClient::makeTicket(QString firma){
                    "</wsaa:loginCms>\n"
                    "</soapenv:Body>\n"
                    "</soapenv:Envelope>\n";
-    /*Ticket += "</request>\n"
-                "      </ser:loginCms>\n"
-                "   </soapenv:Body>\n"
-                "</soapenv:Envelope>\n";*/
 
     cabezera = "POST /ws/services/LoginCms HTTP/1.1\n" //"POST https://wsaahomo.afip.gov.ar/ws/services/LoginCms HTTP/1.1\n"
                 "Content-Type: text/xml;charset=UTF-8\n"
@@ -458,7 +385,6 @@ QString SslClient::makeTicket(QString firma){
     cabezera += "\n"
                 "\n";
     Ticket = cabezera + Ticket;
-    //qDebug() << Ticket;
     return Ticket;
 }
 
@@ -469,31 +395,11 @@ void SslClient::sslErrors(const QList<QSslError> &errors)
     for(int i = 0; i < errors.length(); i++){
         qDebug() << errors.at(i);
     };
-    /*QDialog errorDialog(this);
-    Ui_SslErrors ui;
-    ui.setupUi(&errorDialog);
-    connect(ui.certificateChainButton, SIGNAL(clicked()),
-            this, SLOT(displayCertificateInfo()));
-
-    foreach (const QSslError &error, errors)
-        ui.sslErrorList->addItem(error.errorString());
-
-    executingDialog = true;
-    if (errorDialog.exec() == QDialog::Accepted)
-        socket->ignoreSslErrors();
-    executingDialog = false;
-
-    // did the socket state change?
-    if (socket->state() != QAbstractSocket::ConnectedState)
-        socketStateChanged(socket->state());*/
 }
 
 void SslClient::displayCertificateInfo()
 {
-    /*CertificateInfo *info = new CertificateInfo(this);
-    info->setCertificateChain(socket->peerCertificateChain());
-    info->exec();
-    info->deleteLater();*/
+
 }
 
 void SslClient::connectWsfe(bool wsaa){
@@ -516,13 +422,12 @@ QString SslClient::parseFactura(QString fileLocation)
     QString Resp;
     QFile arch(fileLocation);
     if (!arch.open(QIODevice::ReadOnly | QIODevice::Text)){
-        //QMessageBox::warning(this, QString("Error"), QString("no puede generarse TRA, cierre cualquier programa que pudiera estar utilizandolo"), QMessageBox::Yes);
         return QString("");
     };
 
     //QString cms;
     char buf[1024];
-    qint64 lineLength = arch.readLine(buf, sizeof(buf));
+    arch.readLine(buf, sizeof(buf));
     QString buffer(buf);
     Resp = "";
     Resp += "             <tipo_doc>"+buffer.mid(35, 2)+"</tipo_doc>\n";
@@ -531,17 +436,15 @@ QString SslClient::parseFactura(QString fileLocation)
     Resp += "             <punto_vta>"+buffer.mid(12, 4)+"</punto_vta>\n";
     Resp += "             <cbt_desde>"+buffer.mid(16, 8)+"</cbt_desde>\n";
     Resp += "             <cbt_hasta>"+buffer.mid(16, 8)+"</cbt_hasta>\n";
-    Resp += "             <imp_total>"+buffer.mid(78, 15)+"</imp_total>\n";
-    Resp += "             <imp_tot_conc>"+buffer.mid(93, 15)+"</imp_tot_conc>\n";
-    Resp += "             <imp_neto>"+buffer.mid(108, 15)+"</imp_neto>\n";
-    Resp += "             <impto_liq>"+buffer.mid(123, 15)+"</impto_liq>\n";
-    Resp += "             <impto_liq_rni>"+buffer.mid(138, 15)+"</impto_liq_rni>\n";
-    Resp += "             <imp_op_ex>"+buffer.mid(153, 15)+"</imp_op_ex>\n";
+    Resp += "             <imp_total>"+QString::number(buffer.mid(78, 15).toLong() / 100)+"</imp_total>\n";
+    Resp += "             <imp_tot_conc>"+QString::number(buffer.mid(93, 15).toLong() / 100)+"</imp_tot_conc>\n";
+    Resp += "             <imp_neto>"+QString::number(buffer.mid(108, 15).toLong() / 100)+"</imp_neto>\n";
+    Resp += "             <impto_liq>"+QString::number(buffer.mid(123, 15).toLong() / 100)+"</impto_liq>\n";
+    Resp += "             <impto_liq_rni>"+QString::number(buffer.mid(138, 15).toLong() / 100)+"</impto_liq_rni>\n";
+    Resp += "             <imp_op_ex>"+QString::number(buffer.mid(153, 15).toLong() / 100)+"</imp_op_ex>\n";
     Resp += "             <fecha_cbte>"+buffer.mid(1, 8)+"</fecha_cbte>\n";
     Resp += "             <fecha_serv_desde>"+buffer.mid(1, 8)+"</fecha_serv_desde>\n";
     Resp += "             <fecha_serv_hasta>"+buffer.mid(1, 8)+"</fecha_serv_hasta>\n";
-    //Resp += "             <fecha_venc_pago>00000000</fecha_venc_pago>\n";
-    //cms = cms.trimmed();
     return Resp;
 }
 

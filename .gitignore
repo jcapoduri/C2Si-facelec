@@ -4,3 +4,11 @@ bin/
 src.new/
 qwsfe/
 ruta51/
+*.exe
+bin.roto/
+bin.test/
+*.ini
+src/Makefile
+*.Debug
+src/Makefile.Release
+src/Makefile.Debug

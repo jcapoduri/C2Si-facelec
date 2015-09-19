@@ -78,42 +78,15 @@ int main(int argc, char *argv[])
     };
 
     if(!help.isEmpty()){                 //si se pidio la ayudo la muestro y salgo
-         //qDebug() << help;
-         //char *data = help.toAscii().data();
          QByteArray ayuda(help.toLatin1());
-         //qDebug() << ayuda;
          char *data = ayuda.data();
-         //qDebug() << *data;
-         /*while (*data) {
-             //qDebug() << *data;
-             cout << "[" << *data;
-             ++data;
-         }*/
          puts (data);
          return 0;
     };
 
-    /*bool error = (source != "") && (wsaa != "")  && (wsfe != "")  && (certConexion != "")  && (x509 != "") && (port != 0);
-    if(error) return 1;*/
-
     QApplication a(argc, argv);
     a.setOrganizationName("C2SI");
     a.setApplicationName("feClient");    
-
-    qDebug() << wsaa;
-    qDebug() << wsfe;
-    qDebug() << inker;
-    qDebug() << pass;
-    qDebug() << certConexion;
-    qDebug() << x509;
-    qDebug() << pedido;
-    qDebug() << source;
-    qDebug() << port;
-    qDebug() << ptoventa;
-    qDebug() << testing;
-    qDebug() << prestaserv;
-
-    //SslClient(QString wsaa, QString wsfe, QString inker, QString pass, QString cert, QString x509, QString pedido, QString source, int port, int ptoventa, bool testing, bool prestaserv, QWidget *parent)
     SslClient client(wsaa, wsfe, inker, pass, certConexion, x509, pedido, source, port, ptoventa, testing, prestaserv);
     if(justcae){
         client.justcae();                

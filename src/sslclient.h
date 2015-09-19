@@ -74,7 +74,6 @@ private slots:
     void socketFacReadyRead();
     void sendData();
     void sendFacData();
-    void sendLastFac();
     void sslErrors(const QList<QSslError> &errors);
     void displayCertificateInfo();
     void connectWsfe(bool wsaa);
