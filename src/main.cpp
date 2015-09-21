@@ -2,6 +2,7 @@
 #include <QSettings>
 
 #include "sslclient.h"
+#include "client.h"
 #include <iostream>
 #include <cstdlib>
 #include <stdio.h>
@@ -87,11 +88,13 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     a.setOrganizationName("C2SI");
     a.setApplicationName("feClient");    
-    SslClient client(wsaa, wsfe, inker, pass, certConexion, x509, pedido, source, port, ptoventa, testing, prestaserv);
-    if(justcae){
+    //SslClient client(wsaa, wsfe, inker, pass, certConexion, x509, pedido, source, port, ptoventa, testing, prestaserv);
+    client widget("config.ini");
+    widget.show();
+    /*if(justcae){
         client.justcae();                
     }else{
         client.show();
-    };
+    };*/
     return a.exec();
 }

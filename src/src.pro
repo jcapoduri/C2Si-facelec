@@ -11,9 +11,15 @@ MOC_DIR = ../obj
 OBJECTS_DIR = ../obj
 
 SOURCES += main.cpp \
-    sslclient.cpp
+    sslclient.cpp \
+    client.cpp \
+    wsaalogin.cpp \
+    wsfemanager.cpp
 HEADERS += \
-    sslclient.h
+    sslclient.h \
+    client.h \
+    wsaalogin.h \
+    wsfemanager.h
 FORMS += sslclient.ui
 
 
