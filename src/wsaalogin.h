@@ -18,6 +18,7 @@ public:
     bool     isAuthenticated() { return isAuthOk; }
     QString  getToken() { return token; }
     QString  getSign() { return sign; }
+    QString  getCuit() { return cuit; }
     QString  getServiceUrl() { return serviceUrl; }
 
     void    getAuth(QString source, QString x509, QString inker, QString pass);
@@ -40,12 +41,15 @@ protected:
     QString makeTicket(QString cms);
     bool    getAuthentification();
 
-    QString token;
-    QString sign;
-    bool    isAuthOk = false;
-
+    QString    token;
+    QString    sign;
+    QString    cuit;
     QString    serviceUrl;
     bool       testing;
+
+    bool    isAuthOk = false;
+
+
 };
 
 #endif // WSAALOGIN_H

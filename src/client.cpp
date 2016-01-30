@@ -18,6 +18,7 @@ client::client(QString settingFile, QWidget *parent)
     source = settings.value("source", "").toString();
     x509 = settings.value("x509", "").toString();
     pedido = settings.value("pedido", "").toString();
+    pedido_iva = settings.value("pedido_iva", "").toString();
     pass = settings.value("pass", "").toString();
     inker = settings.value("inker", "").toString();
     port = settings.value("port", 443).toInt();
@@ -52,8 +53,9 @@ client::client(QString settingFile, QWidget *parent)
     wsfe = new wsfeManager(wsaa, testing, this);
 
     connect(wsaa, SIGNAL(login(QString,QString)), this, SLOT(logedIn()));
+    connect(wsfe, SIGNAL(serverResponse(QString)), this, SLOT(logSessionData(QString)));
 
-    form = new Ui_Form;
+    form = new Ui_wsfeForm;
     form->setupUi(this);
     this->setWindowTitle("Facturación Eelctronica v1");
     form->hostNameEdit->setSelection(0, form->hostNameEdit->text().size());
@@ -64,10 +66,8 @@ client::client(QString settingFile, QWidget *parent)
             this, SLOT(updateEnabledState()));
     connect(form->connectButton, SIGNAL(clicked()),
             this, SLOT(secureConnect()));
-    connect(form->pedirCaeButton, SIGNAL(clicked()),
-            this, SLOT(validateRecipe()));
-    connect(form->pedirProxFactura, SIGNAL(clicked()),
-            this, SLOT(otherOperation()));
+    connect(form->doButton, SIGNAL(clicked()),
+            this, SLOT(doOperation()));
 }
 
 client::~client()
@@ -82,24 +82,18 @@ void client::updateEnabledState()
     form->hostNameEdit->setReadOnly(!unconnected);
     form->hostNameEdit->setFocusPolicy(unconnected ? Qt::StrongFocus : Qt::NoFocus);
     if(!form->connectButton->isEnabled()){
-        form->hostNameLabel->setEnabled(unconnected);
-        form->portBox->setEnabled(unconnected);
-        form->portLabel->setEnabled(unconnected);
         form->connectButton->setEnabled(unconnected && !form->hostNameEdit->text().isEmpty());
     };
     bool connected = socket && socket->state() == QAbstractSocket::ConnectedState;
     form->sessionOutput->setEnabled(connected);    
     if(this->wsaaok){
         form->connectButton->setEnabled(false);
-        form->pedirCaeButton->setEnabled(true);
-        form->pedirProxFactura->setEnabled(true);
+        form->doButton->setEnabled(true);
     };
 }
 
 void client::secureConnect()
 {    
-    if (socket->isOpen()) socket->close();
-    socket->connectToHostEncrypted(form->hostNameEdit->text(), form->portBox->value());
     wsaa->getAuth(source, x509, inker, pass);
 }
 
@@ -122,11 +116,6 @@ void client::socketEncrypted()
     QPalette palette;
     palette.setColor(QPalette::Base, QColor(255, 255, 192));
     form->hostNameEdit->setPalette(palette);
-
-    QSslCipher ciph = socket->sessionCipher();
-    QString cipher = QString("%1, %2 (%3/%4)").arg(ciph.authenticationMethod())
-                     .arg(ciph.name()).arg(ciph.usedBits()).arg(ciph.supportedBits());;
-    form->cipherLabel->setText(cipher);
 
     if (!padLock) {
         padLock = new QToolButton;
@@ -162,17 +151,43 @@ void client::sslErrors(const QList<QSslError> &errors)
 void client::logedIn()
 {
     form->connectButton->setEnabled(false);
-    form->pedirCaeButton->setEnabled(true);
-    form->pedirProxFactura->setEnabled(true);
+    form->doButton->setEnabled(true);
 }
 
-void client::otherOperation() {
-    wsfe->getData(wsfeManager::wsfeGetIvaOpPath, cuit);
+void client::doOperation()
+{
+    QString op = form->operationComboBox->currentText();
+
+    if (op == "Obtener Ult. Comprobante") getLastApproveRecipe();
+    if (op == "Obtener Info de Comprobante") getRecipeInfo();
+    if (op == "Obtener CAE p/Comprobante") validateRecipe();
+    if (op == "Obtener tipos de IVAs") wsfe->getData(wsfeManager::wsfeGetIvaOpPath);
+}
+
+void client::getRecipeInfo() {
+    int pto_venta = form->puntoVentaSpinBox->value(),
+        tipo_comp = form->tipoComprobanteSpinBox->value(),
+        nro_comp = form->nroComprobanteSpinBox->value();
+
+    wsfe->getRecipeInfo(tipo_comp, pto_venta, nro_comp);
+}
+
+void client::logSessionData(QString data)
+{
+    form->sessionOutput->append(data);
+}
+
+void client::getLastApproveRecipe() {
+    int pto_venta = form->puntoVentaSpinBox->value(),
+        tipo_comp = form->tipoComprobanteSpinBox->value();
+
+
+    wsfe->getLastAuthRecipe(pto_venta, tipo_comp);
 }
 
 void client::validateRecipe()
 {
-    wsfe->validateRecipies(cuit, pedido);
+    wsfe->validateRecipies(pedido, pedido_iva);
 }
 
 

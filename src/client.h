@@ -42,7 +42,7 @@
 #ifndef client_H
 #define client_H
 
-#include "ui_sslclient.h"
+#include "ui_wsfeform.h"
 #include "wsaalogin.h"
 #include "wsfemanager.h"
 #include <QWidget>
@@ -55,7 +55,7 @@
 QT_BEGIN_NAMESPACE
 class QSslSocket;
 class QToolButton;
-class Ui_Form;
+class Ui_wsfeForm;
 QT_END_NAMESPACE
 
 class client : public QWidget
@@ -76,8 +76,13 @@ private slots:
 
     void logedIn();
 
+    void doOperation();
+
     void validateRecipe();
-    void otherOperation();
+    void getLastApproveRecipe();
+    void getRecipeInfo();
+
+    void logSessionData(QString data);
 
 signals:
     void wsaalogon(bool status);
@@ -91,7 +96,7 @@ private:
     void appendString(const QString &line);   
 
     QToolButton *padLock;
-    Ui_Form *form;
+    Ui_wsfeForm *form;
     bool executingDialog;
     bool wsaaok;
 
@@ -103,6 +108,7 @@ private:
     QString certConexion;
     QString x509, ptoventa, prestaserv;
     QString pedido;
+    QString pedido_iva;
     int port;
     bool testing;
     bool _justcae;

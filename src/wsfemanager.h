@@ -10,7 +10,7 @@ struct wsfeRecipe {
     int  cbte_type = 0;
     int  concepto = 0;
     int  doctype = 0;
-    long docnumber = 0;
+    qlonglong docnumber = 0;
     long compdesde = 0;
     long comphasta = 0;
     QString compfecha = "";
@@ -32,6 +32,12 @@ struct wsfeRecipe {
     double percep_otros;
 };
 
+struct wsfeRecipeTax  {
+    int    id = 7;
+    double base_imp = 0.0;
+    double imp_iva = 0.0;
+};
+
 class wsfeManager : public QObject
 {
     Q_OBJECT
@@ -47,22 +53,28 @@ public:
     static QString wsfeGetTributosOpPath;
     static QString wsfeXMLInfoOpTemplate;
     static QString wsfeGetIvaOpPath;
+    static QString wsfeXMLCheckRecipeTemplate;
+    static QString wsfeGetRecipeInfoOpPath;
+    static QString wsfeXMLIVATeamplate;
+    static QString wsfeXMLIVARecordTeamplate;
 
     explicit wsfeManager(wsaaLogin *wsaa, bool homologacion = false, QObject *parent = 0);
     ~wsfeManager();
 
-    bool    validateRecipies(QString cuit, QString fileLocation);
-    bool    getLastAuthRecipe(QString cuit, QString fileLocation);
-    bool    getData(QString op, QString cuit);
+    bool    validateRecipies(QString fileLocation, QString extrasFileLocation);
+    bool    getLastAuthRecipe(int pto_venta, int comprobante_tipo);
+    bool    getRecipeInfo(int typeRecipe, int ptovta, long nbrRecipe);
+    bool    getData(QString op);
     QString getServiceUrl() { return serviceUrl; }
 
 signals:
-
+    void    serverResponse(QString response);
 public slots:
     void    dataReceived();
 
 protected:
     wsfeRecipe    parseRecipies(QString fileLocation);
+    QList<wsfeRecipeTax> parseExtraRecipes(QString fileLocation);
     void          doRequset(QString op, QByteArray data);
 
     QSslSocket *socket;

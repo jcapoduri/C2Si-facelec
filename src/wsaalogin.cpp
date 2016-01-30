@@ -14,10 +14,10 @@ QString wsaaLogin::signEnd = QString("&lt;/sign&gt;");
 
 wsaaLogin::wsaaLogin(QSslSocket *conn, bool homologacion, QObject *parent) : QObject(parent)
 {
-    socket = conn;
-    testing = homologacion;
+    this->socket = conn;
+    this->testing = homologacion;
 
-    serviceUrl = homologacion ? wsaaLogin::wsaaUrlTesting : wsaaLogin::wsaaUrl;
+    this->serviceUrl = this->testing ? wsaaLogin::wsaaUrlTesting : wsaaLogin::wsaaUrl;
 }
 
 wsaaLogin::~wsaaLogin()
@@ -28,18 +28,25 @@ wsaaLogin::~wsaaLogin()
 void wsaaLogin::getAuth(QString source, QString x509, QString inker, QString pass)
 {
     QString tra, ticket;
-
+    if (socket->isOpen()) socket->close();
     connect(socket, SIGNAL(readyRead()), this, SLOT(readResponse()));
+
+    socket->connectToHostEncrypted(serviceUrl, 443);
+    socket->waitForConnected(-1);
+
+    cuit = source.mid(source.indexOf("CUIT")+5, 11);
 
     tra = makeTRA(source, x509, inker, pass);
     if (tra.isEmpty()) return;
     ticket = makeTicket(tra);
+    //qDebug() << ticket.toUtf8();
     socket->write(ticket.toUtf8() + "\n");
 }
 
 void wsaaLogin::readResponse()
 {
     QString data = QString::fromUtf8(socket->readAll());
+    qDebug() << data;
 
     int tokenStart = data.indexOf(tokenBegin) + tokenBegin.length();
     if(tokenStart != (tokenBegin.length() - 1)){
@@ -59,18 +66,6 @@ void wsaaLogin::readResponse()
 
 QString wsaaLogin::makeTRA(QString source, QString x509, QString inker, QString pass)
 {
-    /*QFile TRAfile(QString("ticket.xml"));
-    if (!TRAfile.open(QIODevice::WriteOnly | QIODevice::Text)){
-        QMessageBox::warning(this, QString("Error"), QString("no puede generarse TRA, cierre cualquier programa que pudiera estar utilizandolo"), QMessageBox::Yes);
-        return QString("");
-    };
-    QXmlStreamWriter stream(&TRAfile);
-    stream.setAutoFormatting(true);
-    stream.writeStartDocument();
-    stream.writeStartElement("loginTicketRequest");
-    stream.writeStartElement("header");
-    stream.writeStartElement("source");
-    stream.writeEndElement();*/
     QString TRA;
     TRA = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n"
         "<loginTicketRequest version=\"1.0\">\n"
@@ -96,13 +91,11 @@ QString wsaaLogin::makeTRA(QString source, QString x509, QString inker, QString 
     QProcess openssl;
     openssl.execute("openssl smime -sign -signer " + x509 + " -inkey " + inker + " -out ticket.xml.cms -in ticket.xml -outform PEM -nodetach -passin pass:" + pass);
     if(openssl.exitStatus() != QProcess::NormalExit){
-       // QMessageBox::warning(this, QString("Error"), QString("error al firmar el ticket con openssl"), QMessageBox::Yes);
         return QString("");
     };
 
     QFile TRAcms(QString("ticket.xml.cms"));
     if (!TRAcms.open(QIODevice::ReadOnly | QIODevice::Text)){
-        //QMessageBox::warning(this, QString("Error"), QString("no puede leerse el ticket firmado, cierre cualquier programa que pudiera estar utilizandolo"), QMessageBox::Yes);
         return QString("");
     };
 
@@ -135,15 +128,14 @@ QString wsaaLogin::makeTicket(QString cms)
                    "</soapenv:Body>\n"
                    "</soapenv:Envelope>\n";
 
-    header = "POST " + wsaaLogin::wsaaService+  " HTTP/1.1\n" //"POST https://wsaahomo.afip.gov.ar/ws/services/LoginCms HTTP/1.1\n"
+    header = "POST " + wsaaLogin::wsaaService +  " HTTP/1.1\n" //"POST https://wsaahomo.afip.gov.ar/ws/services/LoginCms HTTP/1.1\n"
                 "Content-Type: text/xml;charset=UTF-8\n"
                 "SOAPAction: \"\"\n"
                 "User-Agent: Jakarta Commons-HttpClient/3.1\n"
                 "Host: " + serviceUrl + "\n"
                 "Content-Length: ";
-    header += QString("%1").arg(ticket.length());
-    header += "\n"
-                "\n";
+    header += QString::number(ticket.length());
+    header += "\n\n";
     ticket = header + ticket;
     return ticket;
 }
