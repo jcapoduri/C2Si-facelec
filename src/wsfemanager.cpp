@@ -131,45 +131,6 @@ wsfeManager::~wsfeManager()
 
 }
 
-/*bool wsfeManager::validateRecipies(QString cuit, QString fileLocation)
-{
-    if (socket->isOpen()) socket->close();
-
-    connect(socket, SIGNAL(readyRead()), this, SLOT(dataReceived()));
-    qDebug() << serviceUrl;
-    socket->connectToHostEncrypted(serviceUrl, 443);
-    socket->waitForConnected(-1);
-    QString data;
-    wsfeRecipe recipe;
-
-    data = ""
-    "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
-    "<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\" xmlns:ar=\"http://ar.gov.afip.dif.FEV1/\">\n"
-    "  <soap:Header/>\n"
-    "  <soap:Body>\n"
-    "    <ar:FEParamGetTiposTributos>\n"
-    "      <ar:Auth>\n"
-    "        <ar:Token>" + wsaa->getToken() + "</ar:Token>\n"
-    "        <ar:Sign>" + wsaa->getSign() + "</ar:Sign>\n"
-    "        <ar:Cuit>" + cuit + "</ar:Cuit>\n"
-    "      </ar:Auth>\n";
-    data += ""
-    "    </ar:FEParamGetTiposTributos>\n"
-    "  </soap:Body>\n"
-    "</soap:Envelope>";
-
-    data =
-    "POST " + wsfeManager::wsfeGetInfoOpPath + " HTTP/1.1\n"
-    "Host: "+serviceUrl+"\n"
-    "Content-Type: text/xml;charset=UTF-8\n"
-    "User-Agent: Jakarta Commons-HttpClient/3.1\n"
-    "Content-Length: "+QString("%1").arg(data.length())+"\n\n" + data;
-
-    qDebug() << data;
-    socket->write(data.toUtf8() + "\n");
-
-
-    return false;*/
 bool wsfeManager::validateRecipies(QString fileLocation, QString extrasFileLocation) {
     QString data;
     wsfeRecipe recipe;

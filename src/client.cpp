@@ -7,8 +7,8 @@
 #include <QFileDialog>
 #include <QSettings>
 
-client::client(QString settingFile, QWidget *parent)
-    :QWidget(parent), socket(0), padLock(0), executingDialog(false), _justcae(false) {
+client::client(QString settingFile, bool justcae, QWidget *parent)
+    :QWidget(parent), socket(0), padLock(0), executingDialog(false), _justcae(justcae) {
 
     QSettings settings(settingFile, QSettings::IniFormat);
     settings.setValue("Version", 0.1);
@@ -68,6 +68,8 @@ client::client(QString settingFile, QWidget *parent)
             this, SLOT(secureConnect()));
     connect(form->doButton, SIGNAL(clicked()),
             this, SLOT(doOperation()));
+
+    if (_justcae) secureConnect();
 }
 
 client::~client()
@@ -152,6 +154,7 @@ void client::logedIn()
 {
     form->connectButton->setEnabled(false);
     form->doButton->setEnabled(true);
+    if(_justcae) validateRecipe();
 }
 
 void client::doOperation()
@@ -175,6 +178,34 @@ void client::getRecipeInfo() {
 void client::logSessionData(QString data)
 {
     form->sessionOutput->append(data);
+    QString op = form->operationComboBox->currentText();
+
+    if (op == "Obtener CAE p/Comprobante") {
+        QString caeBeginToken = "<CAE>";
+        QString caeEndToken = "</CAE>";
+        QString fecvenBeginToken = "CAEFchVto>";
+        QString fecvenEndToken = "</CAEFchVto>";
+        QString pererrBeginToken = "<Errors>";
+        QString pererrEndToken = "</Errors>";
+
+        int caeStart = data.indexOf(caeBeginToken) + caeBeginToken.length();
+        int caeLength = data.indexOf(caeEndToken) - caeStart;
+        int fecvenStart = data.indexOf(fecvenBeginToken) + fecvenBeginToken.length();
+        int fecvenLength = data.indexOf(fecvenEndToken) - fecvenStart;
+        int errorStart = data.indexOf(pererrBeginToken) + pererrBeginToken.length();
+        int errorLength = data.indexOf(pererrEndToken) - errorStart;
+
+        QFile file("cae.txt");
+        file.open(QIODevice::WriteOnly);
+        file.write(data.mid(caeStart, caeLength).toLatin1());
+        file.write(data.mid(fecvenStart, fecvenLength).toLatin1());
+        file.write(data.mid(errorStart, errorLength).toLatin1());
+    }
+
+    QFile fileRes(QString("wsferesponse.txt"));
+    fileRes.open(QIODevice::WriteOnly);
+    fileRes.write(data.toLatin1());
+    if (_justcae) close();
 }
 
 void client::getLastApproveRecipe() {

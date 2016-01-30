@@ -63,9 +63,10 @@ class client : public QWidget
     Q_OBJECT
 public:
     client(QWidget *parent = 0);
-    client(QString settingFile, QWidget *parent = 0);
+    client(QString settingFile, bool justcae, QWidget *parent = 0);
     ~client();
     
+    void justCae();
 private slots:
     void updateEnabledState();
 
@@ -91,7 +92,6 @@ private:
     QSslSocket   *socket;
     wsaaLogin    *wsaa;
     wsfeManager  *wsfe;
-
 
     void appendString(const QString &line);   
 

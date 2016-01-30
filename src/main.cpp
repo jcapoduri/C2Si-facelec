@@ -89,12 +89,7 @@ int main(int argc, char *argv[])
     a.setOrganizationName("C2SI");
     a.setApplicationName("feClient");    
     //SslClient client(wsaa, wsfe, inker, pass, certConexion, x509, pedido, source, port, ptoventa, testing, prestaserv);
-    client widget("config.ini");
-    widget.show();
-    /*if(justcae){
-        client.justcae();                
-    }else{
-        client.show();
-    };*/
+    client widget("config.ini", justcae);
+    if (!justcae) widget.show();
     return a.exec();
 }
