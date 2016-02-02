@@ -311,14 +311,15 @@ void SslClient::sendFacData()
 
 QString SslClient::makeTRA(){
     QString TRA;
+    qDebug() << "EPOCH:" << QDateTime::currentMSecsSinceEpoch();
     TRA = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n"
         "<loginTicketRequest version=\"1.0\">\n"
           "<header>\n"
           "<source>"+this->sourceEmpresa+"</source>\n"
             "<destination>CN=wsaa"+(this->testing ? "homo" : "")+", O=AFIP, C=AR, SERIALNUMBER=CUIT 33693450239</destination>\n"
-            "<uniqueId>"+QString("%1").arg(QDateTime::currentMSecsSinceEpoch())+"</uniqueId>\n"
-            "<generationTime>"+QDateTime::currentDateTime().addSecs(-300).toString(Qt::ISODate)+"-03:00</generationTime>\n"
-            "<expirationTime>"+QDateTime::currentDateTime().addSecs(300).toString(Qt::ISODate)+"-03:00</expirationTime>\n"
+            "<uniqueId>"+QString("%1").arg(QDateTime::currentMSecsSinceEpoch()).left(10)+"</uniqueId>\n"
+            "<generationTime>"+QDateTime::currentDateTime().addSecs(-60).toString(Qt::ISODate)+"-03:00</generationTime>\n"
+            "<expirationTime>"+QDateTime::currentDateTime().addSecs(60).toString(Qt::ISODate)+"-03:00</expirationTime>\n"
           "</header>\n"
           "<service>wsfe</service>\n"
         "</loginTicketRequest>";
@@ -436,12 +437,12 @@ QString SslClient::parseFactura(QString fileLocation)
     Resp += "             <punto_vta>"+buffer.mid(12, 4)+"</punto_vta>\n";
     Resp += "             <cbt_desde>"+buffer.mid(16, 8)+"</cbt_desde>\n";
     Resp += "             <cbt_hasta>"+buffer.mid(16, 8)+"</cbt_hasta>\n";
-    Resp += "             <imp_total>"+QString::number(buffer.mid(78, 15).toLong() / 100)+"</imp_total>\n";
-    Resp += "             <imp_tot_conc>"+QString::number(buffer.mid(93, 15).toLong() / 100)+"</imp_tot_conc>\n";
-    Resp += "             <imp_neto>"+QString::number(buffer.mid(108, 15).toLong() / 100)+"</imp_neto>\n";
-    Resp += "             <impto_liq>"+QString::number(buffer.mid(123, 15).toLong() / 100)+"</impto_liq>\n";
-    Resp += "             <impto_liq_rni>"+QString::number(buffer.mid(138, 15).toLong() / 100)+"</impto_liq_rni>\n";
-    Resp += "             <imp_op_ex>"+QString::number(buffer.mid(153, 15).toLong() / 100)+"</imp_op_ex>\n";
+    Resp += "             <imp_total>"+QString::number(buffer.mid(78, 15).toDouble() / 100)+"</imp_total>\n";
+    Resp += "             <imp_tot_conc>"+QString::number(buffer.mid(93, 15).toDouble() / 100)+"</imp_tot_conc>\n";
+    Resp += "             <imp_neto>"+QString::number(buffer.mid(108, 15).toDouble() / 100)+"</imp_neto>\n";
+    Resp += "             <impto_liq>"+QString::number(buffer.mid(123, 15).toDouble() / 100)+"</impto_liq>\n";
+    Resp += "             <impto_liq_rni>"+QString::number(buffer.mid(138, 15).toDouble() / 100)+"</impto_liq_rni>\n";
+    Resp += "             <imp_op_ex>"+QString::number(buffer.mid(153, 15).toDouble() / 100)+"</imp_op_ex>\n";
     Resp += "             <fecha_cbte>"+buffer.mid(1, 8)+"</fecha_cbte>\n";
     Resp += "             <fecha_serv_desde>"+buffer.mid(1, 8)+"</fecha_serv_desde>\n";
     Resp += "             <fecha_serv_hasta>"+buffer.mid(1, 8)+"</fecha_serv_hasta>\n";

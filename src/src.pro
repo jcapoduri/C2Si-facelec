@@ -3,6 +3,8 @@
 # -------------------------------------------------
 QT += core gui network network webkit xml xmlpatterns widgets
 
+CONFIG += c++11
+
 TARGET = FacElectronica
 DESTDIR = ../bin
 TEMPLATE = app
@@ -11,10 +13,17 @@ MOC_DIR = ../obj
 OBJECTS_DIR = ../obj
 
 SOURCES += main.cpp \
-    sslclient.cpp
+    sslclient.cpp \
+    client.cpp \
+    wsaalogin.cpp \
+    wsfemanager.cpp
 HEADERS += \
-    sslclient.h
-FORMS += sslclient.ui
+    sslclient.h \
+    client.h \
+    wsaalogin.h \
+    wsfemanager.h
+FORMS += sslclient.ui \
+    wsfeform.ui
 
 
 RESOURCES += securesocketclient.qrc

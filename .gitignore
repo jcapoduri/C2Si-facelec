@@ -12,3 +12,4 @@ src/Makefile
 *.Debug
 src/Makefile.Release
 src/Makefile.Debug
+bin/config.ini
