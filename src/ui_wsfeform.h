@@ -153,6 +153,7 @@ public:
         nroComprobanteSpinBox->setObjectName(QStringLiteral("nroComprobanteSpinBox"));
         nroComprobanteSpinBox->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         nroComprobanteSpinBox->setButtonSymbols(QAbstractSpinBox::NoButtons);
+        nroComprobanteSpinBox->setMaximum(999999);
 
         formLayout->setWidget(2, QFormLayout::FieldRole, nroComprobanteSpinBox);
 
