@@ -22,7 +22,7 @@ client::client(QString settingFile, bool justcae, QWidget *parent)
     pass = settings.value("pass", "").toString();
     inker = settings.value("inker", "").toString();
     port = settings.value("port", 443).toInt();
-    _justcae = settings.value("justcae", false).toBool();
+    _justcae = settings.value("justcae", false).toBool() || justcae;
     prestaserv = settings.value("prestaserv", false).toBool() ? "1" : "0";
     ptoventa = settings.value("ptoventa", 1).toString().rightJustified(4, '0');
     settings.endGroup();
@@ -177,7 +177,9 @@ void client::getRecipeInfo() {
 
 void client::logSessionData(QString data)
 {
+    if (data.isEmpty()) return;
     form->sessionOutput->append(data);
+    qDebug() << data;
     QString op = form->operationComboBox->currentText();
 
     if (op == "Obtener CAE p/Comprobante") {
@@ -197,15 +199,25 @@ void client::logSessionData(QString data)
 
         QFile file("cae.txt");
         file.open(QIODevice::WriteOnly);
-        file.write(data.mid(caeStart, caeLength).toLatin1());
-        file.write(data.mid(fecvenStart, fecvenLength).toLatin1());
-        file.write(data.mid(errorStart, errorLength).toLatin1());
+        if (caeLength > 0) {
+            file.write(data.mid(caeStart, caeLength).toLatin1());
+        } else {
+            file.write("00000000");
+        };
+        if (fecvenLength > 0) {
+            file.write(data.mid(fecvenStart, fecvenLength).toLatin1());
+        } else {
+            file.write("00000000");
+        };
+        if (errorLength > 0) file.write(data.mid(errorStart, errorLength).toLatin1());
+        file.close();
     }
 
     QFile fileRes(QString("wsferesponse.txt"));
-    fileRes.open(QIODevice::WriteOnly);
+    fileRes.open(QIODevice::Append);
     fileRes.write(data.toLatin1());
-    if (_justcae) close();
+    fileRes.close();
+    if (_justcae) qApp->quit();
 }
 
 void client::getLastApproveRecipe() {
