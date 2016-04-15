@@ -85,6 +85,8 @@ private slots:
 
     void logSessionData(QString data);
 
+    void appendString(const QString &line);
+
 signals:
     void wsaalogon(bool status);
 
@@ -92,8 +94,6 @@ private:
     QSslSocket   *socket;
     wsaaLogin    *wsaa;
     wsfeManager  *wsfe;
-
-    void appendString(const QString &line);   
 
     QToolButton *padLock;
     Ui_wsfeForm *form;

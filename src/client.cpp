@@ -54,6 +54,7 @@ client::client(QString settingFile, bool justcae, QWidget *parent)
 
     connect(wsaa, SIGNAL(login(QString,QString)), this, SLOT(logedIn()));
     connect(wsfe, SIGNAL(serverResponse(QString)), this, SLOT(logSessionData(QString)));
+    connect(wsfe, SIGNAL(serverDataSent(QString)), this, SLOT(appendString(QString)));
 
     form = new Ui_wsfeForm;
     form->setupUi(this);
@@ -113,7 +114,7 @@ void client::socketEncrypted()
     if (!socket)
         return;                 // might have disconnected already
 
-    form->sessionOutput->clear();
+    //form->sessionOutput->clear();
 
     QPalette palette;
     palette.setColor(QPalette::Base, QColor(255, 255, 192));

@@ -69,6 +69,7 @@ public:
 
 signals:
     void    serverResponse(QString response);
+    void    serverDataSent(QString data);
 public slots:
     void    dataReceived();
 

@@ -188,6 +188,8 @@ bool wsfeManager::getLastAuthRecipe(int pto_venta, int comprobante_tipo)
     data = data.arg(wsaa->getToken()).arg(wsaa->getSign()).arg(wsaa->getCuit());
     data = data.arg(pto_venta).arg(comprobante_tipo);
 
+    emit serverDataSent(data);
+
     doRequset(wsfeManager::wsfeGetLastAuthOpPath, data.toLatin1());
 }
 
@@ -200,6 +202,8 @@ bool wsfeManager::getRecipeInfo(int typeRecipe, int ptovta, long nbrRecipe)
     data = data.arg(typeRecipe)
                .arg(ptovta)
                .arg(nbrRecipe);
+
+    emit serverDataSent(data);
 
     doRequset(wsfeManager::wsfeGetRecipeInfoOpPath, data.toLatin1());
 }
