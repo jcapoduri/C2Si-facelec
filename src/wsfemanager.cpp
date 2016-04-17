@@ -177,6 +177,8 @@ bool wsfeManager::validateRecipies(QString fileLocation, QString extrasFileLocat
         data = data.arg("");
     }
 
+    emit serverDataSent(data);
+
     doRequset(wsfeManager::wsfeGetCAEOpPath, data.toLatin1());
 }
 
