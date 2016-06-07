@@ -5,7 +5,7 @@
 #include <QDebug>
 
 QString wsaaLogin::wsaaUrl = "wsaa.afip.gov.ar";
-QString wsaaLogin::wsaaUrlTesting = "wsaahomo.afip.gov.ar";
+QString wsaaLogin::wsaaUrlTesting = "wsaahomo2.afip.gov.ar";
 QString wsaaLogin::wsaaService = "/ws/services/LoginCms";
 QString wsaaLogin::tokenBegin = QString("&lt;token&gt;");
 QString wsaaLogin::tokenEnd = QString("&lt;/token&gt;");
@@ -34,11 +34,17 @@ void wsaaLogin::getAuth(QString source, QString x509, QString inker, QString pas
     socket->connectToHostEncrypted(serviceUrl, 443);
     socket->waitForConnected(-1);
 
-    cuit = source.mid(source.indexOf("CUIT")+5, 11);
+    if (source.contains("faultcode")) {
+        tra = readCMS();
+    } else {
+        cuit = source.mid(source.indexOf("CUIT")+5, 11);
 
-    tra = makeTRA(source, x509, inker, pass);
+        tra = makeTRA(source, x509, inker, pass);
+    };
+
     if (tra.isEmpty()) return;
     ticket = makeTicket(tra);
+
     //qDebug() << ticket.toUtf8();
     socket->write(ticket.toUtf8() + "\n");
 }
@@ -92,8 +98,12 @@ QString wsaaLogin::makeTRA(QString source, QString x509, QString inker, QString 
     openssl.execute("openssl smime -sign -signer " + x509 + " -inkey " + inker + " -out ticket.xml.cms -in ticket.xml -outform PEM -nodetach -passin pass:" + pass);
     if(openssl.exitStatus() != QProcess::NormalExit){
         return QString("");
-    };
+    }; 
 
+    return readCMS();
+ }
+
+QString wsaaLogin::readCMS() {
     QFile TRAcms(QString("ticket.xml.cms"));
     if (!TRAcms.open(QIODevice::ReadOnly | QIODevice::Text)){
         return QString("");

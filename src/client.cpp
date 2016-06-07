@@ -6,9 +6,10 @@
 #include <QFile>
 #include <QFileDialog>
 #include <QSettings>
+#include <QTimer>
 
 client::client(QString settingFile, bool justcae, QWidget *parent)
-    :QWidget(parent), socket(0), padLock(0), executingDialog(false), _justcae(justcae) {
+    :QWidget(parent), socket(0), padLock(0), executingDialog(false), _justcae(justcae), closeTimer(this) {
 
     QSettings settings(settingFile, QSettings::IniFormat);
     settings.setValue("Version", 0.1);
@@ -24,6 +25,7 @@ client::client(QString settingFile, bool justcae, QWidget *parent)
     port = settings.value("port", 443).toInt();
     _justcae = settings.value("justcae", false).toBool() || justcae;
     prestaserv = settings.value("prestaserv", false).toBool() ? "1" : "0";
+    secondsToClose = settings.value("secondsToClose", QVariant(30)).toInt();
     ptoventa = settings.value("ptoventa", 1).toString().rightJustified(4, '0');
     settings.endGroup();
 
@@ -48,6 +50,7 @@ client::client(QString settingFile, bool justcae, QWidget *parent)
             this, SLOT(socketEncrypted()));
     connect(socket, SIGNAL(sslErrors(QList<QSslError>)),
             this, SLOT(sslErrors(QList<QSslError>)));
+    connect(&closeTimer, SIGNAL(timeout()), qApp, SLOT(quit()));
 
     wsaa = new wsaaLogin(socket, testing, this);
     wsfe = new wsfeManager(wsaa, testing, this);
@@ -218,7 +221,8 @@ void client::logSessionData(QString data)
     fileRes.open(QIODevice::Append);
     fileRes.write(data.toLatin1());
     fileRes.close();
-    if (_justcae) qApp->quit();
+    if (secondsToClose > 0) closeTimer.start(secondsToClose * 1000);
+    if (_justcae) qApp->quit();    
 }
 
 void client::getLastApproveRecipe() {

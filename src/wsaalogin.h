@@ -39,6 +39,7 @@ protected:
 
     QString makeTRA(QString source, QString x509, QString inker, QString pass);
     QString makeTicket(QString cms);
+    QString readCMS();
     bool    getAuthentification();
 
     QString    token;

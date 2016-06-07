@@ -51,6 +51,7 @@
 #include <QProcess>
 #include <QDateTime>
 #include <QMessageBox>
+#include <QTimer>
 
 QT_BEGIN_NAMESPACE
 class QSslSocket;
@@ -91,6 +92,7 @@ signals:
     void wsaalogon(bool status);
 
 private:
+    QTimer       closeTimer;
     QSslSocket   *socket;
     wsaaLogin    *wsaa;
     wsfeManager  *wsfe;
@@ -111,6 +113,7 @@ private:
     QString pedido_iva;
     int port;
     bool testing;
+    int     secondsToClose;
     bool _justcae;
 };
 
