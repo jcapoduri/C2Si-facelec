@@ -75,6 +75,7 @@ private slots:
     void socketStateChanged(QAbstractSocket::SocketState state);
     void socketEncrypted();
     void sslErrors(const QList<QSslError> &errors);
+    void socketErrors(const QAbstractSocket::SocketError error);
 
     void logedIn();
 

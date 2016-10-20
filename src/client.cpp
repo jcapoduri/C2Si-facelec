@@ -50,6 +50,8 @@ client::client(QString settingFile, bool justcae, QWidget *parent)
             this, SLOT(socketEncrypted()));
     connect(socket, SIGNAL(sslErrors(QList<QSslError>)),
             this, SLOT(sslErrors(QList<QSslError>)));
+    connect(socket, SIGNAL(error(QAbstractSocket::SocketError)),
+            this, SLOT(socketErrors(QAbstractSocket::SocketError)));
     connect(&closeTimer, SIGNAL(timeout()), qApp, SLOT(quit()));
 
     wsaa = new wsaaLogin(socket, testing, this);
@@ -101,6 +103,7 @@ void client::updateEnabledState()
 void client::secureConnect()
 {    
     wsaa->getAuth(source, x509, inker, pass);
+    if (secondsToClose > 0) closeTimer.start(secondsToClose * 1000);
 }
 
 void client::socketStateChanged(QAbstractSocket::SocketState state)
@@ -154,10 +157,92 @@ void client::sslErrors(const QList<QSslError> &errors)
     };
 }
 
+void client::socketErrors(const QAbstractSocket::SocketError error)
+{
+    qDebug() << error;
+    QString errorString;
+    switch (error) {
+    case QAbstractSocket::ConnectionRefusedError:
+      errorString = "La conexion fue refutada desde el servidor o se termino el tiempo de respuesta";
+      break;
+    case QAbstractSocket::RemoteHostClosedError:
+      errorString = "El servidor cerro la conexion actual";
+      break;
+    case QAbstractSocket::HostNotFoundError:
+      errorString = "No se encuentra el servidor destino";
+      break;
+    case QAbstractSocket::SocketAccessError:
+      errorString = "No tiene suficientes privilegios para hacer la siguiente operacion";
+      break;
+    case QAbstractSocket::SocketResourceError:
+      errorString = "El servidor no puede atender el pedido actual";
+      break;
+    case QAbstractSocket::SocketTimeoutError:
+      errorString = "La operaciòn se quedo sin tiempo de espera";
+      break;
+    case QAbstractSocket::DatagramTooLargeError:
+      errorString = "Datagrama demasiado largo";
+      break;
+    case QAbstractSocket::NetworkError:
+      errorString = "Error en la red (cable/wifi desactivado)";
+      break;
+    case QAbstractSocket::AddressInUseError:
+      errorString = "Error en la direcciòn destino";
+      break;
+    case QAbstractSocket::SocketAddressNotAvailableError:
+      errorString = "La direcciòn del servidor destino no pudo ser resuelta";
+      break;
+    case QAbstractSocket::UnsupportedSocketOperationError:
+      errorString = "El pedido al servidor destino no pudo ser resuelto";
+      break;
+    case QAbstractSocket::ProxyAuthenticationRequiredError:
+      errorString = "Error en la autentificaciòn al servidor proxy";
+      break;
+    case QAbstractSocket::SslHandshakeFailedError:
+      errorString = "Error al intercambiar información de SSL";
+      break;
+    case QAbstractSocket::UnfinishedSocketOperationError:
+      errorString = "No se pudo cerrar correctamente la ultima operación";
+      break;
+    case QAbstractSocket::ProxyConnectionRefusedError:
+      errorString = "El servidor proxy actual desconecto la conexion actual";
+      break;
+    case QAbstractSocket::ProxyConnectionClosedError:
+      errorString = "El servidor proxy actual cerro la conexion actual";
+      break;
+    case QAbstractSocket::ProxyConnectionTimeoutError:
+      errorString = "El servidor proxy actual desconecto la conexion actual por timeout";
+      break;
+    case QAbstractSocket::ProxyNotFoundError:
+      errorString = "Servidor proxy no encontrado";
+      break;
+    case QAbstractSocket::ProxyProtocolError:
+      errorString = "Servidor proxy invalido";
+      break;
+    case QAbstractSocket::OperationError:
+      errorString = "Error en la operación actual";
+      break;
+    case QAbstractSocket::SslInternalError:
+      errorString = "Error interno de SSL";
+      break;
+    case QAbstractSocket::SslInvalidUserDataError:
+      errorString = "Error de datos de usuario invalido para SSL";
+      break;
+    case QAbstractSocket::TemporaryError:
+      errorString = "Error temporal, pruebe mas tarde";
+      break;
+    default:
+      errorString = "Error desconocido";
+      break;
+    }
+    appendString(errorString);
+}
+
 void client::logedIn()
 {
     form->connectButton->setEnabled(false);
     form->doButton->setEnabled(true);
+    if (secondsToClose > 0) closeTimer.stop();
     if(_justcae) validateRecipe();
 }
 
