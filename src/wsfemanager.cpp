@@ -55,17 +55,29 @@ QString wsfeManager::wsfeXMLRecipeTemplate = ""
                                              "   </soap:Body>\n"
                                              "</soap:Envelope>";
 
-QString wsfeManager::wsfeXMLIVATeamplate = ""
+QString wsfeManager::wsfeXMLIVATemplate = ""
                                            "<ar:Iva>"
                                            "   %1"
                                            "</ar:Iva>";
 
-QString wsfeManager::wsfeXMLIVARecordTeamplate = ""
+QString wsfeManager::wsfeXMLIVARecordTemplate = ""
                                                  "<ar:AlicIva>"
                                                  "<ar:Id>%1</ar:Id>"
                                                  "<ar:BaseImp>%2</ar:BaseImp>"
                                                  "<ar:Importe>%3</ar:Importe>"
                                                  "</ar:AlicIva>";
+QString wsfeManager::wsfeXMLTributoTemplate = ""
+                                           "<ar:Tributos>"
+                                           "   %1"
+                                           "</ar:Tributos>";
+
+QString wsfeManager::wsfeXMLTributoRecordTemplate = ""
+                                                 "<ar:Tributo>"
+                                                 "<ar:Id>%1</ar:Id>"
+                                                 "<ar:BaseImp>%2</ar:BaseImp>"
+                                                 "<ar:Alic>%3</ar:Alic>"
+                                                 "<ar:Importe>%4</ar:Importe>"
+                                                 "</ar:Tributo>";
 
 QString wsfeManager::wsfeXMLLastAuthRecipeTemplate = ""
                                                      "<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\" xmlns:ar=\"http://ar.gov.afip.dif.FEV1/\">\n"
@@ -131,13 +143,15 @@ wsfeManager::~wsfeManager()
 
 }
 
-bool wsfeManager::validateRecipies(QString fileLocation, QString extrasFileLocation) {
+bool wsfeManager::validateRecipies(QString fileLocation, QString extrasFileLocation, QString tributeFileLocation) {
     QString data;
     wsfeRecipe recipe;
     QList <wsfeRecipeTax> ivaRecords;
+    QList <wsfeRecipeTrib> tributeRecords;
 
     recipe = parseRecipies(fileLocation);
     ivaRecords = parseExtraRecipes(extrasFileLocation);
+    tributeRecords = parseTributeRecipes(tributeFileLocation);
 
     data = wsfeManager::wsfeXMLRecipeTemplate;
     data = data.arg(wsaa->getToken()).arg(wsaa->getSign()).arg(wsaa->getCuit());
@@ -163,16 +177,29 @@ bool wsfeManager::validateRecipies(QString fileLocation, QString extrasFileLocat
 
     if (!ivaRecords.isEmpty()) {
         wsfeRecipeTax iva;
+        wsfeRecipeTrib trib;
         QString ivaData  = "";
+        QString tribData = "";
         foreach (iva, ivaRecords) {
-            QString buffer = wsfeManager::wsfeXMLIVARecordTeamplate;
+            QString buffer = wsfeManager::wsfeXMLIVARecordTemplate;
             buffer = buffer.arg(iva.id);
             buffer = buffer.arg(QString::number(iva.base_imp, 'f', 2));
             buffer = buffer.arg(QString::number(iva.imp_iva, 'f', 2));
             ivaData.append(buffer);
         }
-        ivaData = wsfeManager::wsfeXMLIVATeamplate.arg(ivaData);
-        data = data.arg(ivaData);
+
+        foreach (trib, tributeRecords) {
+            QString buffer = wsfeManager::wsfeXMLTributoRecordTemplate;
+            buffer = buffer.arg(iva.id);
+            buffer = buffer.arg(QString::number(trib.base_imp, 'f', 2));
+            buffer = buffer.arg(QString::number(trib.alicuota, 'f', 2));
+            buffer = buffer.arg(QString::number(trib.import, 'f', 2));
+            tribData.append(buffer);
+        }
+
+        ivaData = !ivaData.isEmpty() ? wsfeManager::wsfeXMLIVATemplate.arg(ivaData) : "";
+        tribData = !tribData.isEmpty() ? wsfeManager::wsfeXMLTributoTemplate.arg(tribData) : "";
+        data = data.arg(ivaData + tribData);
     } else {
         data = data.arg("");
     }
@@ -287,6 +314,30 @@ QList<wsfeRecipeTax> wsfeManager::parseExtraRecipes(QString fileLocation)
         tax.id = buffer.mid(43, 5).toInt();
         tax.base_imp = buffer.mid(28, 15).toDouble() / 100;
         tax.imp_iva = buffer.mid(48, 15).toDouble() / 100;
+        result.append(tax);
+    }
+
+    return result;
+}
+
+
+QList<wsfeRecipeTrib> wsfeManager::parseTributeRecipes(QString fileLocation)
+{
+    QList<wsfeRecipeTrib> result;
+
+    QFile arch(fileLocation);
+    if (!arch.open(QIODevice::ReadOnly | QIODevice::Text)){
+        return result;
+    };
+
+    while (!arch.atEnd()) {
+        QByteArray buffer = arch.readLine();
+        wsfeRecipeTrib tax;
+        tax.id = buffer.mid(0, 2).toInt();
+        tax.base_imp = buffer.mid(16, 15).toDouble() / 100;
+        tax.alicuota = buffer.mid(31, 4).toDouble() / 100;
+        tax.import = buffer.mid(35, 15).toDouble() / 100;
+        qDebug() << tax.id << tax.base_imp << tax.alicuota << tax.import;
         result.append(tax);
     }
 

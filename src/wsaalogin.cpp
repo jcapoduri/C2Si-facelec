@@ -5,7 +5,7 @@
 #include <QDebug>
 
 QString wsaaLogin::wsaaUrl = "wsaa.afip.gov.ar";
-QString wsaaLogin::wsaaUrlTesting = "wsaahomo2.afip.gov.ar";
+QString wsaaLogin::wsaaUrlTesting = "wsaahomo.afip.gov.ar";
 QString wsaaLogin::wsaaService = "/ws/services/LoginCms";
 QString wsaaLogin::tokenBegin = QString("&lt;token&gt;");
 QString wsaaLogin::tokenEnd = QString("&lt;/token&gt;");

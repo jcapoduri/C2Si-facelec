@@ -79,6 +79,7 @@ private slots:
 
     void logedIn();
 
+    void operationChanged(QString value);
     void doOperation();
 
     void validateRecipe();
@@ -112,6 +113,7 @@ private:
     QString x509, ptoventa, prestaserv;
     QString pedido;
     QString pedido_iva;
+    QString pedido_tributo;
     int port;
     bool testing;
     int     secondsToClose;

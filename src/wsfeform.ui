@@ -72,7 +72,61 @@
        </item>
        <item>
         <property name="text">
-         <string>Obtener tipos de IVAs</string>
+         <string>Informacion</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="operationHelperComboBox">
+       <item>
+        <property name="text">
+         <string>FEParamGetTiposCbte</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>FEParamGetTiposConcepto</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>FEParamGetTiposDoc</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>FEParamGetTiposIva</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>FEParamGetTiposMonedas</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>FEParamGetTiposOpcional</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>FEParamGetTiposTributos</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>FEParamGetPtosVenta</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>FEParamGetCotizacion</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>FEDummy</string>
         </property>
        </item>
       </widget>

@@ -20,6 +20,7 @@ client::client(QString settingFile, bool justcae, QWidget *parent)
     x509 = settings.value("x509", "").toString();
     pedido = settings.value("pedido", "").toString();
     pedido_iva = settings.value("pedido_iva", "").toString();
+    pedido_tributo = settings.value("pedido_tributo", "").toString();
     pass = settings.value("pass", "").toString();
     inker = settings.value("inker", "").toString();
     port = settings.value("port", 443).toInt();
@@ -63,11 +64,14 @@ client::client(QString settingFile, bool justcae, QWidget *parent)
 
     form = new Ui_wsfeForm;
     form->setupUi(this);
+    form->operationHelperComboBox->setVisible(false);
     this->setWindowTitle("Facturación Eelctronica v1");
     form->hostNameEdit->setSelection(0, form->hostNameEdit->text().size());
     form->sessionOutput->setHtml(tr("&lt;not connected&gt;"));
     form->hostNameEdit->setText(wsaa->getServiceUrl());
 
+    connect(form->operationComboBox, SIGNAL(currentTextChanged(QString)),
+            this, SLOT(operationChanged(QString)));
     connect(form->hostNameEdit, SIGNAL(textChanged(QString)),
             this, SLOT(updateEnabledState()));
     connect(form->connectButton, SIGNAL(clicked()),
@@ -246,6 +250,12 @@ void client::logedIn()
     if(_justcae) validateRecipe();
 }
 
+void client::operationChanged(QString value)
+{
+    qDebug() << value;
+    form->operationHelperComboBox->setVisible(value == "Informacion");
+}
+
 void client::doOperation()
 {
     QString op = form->operationComboBox->currentText();
@@ -253,7 +263,7 @@ void client::doOperation()
     if (op == "Obtener Ult. Comprobante") getLastApproveRecipe();
     if (op == "Obtener Info de Comprobante") getRecipeInfo();
     if (op == "Obtener CAE p/Comprobante") validateRecipe();
-    if (op == "Obtener tipos de IVAs") wsfe->getData(wsfeManager::wsfeGetIvaOpPath);
+    if (op == "Informacion") wsfe->getData(form->operationHelperComboBox->currentText());
 }
 
 void client::getRecipeInfo() {
@@ -320,7 +330,7 @@ void client::getLastApproveRecipe() {
 
 void client::validateRecipe()
 {
-    wsfe->validateRecipies(pedido, pedido_iva);
+    wsfe->validateRecipies(pedido, pedido_iva, pedido_tributo);
 }
 
 

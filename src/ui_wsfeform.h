@@ -40,6 +40,7 @@ public:
     QHBoxLayout *horizontalLayout_3;
     QLabel *label_2;
     QComboBox *operationComboBox;
+    QComboBox *operationHelperComboBox;
     QPushButton *doButton;
     QGroupBox *groupBox;
     QVBoxLayout *verticalLayout;
@@ -100,6 +101,11 @@ public:
         operationComboBox->setSizePolicy(sizePolicy);
 
         horizontalLayout_3->addWidget(operationComboBox);
+
+        operationHelperComboBox = new QComboBox(wsfeForm);
+        operationHelperComboBox->setObjectName(QStringLiteral("operationHelperComboBox"));
+
+        horizontalLayout_3->addWidget(operationHelperComboBox);
 
         doButton = new QPushButton(wsfeForm);
         doButton->setObjectName(QStringLiteral("doButton"));
@@ -201,7 +207,20 @@ public:
          << QApplication::translate("wsfeForm", "Obtener CAE p/Comprobante", 0)
          << QApplication::translate("wsfeForm", "Obtener Info de Comprobante", 0)
          << QApplication::translate("wsfeForm", "Obtener Ult. Comprobante", 0)
-         << QApplication::translate("wsfeForm", "Obtener tipos de IVAs", 0)
+         << QApplication::translate("wsfeForm", "Informacion", 0)
+        );
+        operationHelperComboBox->clear();
+        operationHelperComboBox->insertItems(0, QStringList()
+         << QApplication::translate("wsfeForm", "FEParamGetTiposCbte", 0)
+         << QApplication::translate("wsfeForm", "FEParamGetTiposConcepto", 0)
+         << QApplication::translate("wsfeForm", "FEParamGetTiposDoc", 0)
+         << QApplication::translate("wsfeForm", "FEParamGetTiposIva", 0)
+         << QApplication::translate("wsfeForm", "FEParamGetTiposMonedas", 0)
+         << QApplication::translate("wsfeForm", "FEParamGetTiposOpcional", 0)
+         << QApplication::translate("wsfeForm", "FEParamGetTiposTributos", 0)
+         << QApplication::translate("wsfeForm", "FEParamGetPtosVenta", 0)
+         << QApplication::translate("wsfeForm", "FEParamGetCotizacion", 0)
+         << QApplication::translate("wsfeForm", "FEDummy", 0)
         );
         doButton->setText(QApplication::translate("wsfeForm", "Ejecutar Operaci\303\263n", 0));
         groupBox->setTitle(QApplication::translate("wsfeForm", "Operaciones", 0));
