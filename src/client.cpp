@@ -59,6 +59,7 @@ client::client(QString settingFile, bool justcae, QWidget *parent)
     wsfe = new wsfeManager(wsaa, testing, this);
 
     connect(wsaa, SIGNAL(login(QString,QString)), this, SLOT(logedIn()));
+    connect(wsaa, SIGNAL(logFailed()), this, SLOT(cleanCae()));
     connect(wsfe, SIGNAL(serverResponse(QString)), this, SLOT(logSessionData(QString)));
     connect(wsfe, SIGNAL(serverDataSent(QString)), this, SLOT(appendString(QString)));
 
@@ -326,6 +327,13 @@ void client::getLastApproveRecipe() {
 
 
     wsfe->getLastAuthRecipe(pto_venta, tipo_comp);
+}
+
+void client::cleanCae() {
+    QFile file("cae.txt");
+    file.open(QIODevice::WriteOnly);
+    file.write("00000000");
+    file.close();
 }
 
 void client::validateRecipe()

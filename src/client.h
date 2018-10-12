@@ -89,6 +89,7 @@ private slots:
     void logSessionData(QString data);
 
     void appendString(const QString &line);
+    void cleanCae();
 
 signals:
     void wsaalogon(bool status);
