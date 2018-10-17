@@ -319,7 +319,9 @@ void client::logSessionData(QString data)
         } else {
             file.write("00000000");
         };
-        if (errorLength > 0) file.write(data.mid(errorStart, errorLength).toLatin1());
+        if (errorLength > 0) {
+            this->writeError(data.mid(errorStart, errorLength));
+        }
         file.close();
     }
 
@@ -351,10 +353,18 @@ void client::cleanCae(QString error) {
     } else {
         QFile file("cae.txt");
         file.open(QIODevice::WriteOnly);
-        qDebug() << error;
-        file.write("0000000000000000000000" + error.toLatin1());
+        file.write("0000000000000000000000");
         file.close();
+        this->writeError(error)
     }
+}
+
+void client::writeError(QString error)
+{
+    QFile errorFile("error.txt");
+    errorFile.open(QIODevice::WriteOnly);
+    errorFile.write(error.toLatin1());
+    errorFile.close();
 }
 
 void client::validateRecipe()
