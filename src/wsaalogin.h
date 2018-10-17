@@ -20,10 +20,13 @@ public:
     bool     isAuthenticated() { return isAuthOk; }
     QString  getToken() { return token; }
     QString  getSign() { return sign; }
+
     QString  getCuit() { return cuit; }
     QString  getServiceUrl() { return serviceUrl; }
 
     void    getAuth(QString source, QString x509, QString inker, QString pass);
+    void    setToken(QString token) { this->token = token; }
+    void    setSign(QString sign) { this->sign = sign; }
 
     QSslSocket *socket;
 

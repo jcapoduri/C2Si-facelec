@@ -247,6 +247,16 @@ void client::logedIn()
 {
     form->connectButton->setEnabled(false);
     form->doButton->setEnabled(true);
+    QFile tokenFile("token");
+    QFile signFile("sign");
+    if (tokenFile.open(QIODevice::WriteOnly)) {
+        tokenFile.write(wsaa->getToken().toLatin1());
+        tokenFile.close();
+    };
+    if (signFile.open(QIODevice::WriteOnly)) {
+        signFile.write(wsaa->getSign().toLatin1());
+        signFile.close();
+    };
     if (secondsToClose > 0) closeTimer.stop();
     if(_justcae) validateRecipe();
 }
@@ -330,11 +340,21 @@ void client::getLastApproveRecipe() {
 }
 
 void client::cleanCae(QString error) {
-    QFile file("cae.txt");
-    file.open(QIODevice::WriteOnly);
-    qDebug() << error;
-    file.write("0000000000000000000000" + error.toLatin1());
-    file.close();
+    if (error == "El CEE ya posee un TA valido para el acceso al WSN solicitado") {
+        QFile tokenFile("token");
+        QFile signFile("sign");
+        tokenFile.open(QIODevice::ReadOnly);
+        signFile.open(QIODevice::ReadOnly);
+        wsaa->setToken(tokenFile.readAll());
+        wsaa->setSign(signFile.readAll());
+        this->logedIn();
+    } else {
+        QFile file("cae.txt");
+        file.open(QIODevice::WriteOnly);
+        qDebug() << error;
+        file.write("0000000000000000000000" + error.toLatin1());
+        file.close();
+    }
 }
 
 void client::validateRecipe()
