@@ -1,7 +1,6 @@
 #include <QApplication>
 #include <QSettings>
 
-#include "sslclient.h"
 #include "client.h"
 #include <iostream>
 #include <cstdlib>
