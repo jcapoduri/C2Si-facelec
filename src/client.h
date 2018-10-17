@@ -90,6 +90,7 @@ private slots:
 
     void appendString(const QString &line);
     void cleanCae(QString error);
+    void writeError(QString error);
 
 signals:
     void wsaalogon(bool status);

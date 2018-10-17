@@ -355,7 +355,7 @@ void client::cleanCae(QString error) {
         file.open(QIODevice::WriteOnly);
         file.write("0000000000000000000000");
         file.close();
-        this->writeError(error)
+        this->writeError(error);
     }
 }
 
