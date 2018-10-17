@@ -11,6 +11,8 @@ QString wsaaLogin::tokenBegin = QString("&lt;token&gt;");
 QString wsaaLogin::tokenEnd = QString("&lt;/token&gt;");
 QString wsaaLogin::signBegin = QString("&lt;sign&gt;");
 QString wsaaLogin::signEnd = QString("&lt;/sign&gt;");
+QString wsaaLogin::errorBegin = QString("<faultstring>");
+QString wsaaLogin::errorEnd = QString("</faultstring>");
 
 wsaaLogin::wsaaLogin(QSslSocket *conn, bool homologacion, QObject *parent) : QObject(parent)
 {
@@ -45,14 +47,15 @@ void wsaaLogin::getAuth(QString source, QString x509, QString inker, QString pas
     if (tra.isEmpty()) return;
     ticket = makeTicket(tra);
 
-    //qDebug() << ticket.toUtf8();
-    socket->write(ticket.toUtf8() + "\n");
+    qDebug() << ticket.toUtf8();
+    socket->write(ticket.toUtf8());
 }
 
 void wsaaLogin::readResponse()
 {
     QString data = QString::fromUtf8(socket->readAll());
     qDebug() << data;
+    disconnect(socket, SIGNAL(readyRead()), this, SLOT(readResponse()));
 
     int tokenStart = data.indexOf(tokenBegin) + tokenBegin.length();
     if(tokenStart != (tokenBegin.length() - 1)){
@@ -64,9 +67,11 @@ void wsaaLogin::readResponse()
         sign = data.mid(signStart, signFinish);
 
         emit this->login(token, sign);
-        disconnect(socket, SIGNAL(readyRead()), this, SLOT(readResponse()));
     }else{
-        emit this->logFailed();
+        int errorStart = data.indexOf(errorBegin) + errorBegin.length();
+        int errorFinish = data.indexOf(errorEnd) - errorStart;
+        qDebug() << errorStart << errorFinish << data.mid(errorStart, errorFinish);
+        emit logFailed(data.mid(errorStart, errorFinish));
     };
 }
 
@@ -130,7 +135,7 @@ QString wsaaLogin::makeTicket(QString cms)
                   "<soapenv:Header/>\n"
                   "<soapenv:Body>\n"
                   "   <wsaa:loginCms>\n"
-                  "    <wsaa:in0>\n";
+                  "    <wsaa:in0>";
 
     ticket += cms;
     ticket +=  "</wsaa:in0>\n"

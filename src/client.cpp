@@ -59,7 +59,7 @@ client::client(QString settingFile, bool justcae, QWidget *parent)
     wsfe = new wsfeManager(wsaa, testing, this);
 
     connect(wsaa, SIGNAL(login(QString,QString)), this, SLOT(logedIn()));
-    connect(wsaa, SIGNAL(logFailed()), this, SLOT(cleanCae()));
+    connect(wsaa, SIGNAL(logFailed(QString)), this, SLOT(cleanCae(QString)));
     connect(wsfe, SIGNAL(serverResponse(QString)), this, SLOT(logSessionData(QString)));
     connect(wsfe, SIGNAL(serverDataSent(QString)), this, SLOT(appendString(QString)));
 
@@ -287,8 +287,8 @@ void client::logSessionData(QString data)
         QString caeEndToken = "</CAE>";
         QString fecvenBeginToken = "CAEFchVto>";
         QString fecvenEndToken = "</CAEFchVto>";
-        QString pererrBeginToken = "<Errors>";
-        QString pererrEndToken = "</Errors>";
+        QString pererrBeginToken = "<Msg>";
+        QString pererrEndToken = "</Msg>";
 
         int caeStart = data.indexOf(caeBeginToken) + caeBeginToken.length();
         int caeLength = data.indexOf(caeEndToken) - caeStart;
@@ -329,10 +329,11 @@ void client::getLastApproveRecipe() {
     wsfe->getLastAuthRecipe(pto_venta, tipo_comp);
 }
 
-void client::cleanCae() {
+void client::cleanCae(QString error) {
     QFile file("cae.txt");
     file.open(QIODevice::WriteOnly);
-    file.write("00000000");
+    qDebug() << error;
+    file.write("0000000000000000000000" + error.toLatin1());
     file.close();
 }
 

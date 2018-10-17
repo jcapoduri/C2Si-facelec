@@ -11,6 +11,8 @@ public:
     static QString wsaaUrl;
     static QString wsaaUrlTesting;
     static QString wsaaService;
+    static QString errorBegin;
+    static QString errorEnd;
 
     explicit wsaaLogin(QSslSocket *conn, bool homologacion = false, QObject *parent = 0);
     ~wsaaLogin();
@@ -27,7 +29,7 @@ public:
 
 signals:
     void    login(QString token, QString sign);
-    void    logFailed();
+    void    logFailed(QString errorString);
 protected slots:
     void    readResponse();
 

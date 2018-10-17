@@ -89,7 +89,7 @@ private slots:
     void logSessionData(QString data);
 
     void appendString(const QString &line);
-    void cleanCae();
+    void cleanCae(QString error);
 
 signals:
     void wsaalogon(bool status);
@@ -107,6 +107,7 @@ private:
 
     QString token;
     QString sign;
+    QString error;
 
     QString source, cuit;
     QString inker, pass;
