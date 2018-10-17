@@ -334,9 +334,9 @@ QList<wsfeRecipeTrib> wsfeManager::parseTributeRecipes(QString fileLocation)
         QByteArray buffer = arch.readLine();
         wsfeRecipeTrib tax;
         tax.id = buffer.mid(0, 2).toInt();
-        tax.base_imp = buffer.mid(16, 15).toDouble() / 100;
-        tax.alicuota = buffer.mid(31, 4).toDouble() / 100;
-        tax.import = buffer.mid(35, 15).toDouble() / 100;
+        tax.base_imp = buffer.mid(30, 15).toDouble() / 100;
+        tax.alicuota = buffer.mid(45, 4).toDouble() / 100;
+        tax.import = buffer.mid(49, 15).toDouble() / 100;
         qDebug() << tax.id << tax.base_imp << tax.alicuota << tax.import;
         result.append(tax);
     }
