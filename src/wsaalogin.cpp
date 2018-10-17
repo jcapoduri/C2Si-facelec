@@ -138,14 +138,15 @@ QString wsaaLogin::makeTicket(QString cms)
                    "</soapenv:Body>\n"
                    "</soapenv:Envelope>\n";
 
-    header = "POST " + wsaaLogin::wsaaService +  " HTTP/1.1\n" //"POST https://wsaahomo.afip.gov.ar/ws/services/LoginCms HTTP/1.1\n"
-                "Content-Type: text/xml;charset=UTF-8\n"
-                "SOAPAction: \"\"\n"
-                "User-Agent: Jakarta Commons-HttpClient/3.1\n"
-                "Host: " + serviceUrl + "\n"
+    header = "POST " + wsaaLogin::wsaaService +  " HTTP/1.1\r\n" //"POST https://wsaahomo.afip.gov.ar/ws/services/LoginCms HTTP/1.1\n"
+                "Content-Type: text/xml;charset=UTF-8\r\n"
+                "Accept-Encoding: gzip,deflate\r\n"
+                "SOAPAction: \"\"\r\n"
+                "User-Agent: Jakarta Commons-HttpClient/3.1\r\n"
+                "Host: " + serviceUrl + "\r\n"
                 "Content-Length: ";
     header += QString::number(ticket.length());
-    header += "\n\n";
+    header += "\r\n\r\n";
     ticket = header + ticket;
     return ticket;
 }
