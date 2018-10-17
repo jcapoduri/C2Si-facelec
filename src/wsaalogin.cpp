@@ -48,13 +48,16 @@ void wsaaLogin::getAuth(QString source, QString x509, QString inker, QString pas
     ticket = makeTicket(tra);
 
     qDebug() << ticket.toUtf8();
-    socket->write(ticket.toUtf8());
+    socket->write(ticket.toUtf8() + "\r\n");
 }
 
 void wsaaLogin::readResponse()
 {
     QString data = QString::fromUtf8(socket->readAll());
     qDebug() << data;
+    if (!data.contains("<?xml")) {
+        return; //i don't care for initial headers
+    }
     disconnect(socket, SIGNAL(readyRead()), this, SLOT(readResponse()));
 
     int tokenStart = data.indexOf(tokenBegin) + tokenBegin.length();
