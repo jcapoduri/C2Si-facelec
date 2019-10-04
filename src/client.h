@@ -117,6 +117,7 @@ private:
     QString pedido;
     QString pedido_iva;
     QString pedido_tributo;
+    QString pedido_opcional;
     int port;
     bool testing;
     int     secondsToClose;

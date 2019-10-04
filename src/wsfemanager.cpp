@@ -78,6 +78,16 @@ QString wsfeManager::wsfeXMLTributoRecordTemplate = ""
                                                  "<ar:Alic>%3</ar:Alic>"
                                                  "<ar:Importe>%4</ar:Importe>"
                                                  "</ar:Tributo>";
+QString wsfeManager::wsfeXMLOptionalTemplate = ""
+                                               "<ar:Opcionales>"
+                                               "   %1"
+                                               "</ar:Opcionales>";
+
+QString wsfeManager::wsfeXMLOptionalRecordTemplate = ""
+                                                     "<ar:Opcional>"
+                                                     "<ar:Id>%1</ar:Id>"
+                                                     "<ar:Valor>%2</ar:Valor>"
+                                                     "</ar:Opcional>";
 
 QString wsfeManager::wsfeXMLLastAuthRecipeTemplate = ""
                                                      "<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\" xmlns:ar=\"http://ar.gov.afip.dif.FEV1/\">\n"
@@ -127,6 +137,8 @@ QString wsfeManager::wsfeXMLInfoOpTemplate = ""
                                                      "      </ar:%1>\n"
                                                      "   </soap:Body>\n"
                                                      "</soap:Envelope>";
+QList<int> wsfeManager::fceDocuments = QList<int>({201,203,207, 211, 213});
+int wsfeManager::fechaVtoPagoCustomId = 9999;
 
 
 wsfeManager::wsfeManager(wsaaLogin *wsaa, bool homologacion, QObject *parent) : QObject(parent)
@@ -143,15 +155,26 @@ wsfeManager::~wsfeManager()
 
 }
 
-bool wsfeManager::validateRecipies(QString fileLocation, QString extrasFileLocation, QString tributeFileLocation) {
-    QString data;
+bool wsfeManager::validateRecipies(QString fileLocation, QString extrasFileLocation, QString tributeFileLocation, QString optionalFileLocation) {
+    QString data, extra = "";
     wsfeRecipe recipe;
     QList <wsfeRecipeTax> ivaRecords;
     QList <wsfeRecipeTrib> tributeRecords;
+    QList <wsfeOptionals> optionalRecords;
 
     recipe = parseRecipies(fileLocation);
     ivaRecords = parseExtraRecipes(extrasFileLocation);
     tributeRecords = parseTributeRecipes(tributeFileLocation);
+    if (!optionalFileLocation.isEmpty()) {
+        optionalRecords = parseOptionalsRecipes(optionalFileLocation);
+        wsfeOptionals opts;
+        foreach (opts, optionalRecords) {
+            if (opts.id == wsfeManager::fechaVtoPagoCustomId) { //special value, this means fecha vencimiento
+                recipe.fechaVtoPago = opts.details;
+                break;
+            }
+        }
+    }
 
     data = wsfeManager::wsfeXMLRecipeTemplate;
     data = data.arg(wsaa->getToken()).arg(wsaa->getSign()).arg(wsaa->getCuit());
@@ -171,7 +194,7 @@ bool wsfeManager::validateRecipies(QString fileLocation, QString extrasFileLocat
     data = data.arg(QString::number(recipe.imp_iva, 'f', 2));
     data = data.arg("");
     data = data.arg("");
-    data = data.arg("");
+    data = data.arg(recipe.fechaVtoPago);
     data = data.arg(recipe.mon_id);
     data = data.arg(recipe.mon_cotiz);
 
@@ -199,10 +222,27 @@ bool wsfeManager::validateRecipies(QString fileLocation, QString extrasFileLocat
 
         ivaData = !ivaData.isEmpty() ? wsfeManager::wsfeXMLIVATemplate.arg(ivaData) : "";
         tribData = !tribData.isEmpty() ? wsfeManager::wsfeXMLTributoTemplate.arg(tribData) : "";
-        data = data.arg(ivaData + tribData);
-    } else {
-        data = data.arg("");
+        extra = ivaData + tribData;
     }
+
+    if (fceDocuments.toSet().contains(recipe.cbte_type) && !optionalRecords.isEmpty()) {
+        wsfeOptionals opts;
+        QString optionalsData = "";
+        foreach (opts, optionalRecords) {
+            if (opts.id == wsfeManager::fechaVtoPagoCustomId) { //special value, this means fecha vencimiento
+                continue;
+            }
+            QString buffer = wsfeManager::wsfeXMLOptionalRecordTemplate;
+            buffer = buffer.arg(opts.id);
+            buffer = buffer.arg(opts.details);
+            optionalsData.append(buffer);
+        }
+
+        optionalsData = !optionalsData.isEmpty() ? wsfeManager::wsfeXMLOptionalTemplate.arg(optionalsData) : "";
+        extra += optionalsData;
+    }
+
+    data = data.arg(extra);
 
     emit serverDataSent(data);
 
@@ -261,13 +301,13 @@ wsfeRecipe wsfeManager::parseRecipies(QString fileLocation)
     QFile arch(fileLocation);
     if (!arch.open(QIODevice::ReadOnly | QIODevice::Text)){
         return recipe;
-    };
+    }
 
     char buf[1024];
     arch.readLine(buf, sizeof(buf));
     QString buffer(buf);
 
-    recipe.cbte_type = buffer.mid(9, 2).toInt();
+    recipe.cbte_type = buffer.mid(9, 3).toInt();
     recipe.pto_venta = buffer.mid(12, 4).toInt();
     recipe.concepto = 1;
     recipe.doctype = buffer.mid(35, 2).toInt();
@@ -339,6 +379,28 @@ QList<wsfeRecipeTrib> wsfeManager::parseTributeRecipes(QString fileLocation)
         tax.import = buffer.mid(50, 15).toDouble() / 100;
         qDebug() << tax.id << tax.base_imp << tax.alicuota << tax.import;
         result.append(tax);
+    }
+
+    return result;
+}
+
+QList<wsfeOptionals> wsfeManager::parseOptionalsRecipes(QString fileLocation, bool isFCE)
+{
+    QList<wsfeOptionals> result;
+
+    QFile arch(fileLocation);
+    if (!arch.open(QIODevice::ReadOnly | QIODevice::Text)){
+        return result;
+    }
+
+    while (!arch.atEnd()) {
+        QByteArray buffer = arch.readLine();
+        if (buffer.isEmpty()) continue;
+        wsfeOptionals optional;
+        optional.id = buffer.mid(0, 4).toInt();
+        optional.details = buffer.mid(4, 255).trimmed();
+        qDebug() << optional.id << optional.details;
+        result.append(optional);
     }
 
     return result;
