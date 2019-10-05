@@ -399,6 +399,9 @@ QList<wsfeOptionals> wsfeManager::parseOptionalsRecipes(QString fileLocation, bo
         wsfeOptionals optional;
         optional.id = buffer.mid(0, 4).toInt();
         optional.details = buffer.mid(4, 255).trimmed();
+        if (optional.id == 0) {
+            continue;
+        }
         qDebug() << optional.id << optional.details;
         result.append(optional);
     }
