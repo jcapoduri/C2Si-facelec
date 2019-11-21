@@ -40,6 +40,7 @@ struct wsfeRecipeTax  {
 
 struct wsfeRecipeTrib  {
     int    id = 1;
+    QString desc = "";
     double base_imp = 0.0;
     double alicuota = 0.0;
     double import = 0.0;
@@ -74,6 +75,9 @@ public:
     static QString wsfeXMLOptionalTemplate;
     static QString wsfeXMLOptionalRecordTemplate;
     static QList<int> fceDocuments;
+    static QMap<int, QString> tributesDesc;
+
+    static QMap<int, QString> getTributesDesc();
     static int fechaVtoPagoCustomId;
 
     explicit wsfeManager(wsaaLogin *wsaa, bool homologacion = false, QObject *parent = nullptr);

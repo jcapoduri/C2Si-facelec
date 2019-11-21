@@ -77,6 +77,7 @@ QString wsfeManager::wsfeXMLTributoRecordTemplate = ""
                                                  "<ar:BaseImp>%2</ar:BaseImp>"
                                                  "<ar:Alic>%3</ar:Alic>"
                                                  "<ar:Importe>%4</ar:Importe>"
+                                                 "<ar:Desc>%5</ar:Desc>"
                                                  "</ar:Tributo>";
 QString wsfeManager::wsfeXMLOptionalTemplate = ""
                                                "<ar:Opcionales>"
@@ -138,8 +139,27 @@ QString wsfeManager::wsfeXMLInfoOpTemplate = ""
                                                      "   </soap:Body>\n"
                                                      "</soap:Envelope>";
 QList<int> wsfeManager::fceDocuments = QList<int>({201,203,207, 211, 213});
+QMap<int, QString> wsfeManager::tributesDesc = wsfeManager::getTributesDesc();
 int wsfeManager::fechaVtoPagoCustomId = 9999;
 
+
+QMap<int, QString> wsfeManager::getTributesDesc()
+{
+    QMap<int, QString> map;
+    map.insert(1, "Impuestos nacionales");
+    map.insert(2, "Impuestos provinciales");
+    map.insert(3, "Impuestos municipales");
+    map.insert(4, "Impuestos Internos");
+    map.insert(99, "Otro");
+    map.insert(5, "IIBB");
+    map.insert(6, "Percepción de IVA");
+    map.insert(7, "Percepción de IIBB");
+    map.insert(8, "Percepciones por Impuestos Municipales");
+    map.insert(9, "Otras Percepciones");
+    map.insert(13, "Percepción de IVA a no Categorizado");
+
+    return map;
+}
 
 wsfeManager::wsfeManager(wsaaLogin *wsaa, bool homologacion, QObject *parent) : QObject(parent)
 {
@@ -217,6 +237,7 @@ bool wsfeManager::validateRecipies(QString fileLocation, QString extrasFileLocat
             buffer = buffer.arg(QString::number(trib.base_imp, 'f', 2));
             buffer = buffer.arg(QString::number(trib.alicuota, 'f', 2));
             buffer = buffer.arg(QString::number(trib.import, 'f', 2));
+            buffer = buffer.arg(trib.desc);
             tribData.append(buffer);
         }
 
@@ -377,6 +398,7 @@ QList<wsfeRecipeTrib> wsfeManager::parseTributeRecipes(QString fileLocation)
         tax.base_imp = buffer.mid(30, 15).toDouble() / 100;
         tax.alicuota = buffer.mid(45, 5).toDouble() / 100;
         tax.import = buffer.mid(50, 15).toDouble() / 100;
+        tax.desc = wsfeManager::tributesDesc.value(tax.id, "");
         qDebug() << tax.id << tax.base_imp << tax.alicuota << tax.import;
         result.append(tax);
     }
