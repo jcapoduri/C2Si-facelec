@@ -89,6 +89,20 @@ QString wsfeManager::wsfeXMLOptionalRecordTemplate = ""
                                                      "<ar:Id>%1</ar:Id>"
                                                      "<ar:Valor>%2</ar:Valor>"
                                                      "</ar:Opcional>";
+QString wsfeManager::wsfeXMLCbteAsocTemplate = ""
+                                               "<ar:CbtesAsoc>"
+                                               "    %1"
+                                               "</ar:CbtesAsoc>";
+
+QString wsfeManager::wsfeXMLCbteAsocRecordTemplate = ""
+                                                     "<ar:CbteAsoc>"
+                                                     "<ar:Tipo>%1</ar:Tipo>"
+                                                     "<ar:PtoVta>%2</ar:PtoVta>"
+                                                     "<ar:Nro>%3</ar:Nro>"
+                                                     "<ar:Cuit>%4</ar:Cuit>"
+                                                     "<ar:CbteFch>%5</ar:CbteFch>"
+                                                     "</ar:CbteAsoc>";
+
 
 QString wsfeManager::wsfeXMLLastAuthRecipeTemplate = ""
                                                      "<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\" xmlns:ar=\"http://ar.gov.afip.dif.FEV1/\">\n"
@@ -175,12 +189,13 @@ wsfeManager::~wsfeManager()
 
 }
 
-bool wsfeManager::validateRecipies(QString fileLocation, QString extrasFileLocation, QString tributeFileLocation, QString optionalFileLocation) {
+bool wsfeManager::validateRecipies(QString fileLocation, QString extrasFileLocation, QString tributeFileLocation, QString optionalFileLocation, QString cbtesAsocFileLocation) {
     QString data, extra = "";
     wsfeRecipe recipe;
     QList <wsfeRecipeTax> ivaRecords;
     QList <wsfeRecipeTrib> tributeRecords;
     QList <wsfeOptionals> optionalRecords;
+    QList <wsfeCbteAsoc> cbtesAsocRecords;
 
     recipe = parseRecipies(fileLocation);
     ivaRecords = parseExtraRecipes(extrasFileLocation);
@@ -194,6 +209,9 @@ bool wsfeManager::validateRecipies(QString fileLocation, QString extrasFileLocat
                 break;
             }
         }
+    }
+    if (!cbtesAsocFileLocation.isEmpty()) {
+        cbtesAsocRecords = parseCbtesAsoc(cbtesAsocFileLocation);
     }
 
     data = wsfeManager::wsfeXMLRecipeTemplate;
@@ -261,6 +279,29 @@ bool wsfeManager::validateRecipies(QString fileLocation, QString extrasFileLocat
 
         optionalsData = !optionalsData.isEmpty() ? wsfeManager::wsfeXMLOptionalTemplate.arg(optionalsData) : "";
         extra += optionalsData;
+    }
+
+    if (!cbtesAsocRecords.isEmpty()) {
+        wsfeCbteAsoc cbteAsoc;
+        QString cbteAsocData = "";
+        foreach (cbteAsoc, cbtesAsocRecords) {
+            QString buffer = wsfeManager::wsfeXMLCbteAsocRecordTemplate;
+            /*
+
+                                                     "<ar:Tipo>%1</ar:Tipo>"
+                                                     "<ar:PtoVta>%2</ar:PtoVta>"
+                                                     "<ar:Nro>%3</ar:Nro>"
+                                                     "<ar:Cuit>%4</ar:Cuit>"
+                                                     "<ar:CbteFch>%5</ar:CbteFch>"*/
+            buffer = buffer.arg(cbteAsoc.cbte_type);
+            buffer = buffer.arg(cbteAsoc.pto_venta);
+            buffer = buffer.arg(cbteAsoc.docnumber);
+            buffer = buffer.arg(cbteAsoc.cuit);
+            buffer = buffer.arg(cbteAsoc.cbte_fecha);
+            cbteAsocData.append(buffer);
+        }
+        cbteAsocData = !cbteAsocData.isEmpty() ? wsfeManager::wsfeXMLCbteAsocTemplate.arg(cbteAsocData) : "";
+        extra += cbteAsocData;
     }
 
     data = data.arg(extra);
@@ -426,6 +467,41 @@ QList<wsfeOptionals> wsfeManager::parseOptionalsRecipes(QString fileLocation, bo
         }
         qDebug() << optional.id << optional.details;
         result.append(optional);
+    }
+
+    return result;
+}
+
+/* aaabbbbbccccccccdddddddddddcccccccc
+   0123456789012345678901234567890123456789
+ipo comprobante    3 digitos
+punto de venta        5 digitos
+nro comprobante    10 digitos
+CUIT                      11 digitos (el cuit sin guiones)
+fecha                       8 digitos (yyyymmaa)
+
+todos los campos son numericos y completados con cero
+*/
+QList<wsfeCbteAsoc> wsfeManager::parseCbtesAsoc(QString fileLocation)
+{
+    QList<wsfeCbteAsoc> result;
+
+    QFile arch(fileLocation);
+    if (!arch.open(QIODevice::ReadOnly | QIODevice::Text)){
+        return result;
+    }
+
+    while (!arch.atEnd()) {
+        QByteArray buffer = arch.readLine();
+        if (buffer.isEmpty()) continue;
+        wsfeCbteAsoc cbteAsoc;
+        cbteAsoc.cbte_type  = buffer.mid(0, 3).toInt();
+        cbteAsoc.pto_venta  = buffer.mid(3, 5).toInt();
+        cbteAsoc.docnumber  = buffer.mid(8, 10).toLongLong();
+        cbteAsoc.cuit       = buffer.mid(18, 11);
+        cbteAsoc.cbte_fecha = buffer.mid(29, 8);
+
+        result.append(cbteAsoc);
     }
 
     return result;

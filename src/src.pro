@@ -1,7 +1,7 @@
 # -------------------------------------------------
 # Project created by QtCreator 2009-03-26T22:25:24
 # -------------------------------------------------
-QT += core gui network network webkit xml xmlpatterns widgets
+QT += core gui network network xml xmlpatterns widgets
 
 CONFIG += c++11
 

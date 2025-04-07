@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'wsfeform.ui'
 **
-** Created by: Qt User Interface Compiler version 5.4.0
+** Created by: Qt User Interface Compiler version 5.13.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,14 +10,11 @@
 #define UI_WSFEFORM_H
 
 #include <QtCore/QVariant>
-#include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
@@ -60,24 +57,24 @@ public:
     void setupUi(QWidget *wsfeForm)
     {
         if (wsfeForm->objectName().isEmpty())
-            wsfeForm->setObjectName(QStringLiteral("wsfeForm"));
+            wsfeForm->setObjectName(QString::fromUtf8("wsfeForm"));
         wsfeForm->resize(753, 446);
         verticalLayout_2 = new QVBoxLayout(wsfeForm);
-        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         label = new QLabel(wsfeForm);
-        label->setObjectName(QStringLiteral("label"));
+        label->setObjectName(QString::fromUtf8("label"));
 
         horizontalLayout_2->addWidget(label);
 
         hostNameEdit = new QLineEdit(wsfeForm);
-        hostNameEdit->setObjectName(QStringLiteral("hostNameEdit"));
+        hostNameEdit->setObjectName(QString::fromUtf8("hostNameEdit"));
 
         horizontalLayout_2->addWidget(hostNameEdit);
 
         connectButton = new QPushButton(wsfeForm);
-        connectButton->setObjectName(QStringLiteral("connectButton"));
+        connectButton->setObjectName(QString::fromUtf8("connectButton"));
 
         horizontalLayout_2->addWidget(connectButton);
 
@@ -85,14 +82,18 @@ public:
         verticalLayout_2->addLayout(horizontalLayout_2);
 
         horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
         label_2 = new QLabel(wsfeForm);
-        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setObjectName(QString::fromUtf8("label_2"));
 
         horizontalLayout_3->addWidget(label_2);
 
         operationComboBox = new QComboBox(wsfeForm);
-        operationComboBox->setObjectName(QStringLiteral("operationComboBox"));
+        operationComboBox->addItem(QString());
+        operationComboBox->addItem(QString());
+        operationComboBox->addItem(QString());
+        operationComboBox->addItem(QString());
+        operationComboBox->setObjectName(QString::fromUtf8("operationComboBox"));
         operationComboBox->setEnabled(true);
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
@@ -103,12 +104,22 @@ public:
         horizontalLayout_3->addWidget(operationComboBox);
 
         operationHelperComboBox = new QComboBox(wsfeForm);
-        operationHelperComboBox->setObjectName(QStringLiteral("operationHelperComboBox"));
+        operationHelperComboBox->addItem(QString());
+        operationHelperComboBox->addItem(QString());
+        operationHelperComboBox->addItem(QString());
+        operationHelperComboBox->addItem(QString());
+        operationHelperComboBox->addItem(QString());
+        operationHelperComboBox->addItem(QString());
+        operationHelperComboBox->addItem(QString());
+        operationHelperComboBox->addItem(QString());
+        operationHelperComboBox->addItem(QString());
+        operationHelperComboBox->addItem(QString());
+        operationHelperComboBox->setObjectName(QString::fromUtf8("operationHelperComboBox"));
 
         horizontalLayout_3->addWidget(operationHelperComboBox);
 
         doButton = new QPushButton(wsfeForm);
-        doButton->setObjectName(QStringLiteral("doButton"));
+        doButton->setObjectName(QString::fromUtf8("doButton"));
         doButton->setEnabled(false);
 
         horizontalLayout_3->addWidget(doButton);
@@ -117,33 +128,33 @@ public:
         verticalLayout_2->addLayout(horizontalLayout_3);
 
         groupBox = new QGroupBox(wsfeForm);
-        groupBox->setObjectName(QStringLiteral("groupBox"));
+        groupBox->setObjectName(QString::fromUtf8("groupBox"));
         groupBox->setEnabled(true);
         verticalLayout = new QVBoxLayout(groupBox);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         horizontalLayout_4 = new QHBoxLayout();
-        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
+        horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
         formLayout = new QFormLayout();
-        formLayout->setObjectName(QStringLiteral("formLayout"));
+        formLayout->setObjectName(QString::fromUtf8("formLayout"));
         puntoVentaLabel = new QLabel(groupBox);
-        puntoVentaLabel->setObjectName(QStringLiteral("puntoVentaLabel"));
+        puntoVentaLabel->setObjectName(QString::fromUtf8("puntoVentaLabel"));
 
         formLayout->setWidget(0, QFormLayout::LabelRole, puntoVentaLabel);
 
         puntoVentaSpinBox = new QSpinBox(groupBox);
-        puntoVentaSpinBox->setObjectName(QStringLiteral("puntoVentaSpinBox"));
+        puntoVentaSpinBox->setObjectName(QString::fromUtf8("puntoVentaSpinBox"));
         puntoVentaSpinBox->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         puntoVentaSpinBox->setButtonSymbols(QAbstractSpinBox::NoButtons);
 
         formLayout->setWidget(0, QFormLayout::FieldRole, puntoVentaSpinBox);
 
         tipoComprobanteLabel = new QLabel(groupBox);
-        tipoComprobanteLabel->setObjectName(QStringLiteral("tipoComprobanteLabel"));
+        tipoComprobanteLabel->setObjectName(QString::fromUtf8("tipoComprobanteLabel"));
 
         formLayout->setWidget(1, QFormLayout::LabelRole, tipoComprobanteLabel);
 
         tipoComprobanteSpinBox = new QSpinBox(groupBox);
-        tipoComprobanteSpinBox->setObjectName(QStringLiteral("tipoComprobanteSpinBox"));
+        tipoComprobanteSpinBox->setObjectName(QString::fromUtf8("tipoComprobanteSpinBox"));
         tipoComprobanteSpinBox->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         tipoComprobanteSpinBox->setButtonSymbols(QAbstractSpinBox::NoButtons);
         tipoComprobanteSpinBox->setMaximum(99999999);
@@ -151,12 +162,12 @@ public:
         formLayout->setWidget(1, QFormLayout::FieldRole, tipoComprobanteSpinBox);
 
         nroComprobanteLabel = new QLabel(groupBox);
-        nroComprobanteLabel->setObjectName(QStringLiteral("nroComprobanteLabel"));
+        nroComprobanteLabel->setObjectName(QString::fromUtf8("nroComprobanteLabel"));
 
         formLayout->setWidget(2, QFormLayout::LabelRole, nroComprobanteLabel);
 
         nroComprobanteSpinBox = new QSpinBox(groupBox);
-        nroComprobanteSpinBox->setObjectName(QStringLiteral("nroComprobanteSpinBox"));
+        nroComprobanteSpinBox->setObjectName(QString::fromUtf8("nroComprobanteSpinBox"));
         nroComprobanteSpinBox->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         nroComprobanteSpinBox->setButtonSymbols(QAbstractSpinBox::NoButtons);
         nroComprobanteSpinBox->setMaximum(999999);
@@ -174,7 +185,7 @@ public:
         verticalLayout->addLayout(horizontalLayout_4);
 
         horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer_2);
@@ -186,7 +197,7 @@ public:
         verticalLayout_2->addWidget(groupBox);
 
         sessionOutput = new QTextBrowser(wsfeForm);
-        sessionOutput->setObjectName(QStringLiteral("sessionOutput"));
+        sessionOutput->setObjectName(QString::fromUtf8("sessionOutput"));
 
         verticalLayout_2->addWidget(sessionOutput);
 
@@ -198,35 +209,31 @@ public:
 
     void retranslateUi(QWidget *wsfeForm)
     {
-        wsfeForm->setWindowTitle(QApplication::translate("wsfeForm", "Form", 0));
-        label->setText(QApplication::translate("wsfeForm", "Url a conectar:", 0));
-        connectButton->setText(QApplication::translate("wsfeForm", "Conectar", 0));
-        label_2->setText(QApplication::translate("wsfeForm", "Operaci\303\263n:", 0));
-        operationComboBox->clear();
-        operationComboBox->insertItems(0, QStringList()
-         << QApplication::translate("wsfeForm", "Obtener CAE p/Comprobante", 0)
-         << QApplication::translate("wsfeForm", "Obtener Info de Comprobante", 0)
-         << QApplication::translate("wsfeForm", "Obtener Ult. Comprobante", 0)
-         << QApplication::translate("wsfeForm", "Informacion", 0)
-        );
-        operationHelperComboBox->clear();
-        operationHelperComboBox->insertItems(0, QStringList()
-         << QApplication::translate("wsfeForm", "FEParamGetTiposCbte", 0)
-         << QApplication::translate("wsfeForm", "FEParamGetTiposConcepto", 0)
-         << QApplication::translate("wsfeForm", "FEParamGetTiposDoc", 0)
-         << QApplication::translate("wsfeForm", "FEParamGetTiposIva", 0)
-         << QApplication::translate("wsfeForm", "FEParamGetTiposMonedas", 0)
-         << QApplication::translate("wsfeForm", "FEParamGetTiposOpcional", 0)
-         << QApplication::translate("wsfeForm", "FEParamGetTiposTributos", 0)
-         << QApplication::translate("wsfeForm", "FEParamGetPtosVenta", 0)
-         << QApplication::translate("wsfeForm", "FEParamGetCotizacion", 0)
-         << QApplication::translate("wsfeForm", "FEDummy", 0)
-        );
-        doButton->setText(QApplication::translate("wsfeForm", "Ejecutar Operaci\303\263n", 0));
-        groupBox->setTitle(QApplication::translate("wsfeForm", "Operaciones", 0));
-        puntoVentaLabel->setText(QApplication::translate("wsfeForm", "Punto Venta:", 0));
-        tipoComprobanteLabel->setText(QApplication::translate("wsfeForm", "Tipo Comprobante:", 0));
-        nroComprobanteLabel->setText(QApplication::translate("wsfeForm", "Nro. Comprobante:", 0));
+        wsfeForm->setWindowTitle(QCoreApplication::translate("wsfeForm", "Form", nullptr));
+        label->setText(QCoreApplication::translate("wsfeForm", "Url a conectar:", nullptr));
+        connectButton->setText(QCoreApplication::translate("wsfeForm", "Conectar", nullptr));
+        label_2->setText(QCoreApplication::translate("wsfeForm", "Operaci\303\263n:", nullptr));
+        operationComboBox->setItemText(0, QCoreApplication::translate("wsfeForm", "Obtener CAE p/Comprobante", nullptr));
+        operationComboBox->setItemText(1, QCoreApplication::translate("wsfeForm", "Obtener Info de Comprobante", nullptr));
+        operationComboBox->setItemText(2, QCoreApplication::translate("wsfeForm", "Obtener Ult. Comprobante", nullptr));
+        operationComboBox->setItemText(3, QCoreApplication::translate("wsfeForm", "Informacion", nullptr));
+
+        operationHelperComboBox->setItemText(0, QCoreApplication::translate("wsfeForm", "FEParamGetTiposCbte", nullptr));
+        operationHelperComboBox->setItemText(1, QCoreApplication::translate("wsfeForm", "FEParamGetTiposConcepto", nullptr));
+        operationHelperComboBox->setItemText(2, QCoreApplication::translate("wsfeForm", "FEParamGetTiposDoc", nullptr));
+        operationHelperComboBox->setItemText(3, QCoreApplication::translate("wsfeForm", "FEParamGetTiposIva", nullptr));
+        operationHelperComboBox->setItemText(4, QCoreApplication::translate("wsfeForm", "FEParamGetTiposMonedas", nullptr));
+        operationHelperComboBox->setItemText(5, QCoreApplication::translate("wsfeForm", "FEParamGetTiposOpcional", nullptr));
+        operationHelperComboBox->setItemText(6, QCoreApplication::translate("wsfeForm", "FEParamGetTiposTributos", nullptr));
+        operationHelperComboBox->setItemText(7, QCoreApplication::translate("wsfeForm", "FEParamGetPtosVenta", nullptr));
+        operationHelperComboBox->setItemText(8, QCoreApplication::translate("wsfeForm", "FEParamGetCotizacion", nullptr));
+        operationHelperComboBox->setItemText(9, QCoreApplication::translate("wsfeForm", "FEDummy", nullptr));
+
+        doButton->setText(QCoreApplication::translate("wsfeForm", "Ejecutar Operaci\303\263n", nullptr));
+        groupBox->setTitle(QCoreApplication::translate("wsfeForm", "Operaciones", nullptr));
+        puntoVentaLabel->setText(QCoreApplication::translate("wsfeForm", "Punto Venta:", nullptr));
+        tipoComprobanteLabel->setText(QCoreApplication::translate("wsfeForm", "Tipo Comprobante:", nullptr));
+        nroComprobanteLabel->setText(QCoreApplication::translate("wsfeForm", "Nro. Comprobante:", nullptr));
     } // retranslateUi
 
 };

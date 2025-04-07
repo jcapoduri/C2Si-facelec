@@ -22,6 +22,7 @@ client::client(QString settingFile, bool justcae, QWidget *parent)
     pedido_iva = settings.value("pedido_iva", "").toString();
     pedido_tributo = settings.value("pedido_tributo", "").toString();
     pedido_opcional = settings.value("pedido_opcionales", "").toString();
+    pedido_cbtesAsoc = settings.value("pedido_cbtesasociados", "").toString();
     pass = settings.value("pass", "").toString();
     inker = settings.value("inker", "").toString();
     port = settings.value("port", 443).toInt();
@@ -370,7 +371,7 @@ void client::writeError(QString error)
 
 void client::validateRecipe()
 {
-    wsfe->validateRecipies(pedido, pedido_iva, pedido_tributo, pedido_opcional);
+    wsfe->validateRecipies(pedido, pedido_iva, pedido_tributo, pedido_opcional, pedido_cbtesAsoc);
 }
 
 
