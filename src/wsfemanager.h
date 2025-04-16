@@ -51,6 +51,14 @@ struct wsfeOptionals {
     QString details;
 };
 
+struct wsfeCbteAsoc {
+    int       pto_venta = 0;
+    int       cbte_type = 0;
+    qlonglong docnumber = 0;
+    QString   cuit = "";
+    QString   cbte_fecha = "";
+};
+
 class wsfeManager : public QObject
 {
     Q_OBJECT
@@ -74,6 +82,8 @@ public:
     static QString wsfeXMLTributoRecordTemplate;
     static QString wsfeXMLOptionalTemplate;
     static QString wsfeXMLOptionalRecordTemplate;
+    static QString wsfeXMLCbteAsocTemplate;
+    static QString wsfeXMLCbteAsocRecordTemplate;
     static QList<int> fceDocuments;
     static QMap<int, QString> tributesDesc;
 
@@ -83,7 +93,7 @@ public:
     explicit wsfeManager(wsaaLogin *wsaa, bool homologacion = false, QObject *parent = nullptr);
     ~wsfeManager();
 
-    bool    validateRecipies(QString fileLocation, QString extrasFileLocation, QString tributeFileLocation, QString optionalFileLocation);
+    bool    validateRecipies(QString fileLocation, QString extrasFileLocation, QString tributeFileLocation, QString optionalFileLocation, QString cbtesAsocFileLocation);
     bool    getLastAuthRecipe(int pto_venta, int comprobante_tipo);
     bool    getRecipeInfo(int typeRecipe, int ptovta, long nbrRecipe);
     bool    getData(QString op);
@@ -100,6 +110,7 @@ protected:
     QList<wsfeRecipeTax> parseExtraRecipes(QString fileLocation);
     QList<wsfeRecipeTrib> parseTributeRecipes(QString fileLocation);
     QList<wsfeOptionals> parseOptionalsRecipes(QString fileLocation, bool isFCE = false);
+    QList<wsfeCbteAsoc> parseCbtesAsoc(QString fileLocation);
     void          doRequset(QString op, QByteArray data);
 
     QSslSocket *socket;
