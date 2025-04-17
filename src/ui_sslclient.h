@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'sslclient.ui'
 **
-** Created by: Qt User Interface Compiler version 5.13.1
+** Created by: Qt User Interface Compiler version 6.8.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -47,24 +47,24 @@ public:
     void setupUi(QWidget *Form)
     {
         if (Form->objectName().isEmpty())
-            Form->setObjectName(QString::fromUtf8("Form"));
-        Form->resize(370, 321);
+            Form->setObjectName("Form");
+        Form->resize(493, 357);
         vboxLayout = new QVBoxLayout(Form);
-        vboxLayout->setObjectName(QString::fromUtf8("vboxLayout"));
+        vboxLayout->setObjectName("vboxLayout");
         gridLayout = new QGridLayout();
-        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        gridLayout->setObjectName("gridLayout");
         hostNameLabel = new QLabel(Form);
-        hostNameLabel->setObjectName(QString::fromUtf8("hostNameLabel"));
+        hostNameLabel->setObjectName("hostNameLabel");
 
         gridLayout->addWidget(hostNameLabel, 0, 0, 1, 1);
 
         hostNameEdit = new QLineEdit(Form);
-        hostNameEdit->setObjectName(QString::fromUtf8("hostNameEdit"));
+        hostNameEdit->setObjectName("hostNameEdit");
 
         gridLayout->addWidget(hostNameEdit, 0, 1, 1, 1);
 
         portBox = new QSpinBox(Form);
-        portBox->setObjectName(QString::fromUtf8("portBox"));
+        portBox->setObjectName("portBox");
         portBox->setMinimum(1);
         portBox->setMaximum(65535);
         portBox->setValue(443);
@@ -72,7 +72,7 @@ public:
         gridLayout->addWidget(portBox, 1, 1, 1, 1);
 
         portLabel = new QLabel(Form);
-        portLabel->setObjectName(QString::fromUtf8("portLabel"));
+        portLabel->setObjectName("portLabel");
 
         gridLayout->addWidget(portLabel, 1, 0, 1, 1);
 
@@ -80,25 +80,25 @@ public:
         vboxLayout->addLayout(gridLayout);
 
         connectButton = new QPushButton(Form);
-        connectButton->setObjectName(QString::fromUtf8("connectButton"));
+        connectButton->setObjectName("connectButton");
         connectButton->setEnabled(true);
 
         vboxLayout->addWidget(connectButton);
 
         sessionBox = new QGroupBox(Form);
-        sessionBox->setObjectName(QString::fromUtf8("sessionBox"));
+        sessionBox->setObjectName("sessionBox");
         sessionBox->setEnabled(true);
         vboxLayout1 = new QVBoxLayout(sessionBox);
-        vboxLayout1->setObjectName(QString::fromUtf8("vboxLayout1"));
+        vboxLayout1->setObjectName("vboxLayout1");
         hboxLayout = new QHBoxLayout();
-        hboxLayout->setObjectName(QString::fromUtf8("hboxLayout"));
+        hboxLayout->setObjectName("hboxLayout");
         cipherText = new QLabel(sessionBox);
-        cipherText->setObjectName(QString::fromUtf8("cipherText"));
+        cipherText->setObjectName("cipherText");
 
         hboxLayout->addWidget(cipherText);
 
         cipherLabel = new QLabel(sessionBox);
-        cipherLabel->setObjectName(QString::fromUtf8("cipherLabel"));
+        cipherLabel->setObjectName("cipherLabel");
         cipherLabel->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         hboxLayout->addWidget(cipherLabel);
@@ -107,7 +107,7 @@ public:
         vboxLayout1->addLayout(hboxLayout);
 
         sessionOutput = new QTextEdit(sessionBox);
-        sessionOutput->setObjectName(QString::fromUtf8("sessionOutput"));
+        sessionOutput->setObjectName("sessionOutput");
         sessionOutput->setEnabled(true);
         sessionOutput->setFocusPolicy(Qt::NoFocus);
         sessionOutput->setReadOnly(true);
@@ -115,15 +115,15 @@ public:
         vboxLayout1->addWidget(sessionOutput);
 
         hboxLayout1 = new QHBoxLayout();
-        hboxLayout1->setObjectName(QString::fromUtf8("hboxLayout1"));
+        hboxLayout1->setObjectName("hboxLayout1");
         pedirProxFactura = new QPushButton(sessionBox);
-        pedirProxFactura->setObjectName(QString::fromUtf8("pedirProxFactura"));
+        pedirProxFactura->setObjectName("pedirProxFactura");
         pedirProxFactura->setEnabled(false);
 
         hboxLayout1->addWidget(pedirProxFactura);
 
         pedirCaeButton = new QPushButton(sessionBox);
-        pedirCaeButton->setObjectName(QString::fromUtf8("pedirCaeButton"));
+        pedirCaeButton->setObjectName("pedirCaeButton");
         pedirCaeButton->setEnabled(false);
 
         hboxLayout1->addWidget(pedirCaeButton);
@@ -136,7 +136,7 @@ public:
 
 
         retranslateUi(Form);
-        QObject::connect(hostNameEdit, SIGNAL(returnPressed()), connectButton, SLOT(animateClick()));
+        QObject::connect(hostNameEdit, &QLineEdit::returnPressed, connectButton, qOverload<>(&QPushButton::animateClick));
 
         connectButton->setDefault(true);
 
@@ -155,10 +155,13 @@ public:
         cipherText->setText(QCoreApplication::translate("Form", "Cryptographic Cipher:", nullptr));
         cipherLabel->setText(QCoreApplication::translate("Form", "<none>", nullptr));
         sessionOutput->setHtml(QCoreApplication::translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; font-size:9pt;\"><br /></p></body></html>", nullptr));
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
+"</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif';\"><br /></p></body></html>", nullptr));
         pedirProxFactura->setText(QCoreApplication::translate("Form", "Pedir Proxima Factura", nullptr));
         pedirCaeButton->setText(QCoreApplication::translate("Form", "Pedir CAE", nullptr));
     } // retranslateUi

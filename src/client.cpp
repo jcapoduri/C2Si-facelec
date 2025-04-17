@@ -3,6 +3,7 @@
 #include <QStyle>
 #include <QToolButton>
 #include <QtNetwork/QSslCipher>
+#include <QSslConfiguration>
 #include <QFile>
 #include <QFileDialog>
 #include <QSettings>
@@ -42,10 +43,13 @@ client::client(QString settingFile, bool justcae, QWidget *parent)
         certFile.open(QIODevice::ReadOnly);
     };
     QSslCertificate cert(&certFile, QSsl::Pem);
+    QSslConfiguration sslConfig = QSslConfiguration::defaultConfiguration();
+    sslConfig.setProtocol(QSsl::TlsV1_2);  // Fuerza TLS 1.2
 
     socket = new QSslSocket(this);
+    socket->setSslConfiguration(sslConfig);
 
-    socket->addCaCertificate(cert);
+    //socket->addCaCertificate(cert);
 
     connect(socket, SIGNAL(stateChanged(QAbstractSocket::SocketState)),
             this, SLOT(socketStateChanged(QAbstractSocket::SocketState)));
@@ -53,8 +57,6 @@ client::client(QString settingFile, bool justcae, QWidget *parent)
             this, SLOT(socketEncrypted()));
     connect(socket, SIGNAL(sslErrors(QList<QSslError>)),
             this, SLOT(sslErrors(QList<QSslError>)));
-    connect(socket, SIGNAL(error(QAbstractSocket::SocketError)),
-            this, SLOT(socketErrors(QAbstractSocket::SocketError)));
     connect(&closeTimer, SIGNAL(timeout()), qApp, SLOT(quit()));
 
     wsaa = new wsaaLogin(socket, testing, this);
@@ -62,13 +64,14 @@ client::client(QString settingFile, bool justcae, QWidget *parent)
 
     connect(wsaa, SIGNAL(login(QString,QString)), this, SLOT(logedIn()));
     connect(wsaa, SIGNAL(logFailed(QString)), this, SLOT(cleanCae(QString)));
+    connect(wsaa, SIGNAL(logMsg(QString)), this, SLOT(appendString(QString)));
     connect(wsfe, SIGNAL(serverResponse(QString)), this, SLOT(logSessionData(QString)));
     connect(wsfe, SIGNAL(serverDataSent(QString)), this, SLOT(appendString(QString)));
 
     form = new Ui_wsfeForm;
     form->setupUi(this);
     form->operationHelperComboBox->setVisible(false);
-    this->setWindowTitle("Facturación Eelctronica v1");
+    this->setWindowTitle("Facturación Eelctronica v4.0");
     form->hostNameEdit->setSelection(0, form->hostNameEdit->text().size());
     form->sessionOutput->setHtml(tr("&lt;not connected&gt;"));
     form->hostNameEdit->setText(wsaa->getServiceUrl());
@@ -108,7 +111,7 @@ void client::updateEnabledState()
 }
 
 void client::secureConnect()
-{    
+{
     wsaa->getAuth(source, x509, inker, pass);
     if (secondsToClose > 0) closeTimer.start(secondsToClose * 1000);
 }
@@ -132,27 +135,6 @@ void client::socketEncrypted()
     QPalette palette;
     palette.setColor(QPalette::Base, QColor(255, 255, 192));
     form->hostNameEdit->setPalette(palette);
-
-    if (!padLock) {
-        padLock = new QToolButton;
-        padLock->setIcon(QIcon(":/encrypted.png"));
-        padLock->setCursor(Qt::ArrowCursor);
-        padLock->setToolTip(tr("Display encryption details."));
-
-        int extent = form->hostNameEdit->height() - 2;
-        padLock->resize(extent, extent);
-        padLock->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Ignored);
-
-        QHBoxLayout *layout = new QHBoxLayout(form->hostNameEdit);
-        layout->setMargin(form->hostNameEdit->style()->pixelMetric(QStyle::PM_DefaultFrameWidth));
-        layout->setSpacing(0);
-        layout->addStretch();
-        layout->addWidget(padLock);
-
-        form->hostNameEdit->setLayout(layout);
-    } else {
-        padLock->show();
-    }
 }
 
 void client::sslErrors(const QList<QSslError> &errors)
@@ -377,6 +359,7 @@ void client::validateRecipe()
 
 void client::appendString(const QString &line)
 {
+    qDebug() << '-----------------------------------------------------------------------------------------';
     QTextCursor cursor(form->sessionOutput->textCursor());
     cursor.movePosition(QTextCursor::End);
     cursor.insertText(line);

@@ -3,6 +3,7 @@
 #include <QFile>
 #include <QProcess>
 #include <QDebug>
+#include <QRegularExpression>
 
 QString wsaaLogin::wsaaUrl = "wsaa.afip.gov.ar";
 QString wsaaLogin::wsaaUrlTesting = "wsaahomo.afip.gov.ar";
@@ -34,21 +35,23 @@ void wsaaLogin::getAuth(QString source, QString x509, QString inker, QString pas
     connect(socket, SIGNAL(readyRead()), this, SLOT(readResponse()));
 
     socket->connectToHostEncrypted(serviceUrl, 443);
+    socket->setPeerVerifyName(serviceUrl);
     socket->waitForConnected(-1);
-
+    qDebug() << "se conecto";
     if (source.contains("faultcode")) {
         tra = readCMS();
     } else {
         cuit = source.mid(source.indexOf("CUIT")+5, 11);
-
         tra = makeTRA(source, x509, inker, pass);
     };
 
-    if (tra.isEmpty()) return;
+    if (tra.isEmpty()) {
+        qDebug() << "paso algo";
+    };
     ticket = makeTicket(tra);
 
     qDebug() << ticket.toUtf8();
-    socket->write(ticket.toUtf8() + "\r\n");
+    socket->write(ticket.toUtf8());
 }
 
 void wsaaLogin::readResponse()
@@ -58,7 +61,10 @@ void wsaaLogin::readResponse()
     if (!data.contains("<?xml")) {
         return; //i don't care for initial headers
     }
+
     disconnect(socket, SIGNAL(readyRead()), this, SLOT(readResponse()));
+    emit this->logMsg("response");
+    emit this->logMsg(data);
 
     int tokenStart = data.indexOf(tokenBegin) + tokenBegin.length();
     if(tokenStart != (tokenBegin.length() - 1)){
@@ -96,24 +102,55 @@ QString wsaaLogin::makeTRA(QString source, QString x509, QString inker, QString 
     QFile TRAfile(QString("ticket.xml"));
     if (!TRAfile.open(QIODevice::WriteOnly | QIODevice::Text)){
         //QMessageBox::warning(this, QString("Error"), QString("no puede generarse TRA, cierre cualquier programa que pudiera estar utilizandolo"), QMessageBox::Yes);
+        qDebug() << "1";
         return QString("");
     };
 
     TRAfile.write(TRA.toLatin1());
     TRAfile.close();
 
-    QProcess openssl;
-    openssl.execute("openssl smime -sign -signer " + x509 + " -inkey " + inker + " -out ticket.xml.cms -in ticket.xml -outform PEM -nodetach -passin pass:" + pass);
+    /*QProcess openssl;
+    qDebug() << "openssl smime -sign -signer " + x509 + " -inkey " + inker + " -out ticket.xml.cms -in ticket.xml -outform PEM -nodetach -passin pass:" + pass;
+    openssl.execute("openssl smime -sign -signer " + x509 + " -inkey " + inker + " -in ticket.xml -outform PEM -nodetach -passin pass:" + pass);
     if(openssl.exitStatus() != QProcess::NormalExit){
+        qDebug() << "2";
         return QString("");
-    }; 
+    };
 
-    return readCMS();
+    QString out = QString::fromStdString(openssl.readAllStandardOutput().toStdString());
+    qDebug() << out;*/
+    QProcess openssl;
+
+    QStringList args{
+        "smime", "-sign",
+        "-signer",  x509,
+        "-inkey",   inker,
+        "-in",      "ticket.xml",
+        "-outform", "PEM",
+        "-nodetach",
+        "-passin",  "pass:" + pass
+    };
+
+    openssl.setProgram("openssl");
+    openssl.setArguments(args);
+    openssl.setProcessChannelMode(QProcess::MergedChannels);   // stdout + stderr
+    openssl.start();
+
+    if (!openssl.waitForFinished())
+        qFatal("OpenSSL no terminó correctamente");
+
+    QByteArray out = openssl.readAllStandardOutput();
+    QRegularExpression re("-{5,5}(BEGIN|END) PKCS7-{5,5}\\s*");
+
+    QString cms = QString(out).replace(re, "");
+    qDebug() << cms;
+    return cms.trimmed();
  }
 
 QString wsaaLogin::readCMS() {
     QFile TRAcms(QString("ticket.xml.cms"));
     if (!TRAcms.open(QIODevice::ReadOnly | QIODevice::Text)){
+        qDebug() << "3";
         return QString("");
     };
 
@@ -134,28 +171,31 @@ QString wsaaLogin::readCMS() {
 QString wsaaLogin::makeTicket(QString cms)
 {
     QString ticket, header;
-    ticket =   "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:wsaa=\"http://wsaa.view.sua.dvadac.desein.afip.gov\">\n"
-                  "<soapenv:Header/>\n"
-                  "<soapenv:Body>\n"
-                  "   <wsaa:loginCms>\n"
+    ticket =   "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:wsaa=\"http://wsaa.view.sua.dvadac.desein.afip.gov\">\r\n"
+                  "<soapenv:Header/>\r\n"
+                  "<soapenv:Body>\r\n"
+                  "   <wsaa:loginCms>\r\n"
                   "    <wsaa:in0>";
 
     ticket += cms;
-    ticket +=  "</wsaa:in0>\n"
-                   "</wsaa:loginCms>\n"
-                   "</soapenv:Body>\n"
-                   "</soapenv:Envelope>\n";
+    ticket +=  "</wsaa:in0>\r\n"
+                   "</wsaa:loginCms>\r\n"
+                   "</soapenv:Body>\r\n"
+                   "</soapenv:Envelope>";
 
-    header = "POST " + wsaaLogin::wsaaService +  " HTTP/1.1\r\n" //"POST https://wsaahomo.afip.gov.ar/ws/services/LoginCms HTTP/1.1\n"
+    header = "POST " +  wsaaLogin::wsaaService +  " HTTP/1.1\r\n" //"POST https://wsaahomo.afip.gov.ar/ws/services/LoginCms HTTP/1.1\n"
                 "Content-Type: text/xml;charset=UTF-8\r\n"
                 "Accept-Encoding: gzip,deflate\r\n"
                 "SOAPAction: \"\"\r\n"
-                "User-Agent: Jakarta Commons-HttpClient/3.1\r\n"
+                "Connection: Keep-Alive\r\n"
+                "User-Agent: Apache-HttpClient/4.5.5 (Java/17.0.12)\r\n"
                 "Host: " + serviceUrl + "\r\n"
                 "Content-Length: ";
-    header += QString::number(ticket.length());
+    QByteArray body(ticket.toUtf8());
+    header += QString::number(body.length());
     header += "\r\n\r\n";
     ticket = header + ticket;
+    emit this->logMsg(ticket);
     return ticket;
 }
 

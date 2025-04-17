@@ -3,7 +3,7 @@
 
 QString wsfeManager::wsfeUrl = "servicios1.afip.gov.ar";
 QString wsfeManager::wsfeUrlTesting = "wswhomo.afip.gov.ar";
-QString wsfeManager::wsfeBasePath = "/wsfev1/service.asmx?op=";
+QString wsfeManager::wsfeBasePath = "/wsfev1/service.asmx";
 QString wsfeManager::wsfeGetCAEOpPath = "FECAESolicitar";
 QString wsfeManager::wsfeGetLastAuthOpPath = "FECompUltimoAutorizado";
 QString wsfeManager::wsfeGetInfoOpPath = "FEParamGetTiposCbte";
@@ -189,7 +189,7 @@ wsfeManager::~wsfeManager()
 
 }
 
-bool wsfeManager::validateRecipies(QString fileLocation, QString extrasFileLocation, QString tributeFileLocation, QString optionalFileLocation, QString cbtesAsocFileLocation) {
+void wsfeManager::validateRecipies(QString fileLocation, QString extrasFileLocation, QString tributeFileLocation, QString optionalFileLocation, QString cbtesAsocFileLocation) {
     QString data, extra = "";
     wsfeRecipe recipe;
     QList <wsfeRecipeTax> ivaRecords;
@@ -264,7 +264,7 @@ bool wsfeManager::validateRecipies(QString fileLocation, QString extrasFileLocat
         extra = ivaData + tribData;
     }
 
-    if (fceDocuments.toSet().contains(recipe.cbte_type) && !optionalRecords.isEmpty()) {
+    if (fceDocuments.contains(recipe.cbte_type) && !optionalRecords.isEmpty()) {
         wsfeOptionals opts;
         QString optionalsData = "";
         foreach (opts, optionalRecords) {
@@ -311,7 +311,7 @@ bool wsfeManager::validateRecipies(QString fileLocation, QString extrasFileLocat
     doRequset(wsfeManager::wsfeGetCAEOpPath, data.toLatin1());
 }
 
-bool wsfeManager::getLastAuthRecipe(int pto_venta, int comprobante_tipo)
+void wsfeManager::getLastAuthRecipe(int pto_venta, int comprobante_tipo)
 {
     QString data;
 
@@ -324,7 +324,7 @@ bool wsfeManager::getLastAuthRecipe(int pto_venta, int comprobante_tipo)
     doRequset(wsfeManager::wsfeGetLastAuthOpPath, data.toLatin1());
 }
 
-bool wsfeManager::getRecipeInfo(int typeRecipe, int ptovta, long nbrRecipe)
+void wsfeManager::getRecipeInfo(int typeRecipe, int ptovta, long nbrRecipe)
 {
     QString data;
 
@@ -339,7 +339,7 @@ bool wsfeManager::getRecipeInfo(int typeRecipe, int ptovta, long nbrRecipe)
     doRequset(wsfeManager::wsfeGetRecipeInfoOpPath, data.toLatin1());
 }
 
-bool wsfeManager::getData(QString op)
+void wsfeManager::getData(QString op)
 {
     QString data = wsfeManager::wsfeXMLInfoOpTemplate;
 
@@ -447,7 +447,7 @@ QList<wsfeRecipeTrib> wsfeManager::parseTributeRecipes(QString fileLocation)
     return result;
 }
 
-QList<wsfeOptionals> wsfeManager::parseOptionalsRecipes(QString fileLocation, bool isFCE)
+QList<wsfeOptionals> wsfeManager::parseOptionalsRecipes(QString fileLocation)
 {
     QList<wsfeOptionals> result;
 
@@ -515,14 +515,20 @@ void wsfeManager::doRequset(QString op, QByteArray data)
 
     connect(socket, SIGNAL(readyRead()), this, SLOT(dataReceived()));
     qDebug() << serviceUrl;
+    socket->setPeerVerifyName(serviceUrl);
     socket->connectToHostEncrypted(serviceUrl, 443);
     socket->waitForConnected(-1);
 
     header =
-    "POST " + wsfeManager::wsfeBasePath + op + " HTTP/1.1\n"
-    "Host: " + serviceUrl + "\n"
-    "Content-Type: text/xml; charset=utf-8\n"
-    "Content-Length: " + QString::number(data.length()) + "\n\n";
+    //POST https://servicios1.afip.gov.ar/wsfev1/service.asmx HTTP/1.1
+    "POST https://" + serviceUrl + wsfeManager::wsfeBasePath + " HTTP/1.1\r\n"
+    "Host: " + serviceUrl + "\r\n"
+    //Content-Type: application/soap+xml;charset=UTF-8;action="http://ar.gov.afip.dif.FEV1/FEParamGetTiposCbte"
+    "Content-Type: application/soap+xml;charset=UTF-8;action=\"http://ar.gov.afip.dif.FEV1/" + op + "\"\r\n"
+    "Accept-Encoding: gzip,deflate\r\n"
+    "Connection: Keep-Alive\r\n"
+    "User-Agent: Apache-HttpClient/4.5.5 (Java/17.0.12)\r\n"
+    "Content-Length: " + QString::number(data.length()) + "\r\n\r\n";
 
     data.prepend(header.toLatin1());
     qDebug() << data;

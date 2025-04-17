@@ -31,6 +31,7 @@ public:
     QSslSocket *socket;
 
 signals:
+    void    logMsg(QString data);
     void    login(QString token, QString sign);
     void    logFailed(QString errorString);
 protected slots:

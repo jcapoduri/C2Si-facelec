@@ -63,7 +63,6 @@ class client : public QWidget
 {
     Q_OBJECT
 public:
-    client(QWidget *parent = 0);
     client(QString settingFile, bool justcae, QWidget *parent = 0);
     ~client();
     
@@ -96,7 +95,6 @@ signals:
     void wsaalogon(bool status);
 
 private:
-    QTimer       closeTimer;
     QSslSocket   *socket;
     wsaaLogin    *wsaa;
     wsfeManager  *wsfe;
@@ -123,6 +121,7 @@ private:
     bool testing;
     int     secondsToClose;
     bool _justcae;
+    QTimer       closeTimer;
 };
 
 #endif

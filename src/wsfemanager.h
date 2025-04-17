@@ -93,10 +93,10 @@ public:
     explicit wsfeManager(wsaaLogin *wsaa, bool homologacion = false, QObject *parent = nullptr);
     ~wsfeManager();
 
-    bool    validateRecipies(QString fileLocation, QString extrasFileLocation, QString tributeFileLocation, QString optionalFileLocation, QString cbtesAsocFileLocation);
-    bool    getLastAuthRecipe(int pto_venta, int comprobante_tipo);
-    bool    getRecipeInfo(int typeRecipe, int ptovta, long nbrRecipe);
-    bool    getData(QString op);
+    void    validateRecipies(QString fileLocation, QString extrasFileLocation, QString tributeFileLocation, QString optionalFileLocation, QString cbtesAsocFileLocation);
+    void    getLastAuthRecipe(int pto_venta, int comprobante_tipo);
+    void    getRecipeInfo(int typeRecipe, int ptovta, long nbrRecipe);
+    void    getData(QString op);
     QString getServiceUrl() { return serviceUrl; }
 
 signals:
@@ -109,7 +109,7 @@ protected:
     wsfeRecipe    parseRecipies(QString fileLocation);
     QList<wsfeRecipeTax> parseExtraRecipes(QString fileLocation);
     QList<wsfeRecipeTrib> parseTributeRecipes(QString fileLocation);
-    QList<wsfeOptionals> parseOptionalsRecipes(QString fileLocation, bool isFCE = false);
+    QList<wsfeOptionals> parseOptionalsRecipes(QString fileLocation);
     QList<wsfeCbteAsoc> parseCbtesAsoc(QString fileLocation);
     void          doRequset(QString op, QByteArray data);
 

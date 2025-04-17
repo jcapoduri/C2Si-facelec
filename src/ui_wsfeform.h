@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'wsfeform.ui'
 **
-** Created by: Qt User Interface Compiler version 5.13.1
+** Created by: Qt User Interface Compiler version 6.8.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -57,24 +57,24 @@ public:
     void setupUi(QWidget *wsfeForm)
     {
         if (wsfeForm->objectName().isEmpty())
-            wsfeForm->setObjectName(QString::fromUtf8("wsfeForm"));
+            wsfeForm->setObjectName("wsfeForm");
         wsfeForm->resize(753, 446);
         verticalLayout_2 = new QVBoxLayout(wsfeForm);
-        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
+        verticalLayout_2->setObjectName("verticalLayout_2");
         horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        horizontalLayout_2->setObjectName("horizontalLayout_2");
         label = new QLabel(wsfeForm);
-        label->setObjectName(QString::fromUtf8("label"));
+        label->setObjectName("label");
 
         horizontalLayout_2->addWidget(label);
 
         hostNameEdit = new QLineEdit(wsfeForm);
-        hostNameEdit->setObjectName(QString::fromUtf8("hostNameEdit"));
+        hostNameEdit->setObjectName("hostNameEdit");
 
         horizontalLayout_2->addWidget(hostNameEdit);
 
         connectButton = new QPushButton(wsfeForm);
-        connectButton->setObjectName(QString::fromUtf8("connectButton"));
+        connectButton->setObjectName("connectButton");
 
         horizontalLayout_2->addWidget(connectButton);
 
@@ -82,9 +82,9 @@ public:
         verticalLayout_2->addLayout(horizontalLayout_2);
 
         horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        horizontalLayout_3->setObjectName("horizontalLayout_3");
         label_2 = new QLabel(wsfeForm);
-        label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setObjectName("label_2");
 
         horizontalLayout_3->addWidget(label_2);
 
@@ -93,9 +93,9 @@ public:
         operationComboBox->addItem(QString());
         operationComboBox->addItem(QString());
         operationComboBox->addItem(QString());
-        operationComboBox->setObjectName(QString::fromUtf8("operationComboBox"));
+        operationComboBox->setObjectName("operationComboBox");
         operationComboBox->setEnabled(true);
-        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+        QSizePolicy sizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(operationComboBox->sizePolicy().hasHeightForWidth());
@@ -114,12 +114,12 @@ public:
         operationHelperComboBox->addItem(QString());
         operationHelperComboBox->addItem(QString());
         operationHelperComboBox->addItem(QString());
-        operationHelperComboBox->setObjectName(QString::fromUtf8("operationHelperComboBox"));
+        operationHelperComboBox->setObjectName("operationHelperComboBox");
 
         horizontalLayout_3->addWidget(operationHelperComboBox);
 
         doButton = new QPushButton(wsfeForm);
-        doButton->setObjectName(QString::fromUtf8("doButton"));
+        doButton->setObjectName("doButton");
         doButton->setEnabled(false);
 
         horizontalLayout_3->addWidget(doButton);
@@ -128,33 +128,33 @@ public:
         verticalLayout_2->addLayout(horizontalLayout_3);
 
         groupBox = new QGroupBox(wsfeForm);
-        groupBox->setObjectName(QString::fromUtf8("groupBox"));
+        groupBox->setObjectName("groupBox");
         groupBox->setEnabled(true);
         verticalLayout = new QVBoxLayout(groupBox);
-        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        verticalLayout->setObjectName("verticalLayout");
         horizontalLayout_4 = new QHBoxLayout();
-        horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
+        horizontalLayout_4->setObjectName("horizontalLayout_4");
         formLayout = new QFormLayout();
-        formLayout->setObjectName(QString::fromUtf8("formLayout"));
+        formLayout->setObjectName("formLayout");
         puntoVentaLabel = new QLabel(groupBox);
-        puntoVentaLabel->setObjectName(QString::fromUtf8("puntoVentaLabel"));
+        puntoVentaLabel->setObjectName("puntoVentaLabel");
 
         formLayout->setWidget(0, QFormLayout::LabelRole, puntoVentaLabel);
 
         puntoVentaSpinBox = new QSpinBox(groupBox);
-        puntoVentaSpinBox->setObjectName(QString::fromUtf8("puntoVentaSpinBox"));
+        puntoVentaSpinBox->setObjectName("puntoVentaSpinBox");
         puntoVentaSpinBox->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         puntoVentaSpinBox->setButtonSymbols(QAbstractSpinBox::NoButtons);
 
         formLayout->setWidget(0, QFormLayout::FieldRole, puntoVentaSpinBox);
 
         tipoComprobanteLabel = new QLabel(groupBox);
-        tipoComprobanteLabel->setObjectName(QString::fromUtf8("tipoComprobanteLabel"));
+        tipoComprobanteLabel->setObjectName("tipoComprobanteLabel");
 
         formLayout->setWidget(1, QFormLayout::LabelRole, tipoComprobanteLabel);
 
         tipoComprobanteSpinBox = new QSpinBox(groupBox);
-        tipoComprobanteSpinBox->setObjectName(QString::fromUtf8("tipoComprobanteSpinBox"));
+        tipoComprobanteSpinBox->setObjectName("tipoComprobanteSpinBox");
         tipoComprobanteSpinBox->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         tipoComprobanteSpinBox->setButtonSymbols(QAbstractSpinBox::NoButtons);
         tipoComprobanteSpinBox->setMaximum(99999999);
@@ -162,12 +162,12 @@ public:
         formLayout->setWidget(1, QFormLayout::FieldRole, tipoComprobanteSpinBox);
 
         nroComprobanteLabel = new QLabel(groupBox);
-        nroComprobanteLabel->setObjectName(QString::fromUtf8("nroComprobanteLabel"));
+        nroComprobanteLabel->setObjectName("nroComprobanteLabel");
 
         formLayout->setWidget(2, QFormLayout::LabelRole, nroComprobanteLabel);
 
         nroComprobanteSpinBox = new QSpinBox(groupBox);
-        nroComprobanteSpinBox->setObjectName(QString::fromUtf8("nroComprobanteSpinBox"));
+        nroComprobanteSpinBox->setObjectName("nroComprobanteSpinBox");
         nroComprobanteSpinBox->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         nroComprobanteSpinBox->setButtonSymbols(QAbstractSpinBox::NoButtons);
         nroComprobanteSpinBox->setMaximum(999999);
@@ -177,7 +177,7 @@ public:
 
         horizontalLayout_4->addLayout(formLayout);
 
-        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
         horizontalLayout_4->addItem(horizontalSpacer_3);
 
@@ -185,8 +185,8 @@ public:
         verticalLayout->addLayout(horizontalLayout_4);
 
         horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalLayout->setObjectName("horizontalLayout");
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer_2);
 
@@ -197,7 +197,7 @@ public:
         verticalLayout_2->addWidget(groupBox);
 
         sessionOutput = new QTextBrowser(wsfeForm);
-        sessionOutput->setObjectName(QString::fromUtf8("sessionOutput"));
+        sessionOutput->setObjectName("sessionOutput");
 
         verticalLayout_2->addWidget(sessionOutput);
 

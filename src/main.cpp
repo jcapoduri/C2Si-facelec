@@ -14,10 +14,8 @@ int main(int argc, char *argv[])
     QString wsfe;
     QString certConexion, pedido, inker, pass;
     QString x509, help = "";
-    int port, ptoventa;
     bool justcae;
     bool testing;
-    bool prestaserv;
 
 
     QSettings settings("config.ini", QSettings::IniFormat);
@@ -37,10 +35,7 @@ int main(int argc, char *argv[])
     pedido = settings.value("pedido", "").toString();
     pass = settings.value("pass", "").toString();
     inker = settings.value("inker", "").toString();
-    port = settings.value("port", 443).toInt();
     justcae = settings.value("justcae", false).toBool();
-    prestaserv = settings.value("prestaserv", false).toBool();
-    ptoventa = settings.value("ptoventa", 1).toInt();
     settings.endGroup();
 
     for(int i = 0; i < argc; i++){
@@ -56,10 +51,7 @@ int main(int argc, char *argv[])
         if(tmp.contains("pedido")) pedido = tmp.mid(tmp.indexOf("=") + 1);
         if(tmp.contains("pass")) pass = tmp.mid(tmp.indexOf("=") + 1);
         if(tmp.contains("inker")) inker = tmp.mid(tmp.indexOf("=") + 1);
-        if(tmp.contains("port")) port = tmp.mid(tmp.indexOf("=") + 1).toInt();
-        if(tmp.contains("ptoventa")) ptoventa = tmp.mid(tmp.indexOf("=") + 1).toInt();
-        if(tmp.contains("justcae")) justcae = true;        
-        if(tmp.contains("prestaserv")) prestaserv = true;
+        if(tmp.contains("justcae")) justcae = true;
         if(tmp.contains("help")) help ="Pedido de facturacion electronica, puede usarse interfaz grafica o por linea de comando\n"
                                                 "\n"
                                                 "Argumentos:\n"
@@ -86,8 +78,7 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
     a.setOrganizationName("C2SI");
-    a.setApplicationName("feClient");    
-    //SslClient client(wsaa, wsfe, inker, pass, certConexion, x509, pedido, source, port, ptoventa, testing, prestaserv);
+    a.setApplicationName("feClient");
     client widget("config.ini", justcae);
     if (!justcae) widget.show();
     return a.exec();
