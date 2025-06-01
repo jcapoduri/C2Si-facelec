@@ -1,0 +1,77 @@
+name: Build & Release (Windows, Qt 6.8 + MinGW → ZIP)
+
+on:
+  push:
+    tags:
+      - "v*"          # fire on every tag like  v2.0.1  or  v2.0.1-beta1
+
+env:
+  QT_VERSION: "6.8.0"
+  QT_ARCH:    "win64_mingw"          # 64-bit MinGW flavour
+  APP_NAME:   "FacElectronica"       # <-- change to your target name
+
+jobs:
+  win-mingw:
+    runs-on: windows-latest
+    timeout-minutes: 45
+
+    steps:
+    # 1 ────────────── Sources ─────────────────────────────────────────────────
+    - name: Checkout sources
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0               # we need the tag object
+
+    # 2 ────────────── Qt + Toolchain ─────────────────────────────────────────
+    - name: Install Qt ${{ env.QT_VERSION }} (MinGW)
+      uses: jurplel/install-qt-action@v4
+      with:
+        version:  ${{ env.QT_VERSION }}
+        arch:     ${{ env.QT_ARCH }} # Qt binaries compiled with MinGW
+        target:   desktop
+        tools:    "tools_mingw"      # pulls the matching MinGW 11/12 toolchain :contentReference[oaicite:0]{index=0}
+        add-tools-to-path: true      # prepends …\Tools\mingw*\bin to PATH :contentReference[oaicite:1]{index=1}
+        cache:    true               # speeds up re-runs
+
+    # 3 ────────────── Configure & Build ──────────────────────────────────────
+    - name: Configure (CMake + MinGW)
+      run: >
+        cmake -S . -B build -G "MinGW Makefiles"
+        -DCMAKE_BUILD_TYPE=Release
+        -DCMAKE_PREFIX_PATH="%QT_ROOT_DIR%"
+
+    - name: Build
+      run: cmake --build build --parallel
+
+    # 4 ────────────── Bundle Qt + GCC runtime ────────────────────────────────
+    - name: Deploy Qt runtime
+      run: |
+        "${Env:QT_ROOT_DIR}\bin\windeployqt.exe" `
+          --release `
+          --compiler-runtime `   # grabs libgcc_s / libstdc++ / libwinpthread :contentReference[oaicite:2]{index=2}
+          --no-translations `
+          build\${{ env.APP_NAME }}.exe
+
+    # 5 ────────────── Archive ────────────────────────────────────────────────
+    - name: Package ZIP
+      run: |
+        7z a ${{ env.APP_NAME }}-${{ github.ref_name }}-mingw64.zip `
+          .\build\${{ env.APP_NAME }}.exe `
+          .\build\*.dll `
+          .\build\platforms `
+          .\build\plugins
+
+    - name: Upload artefact
+      uses: actions/upload-artifact@v4
+      with:
+        name: mingw64-${{ github.ref_name }}
+        path: ${{ env.APP_NAME }}-${{ github.ref_name }}-mingw64.zip
+
+    # 6 ────────────── Turn tag → Release ─────────────────────────────────────
+    - name: Publish GitHub Release
+      uses: softprops/action-gh-release@v2
+      with:
+        draft: false          # switch to true if you prefer manual publish
+        files: ${{ env.APP_NAME }}-${{ github.ref_name }}-mingw64.zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
