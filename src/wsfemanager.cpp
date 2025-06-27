@@ -47,7 +47,8 @@ QString wsfeManager::wsfeXMLRecipeTemplate = ""
                                              "                  <ar:FchVtoPago>%21</ar:FchVtoPago>\n"
                                              "                  <ar:MonId>%22</ar:MonId>\n"
                                              "                  <ar:MonCotiz>%23</ar:MonCotiz>\n"
-                                             "                  %24"
+                                             "                  <ar:CondicionIVAReceptorId>%24</ar:CondicionIVAReceptorId>\n"
+                                             "                  %25"
                                              "               </ar:FECAEDetRequest>\n"
                                              "            </ar:FeDetReq>\n"
                                              "         </ar:FeCAEReq>\n"
@@ -235,6 +236,7 @@ void wsfeManager::validateRecipies(QString fileLocation, QString extrasFileLocat
     data = data.arg(recipe.fechaVtoPago);
     data = data.arg(recipe.mon_id);
     data = data.arg(recipe.mon_cotiz);
+    data = data.arg(recipe.condicion_IVA_receptor_id);
 
     if (!ivaRecords.isEmpty()) {
         wsfeRecipeTax iva;
@@ -390,6 +392,7 @@ wsfeRecipe wsfeManager::parseRecipies(QString fileLocation)
     recipe.imp_trib = recipe.imp_no_resp + recipe.percep_nac + recipe.percep_prov + recipe.percep_muni + recipe.percep_otros;
     recipe.mon_id = "PES";
     recipe.mon_cotiz = 1;
+    recipe.condicion_IVA_receptor_id = buffer.mid(243, 2).toInt();
     /*
     imp no responsable 138, 15
     imp percep nacional 168,15

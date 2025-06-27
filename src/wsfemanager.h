@@ -30,6 +30,7 @@ struct wsfeRecipe {
     double percep_prov;
     double percep_muni;
     double percep_otros;
+    int    condicion_IVA_receptor_id;
 };
 
 struct wsfeRecipeTax  {
