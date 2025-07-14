@@ -122,6 +122,11 @@ void client::socketStateChanged(QAbstractSocket::SocketState state)
         return;
 
     updateEnabledState();
+    if (state == QAbstractSocket::UnconnectedState && form->connectButton->isEnabled()) {
+        //se desconecto y no se logeo
+        this->cleanCae("error de conexion a wssa");
+        if (_justcae) qApp->quit();
+    }
     qDebug() << "Estado: " << state;
 }
 
@@ -314,7 +319,7 @@ void client::logSessionData(QString data)
     fileRes.write(data.toLatin1());
     fileRes.close();
     if (secondsToClose > 0) closeTimer.start(secondsToClose * 1000);
-    if (_justcae) qApp->quit();    
+    if (_justcae) qApp->quit();
 }
 
 void client::getLastApproveRecipe() {
