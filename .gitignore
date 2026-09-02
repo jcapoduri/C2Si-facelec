@@ -13,3 +13,1318 @@ src/Makefile
 src/Makefile.Release
 src/Makefile.Debug
 bin/config.ini
+.qtc_clangd/compile_commands.json
+.qtc_clangd/.cache/clangd/index/__stddef_max_align_t.h.73686C4C901DE5A3.idx
+.qtc_clangd/.cache/clangd/index/_mingw_ddk.h.0E56EBDDC6DD0F37.idx
+.qtc_clangd/.cache/clangd/index/_mingw_mac.h.0F9620ACD6F3130A.idx
+.qtc_clangd/.cache/clangd/index/_mingw_off_t.h.F402156001B8A059.idx
+.qtc_clangd/.cache/clangd/index/_mingw_secapi.h.816DF3547845D7CB.idx
+.qtc_clangd/.cache/clangd/index/_mingw_stat64.h.21BBCA5C4AE6FD40.idx
+.qtc_clangd/.cache/clangd/index/_mingw.h.E7493A9303A418B7.idx
+.qtc_clangd/.cache/clangd/index/_timeval.h.1641BFF9BF5C440B.idx
+.qtc_clangd/.cache/clangd/index/algorithm.3C703F3B27C13E9F.idx
+.qtc_clangd/.cache/clangd/index/algorithmfwd.h.F66E1916502A0500.idx
+.qtc_clangd/.cache/clangd/index/align.h.8A61533352ED5241.idx
+.qtc_clangd/.cache/clangd/index/aligned_buffer.h.F8D846C84B4E3146.idx
+.qtc_clangd/.cache/clangd/index/alloc_traits.h.D089E7754A2D0851.idx
+.qtc_clangd/.cache/clangd/index/alloc_traits.h.F6CF9229A1743B30.idx
+.qtc_clangd/.cache/clangd/index/allocated_ptr.h.CED54D615D4F0969.idx
+.qtc_clangd/.cache/clangd/index/allocator.h.C63A90FBF93132D3.idx
+.qtc_clangd/.cache/clangd/index/array.05E858228736EA21.idx
+.qtc_clangd/.cache/clangd/index/assert.h.7045A1FC3B98967A.idx
+.qtc_clangd/.cache/clangd/index/assertions.h.0C6CD41CA35B3F69.idx
+.qtc_clangd/.cache/clangd/index/atomic_base.h.E6200DF90D36E892.idx
+.qtc_clangd/.cache/clangd/index/atomic_lockfree_defines.h.0A6CDDF4094A45C1.idx
+.qtc_clangd/.cache/clangd/index/atomic_word.h.4744CAEA4317D84D.idx
+.qtc_clangd/.cache/clangd/index/atomic.B404B350781B632B.idx
+.qtc_clangd/.cache/clangd/index/atomicity.h.58A1938CFCE99E4C.idx
+.qtc_clangd/.cache/clangd/index/auto_ptr.h.F2E263B6DBBC32E2.idx
+.qtc_clangd/.cache/clangd/index/basic_ios.h.E57F873749D0ED31.idx
+.qtc_clangd/.cache/clangd/index/basic_ios.tcc.1E0EDDF352CD9754.idx
+.qtc_clangd/.cache/clangd/index/basic_string.h.18E5DFF50365411E.idx
+.qtc_clangd/.cache/clangd/index/basic_string.tcc.E4C0CF2D410B2FDE.idx
+.qtc_clangd/.cache/clangd/index/bessel_function.tcc.D6303F32CE95553B.idx
+.qtc_clangd/.cache/clangd/index/beta_function.tcc.18E145FB61761053.idx
+.qtc_clangd/.cache/clangd/index/binders.h.DE45B217C86E4A22.idx
+.qtc_clangd/.cache/clangd/index/bit.3A76D4268DF1081D.idx
+.qtc_clangd/.cache/clangd/index/c++allocator.h.18BF887E378A2C29.idx
+.qtc_clangd/.cache/clangd/index/c++config.h.93C69033813D3F0C.idx
+.qtc_clangd/.cache/clangd/index/c++locale.h.3244126AFC4798D4.idx
+.qtc_clangd/.cache/clangd/index/cassert.1BDCD2EDA595C12C.idx
+.qtc_clangd/.cache/clangd/index/cctype.79CC3CE0DF8CE1E7.idx
+.qtc_clangd/.cache/clangd/index/cerrno.DCC9A6F0B385A4C0.idx
+.qtc_clangd/.cache/clangd/index/char_traits.h.7895B49C01D0AB77.idx
+.qtc_clangd/.cache/clangd/index/charconv.h.77A09A086E660A3E.idx
+.qtc_clangd/.cache/clangd/index/chrono.EB0CA395947F8F2D.idx
+.qtc_clangd/.cache/clangd/index/chrono.h.25292FC8059A5995.idx
+.qtc_clangd/.cache/clangd/index/client.cpp.7632253E847DBBDA.idx
+.qtc_clangd/.cache/clangd/index/client.h.AC947B28C66381E8.idx
+.qtc_clangd/.cache/clangd/index/climits.4C113AEC0C3E952F.idx
+.qtc_clangd/.cache/clangd/index/clocale.228EDEA7013C16E8.idx
+.qtc_clangd/.cache/clangd/index/cmath.4E39F9E9F83C027C.idx
+.qtc_clangd/.cache/clangd/index/codecvt.59180BC18E55EE4E.idx
+.qtc_clangd/.cache/clangd/index/codecvt.h.8CFA4850BC3437C6.idx
+.qtc_clangd/.cache/clangd/index/compare.3576F72288AC667C.idx
+.qtc_clangd/.cache/clangd/index/concept_check.h.53DA1B739FBA0099.idx
+.qtc_clangd/.cache/clangd/index/concurrence.h.5217C810DC24254F.idx
+.qtc_clangd/.cache/clangd/index/corecrt_startup.h.703D1FC82F5613F4.idx
+.qtc_clangd/.cache/clangd/index/corecrt_stdio_config.h.CB4E9D5EEA97701A.idx
+.qtc_clangd/.cache/clangd/index/corecrt_wstdlib.h.6217EDA16A333F01.idx
+.qtc_clangd/.cache/clangd/index/corecrt.h.1B3920EB9373C007.idx
+.qtc_clangd/.cache/clangd/index/cpp_type_traits.h.846742782F15640E.idx
+.qtc_clangd/.cache/clangd/index/cpu_defines.h.D0C0B8156FBD4D95.idx
+.qtc_clangd/.cache/clangd/index/crtdefs.h.811ABCD1CC008846.idx
+.qtc_clangd/.cache/clangd/index/cstddef.7A1C4E0A59A306EA.idx
+.qtc_clangd/.cache/clangd/index/cstdint.8E2D69E48C9C7E36.idx
+.qtc_clangd/.cache/clangd/index/cstdio.53EFD4834CE84FE7.idx
+.qtc_clangd/.cache/clangd/index/cstdlib.34364833C9DB3048.idx
+.qtc_clangd/.cache/clangd/index/cstring.8592E00A8712808F.idx
+.qtc_clangd/.cache/clangd/index/ctime.DB3174CD8413FD58.idx
+.qtc_clangd/.cache/clangd/index/ctype_base.h.7934B2A980CB3668.idx
+.qtc_clangd/.cache/clangd/index/ctype_inline.h.EA81D4A9A2145F2B.idx
+.qtc_clangd/.cache/clangd/index/ctype.h.F7D72C918AE2BAC8.idx
+.qtc_clangd/.cache/clangd/index/cwchar.E2A80FF974E605B0.idx
+.qtc_clangd/.cache/clangd/index/cwctype.850F5EEADC4CDF87.idx
+.qtc_clangd/.cache/clangd/index/cxxabi_forced.h.D58CDF4F0335BC92.idx
+.qtc_clangd/.cache/clangd/index/cxxabi_init_exception.h.E103E41A1DD38296.idx
+.qtc_clangd/.cache/clangd/index/debug.h.4DED9C0DBF24174B.idx
+.qtc_clangd/.cache/clangd/index/ell_integral.tcc.5EAC4AB7AAA98479.idx
+.qtc_clangd/.cache/clangd/index/enable_special_members.h.1993B8BE3B987DD0.idx
+.qtc_clangd/.cache/clangd/index/erase_if.h.4DB546970673AE70.idx
+.qtc_clangd/.cache/clangd/index/errno.h.02BA35317363A231.idx
+.qtc_clangd/.cache/clangd/index/error_constants.h.2A77754A448D2A85.idx
+.qtc_clangd/.cache/clangd/index/exception_defines.h.7B12F3A075ADEDAB.idx
+.qtc_clangd/.cache/clangd/index/exception_ptr.h.7DBE8AB72305C523.idx
+.qtc_clangd/.cache/clangd/index/exception.42A7666F16B35B91.idx
+.qtc_clangd/.cache/clangd/index/exception.h.05CFC7E621AB6B82.idx
+.qtc_clangd/.cache/clangd/index/execution_defs.h.589E7273C01529DB.idx
+.qtc_clangd/.cache/clangd/index/exp_integral.tcc.204A94B866C13C03.idx
+.qtc_clangd/.cache/clangd/index/filesystem.BA9A8FB69833181E.idx
+.qtc_clangd/.cache/clangd/index/fs_dir.h.EB03462F2441CCCB.idx
+.qtc_clangd/.cache/clangd/index/fs_fwd.h.0D75A631FC759FDC.idx
+.qtc_clangd/.cache/clangd/index/fs_ops.h.DDB30C2B09574596.idx
+.qtc_clangd/.cache/clangd/index/fs_path.h.F2F0682DE4A59D15.idx
+.qtc_clangd/.cache/clangd/index/functexcept.h.4F4FFC54BFCC28D0.idx
+.qtc_clangd/.cache/clangd/index/functional_hash.h.4856BD73CCD1EDD4.idx
+.qtc_clangd/.cache/clangd/index/functional.787C4EA26951FEB7.idx
+.qtc_clangd/.cache/clangd/index/gamma.tcc.C79643AE339F2A0D.idx
+.qtc_clangd/.cache/clangd/index/glue_algorithm_defs.h.4B234482E93E7590.idx
+.qtc_clangd/.cache/clangd/index/glue_memory_defs.h.808A75B8CD8A7D74.idx
+.qtc_clangd/.cache/clangd/index/glue_numeric_defs.h.BC65153564663EC6.idx
+.qtc_clangd/.cache/clangd/index/gthr-default.h.94237979AD1E3716.idx
+.qtc_clangd/.cache/clangd/index/gthr.h.CBE50133F6F733C1.idx
+.qtc_clangd/.cache/clangd/index/hash_bytes.h.4ADDCA6A5CCFDD07.idx
+.qtc_clangd/.cache/clangd/index/hashtable_policy.h.54A4C022717EFA0E.idx
+.qtc_clangd/.cache/clangd/index/hashtable.h.EF2D5EA66AE50DFB.idx
+.qtc_clangd/.cache/clangd/index/hypergeometric.tcc.151428299D3ABA36.idx
+.qtc_clangd/.cache/clangd/index/initializer_list.6E9BA53D4663331F.idx
+.qtc_clangd/.cache/clangd/index/invoke.h.BC4581906E9EE975.idx
+.qtc_clangd/.cache/clangd/index/iomanip.BC1A64F909A33255.idx
+.qtc_clangd/.cache/clangd/index/ios_base.h.79E55E67BA739DBD.idx
+.qtc_clangd/.cache/clangd/index/ios.AACA591888DFDAB5.idx
+.qtc_clangd/.cache/clangd/index/iosfwd.574FD31A320A782D.idx
+.qtc_clangd/.cache/clangd/index/iostream.7179F49E4B168D29.idx
+.qtc_clangd/.cache/clangd/index/istream.FE5FE87D540C0C50.idx
+.qtc_clangd/.cache/clangd/index/istream.tcc.A3F2C1ED3D2B9F49.idx
+.qtc_clangd/.cache/clangd/index/iterator.D2F614AA00EE6744.idx
+.qtc_clangd/.cache/clangd/index/legendre_function.tcc.219F5B220E9952AF.idx
+.qtc_clangd/.cache/clangd/index/limits.3D36D9B829719097.idx
+.qtc_clangd/.cache/clangd/index/limits.h.906B38F12EB776B3.idx
+.qtc_clangd/.cache/clangd/index/limits.h.ABD9CDE61ECF1D3F.idx
+.qtc_clangd/.cache/clangd/index/list.5A768285D93B7DCC.idx
+.qtc_clangd/.cache/clangd/index/list.tcc.FF861DBE8E5A03CC.idx
+.qtc_clangd/.cache/clangd/index/locale_classes.h.BD9FB9522B5CB535.idx
+.qtc_clangd/.cache/clangd/index/locale_classes.tcc.76403EF1D7F01AC5.idx
+.qtc_clangd/.cache/clangd/index/locale_conv.h.C743998574059205.idx
+.qtc_clangd/.cache/clangd/index/locale_facets_nonio.h.EBD26A440DE01AE3.idx
+.qtc_clangd/.cache/clangd/index/locale_facets_nonio.tcc.372CBB52BA17ED7E.idx
+.qtc_clangd/.cache/clangd/index/locale_facets.h.1C6ED377D5E7B1A1.idx
+.qtc_clangd/.cache/clangd/index/locale_facets.tcc.A69F60600998E9A3.idx
+.qtc_clangd/.cache/clangd/index/locale.8E2851A3B4DE242A.idx
+.qtc_clangd/.cache/clangd/index/locale.h.DC48F5201CF1027D.idx
+.qtc_clangd/.cache/clangd/index/localefwd.h.CF1A0A0F8F7D53CD.idx
+.qtc_clangd/.cache/clangd/index/main.cpp.14506429BF7A502D.idx
+.qtc_clangd/.cache/clangd/index/malloc.h.FB6342A221E69DB5.idx
+.qtc_clangd/.cache/clangd/index/map.A89B3D312E205E76.idx
+.qtc_clangd/.cache/clangd/index/math.h.CF02073337E9E10F.idx
+.qtc_clangd/.cache/clangd/index/memory_resource.h.0665292509B9303C.idx
+.qtc_clangd/.cache/clangd/index/memory.F99EFA275FDCA50F.idx
+.qtc_clangd/.cache/clangd/index/memoryfwd.h.0A21AB85CC886FDD.idx
+.qtc_clangd/.cache/clangd/index/messages_members.h.C09081440D99BCDE.idx
+.qtc_clangd/.cache/clangd/index/mm_malloc.h.5254046A898B25F2.idx
+.qtc_clangd/.cache/clangd/index/modified_bessel_func.tcc.2A0D8D906DFE6173.idx
+.qtc_clangd/.cache/clangd/index/move.h.79EEAC655B191F5D.idx
+.qtc_clangd/.cache/clangd/index/nested_exception.h.B5F4B11829CC1FBA.idx
+.qtc_clangd/.cache/clangd/index/new_allocator.h.FB1814E630CFEDB9.idx
+.qtc_clangd/.cache/clangd/index/new.059DD391B90306EE.idx
+.qtc_clangd/.cache/clangd/index/node_handle.h.4005B751C1F5C352.idx
+.qtc_clangd/.cache/clangd/index/numeric_traits.h.4A97D44121B476FD.idx
+.qtc_clangd/.cache/clangd/index/numeric.528F959BDBBCE727.idx
+.qtc_clangd/.cache/clangd/index/optional.1AF8A8A9B001D676.idx
+.qtc_clangd/.cache/clangd/index/os_defines.h.4051C46C5DAEC0BF.idx
+.qtc_clangd/.cache/clangd/index/ostream_insert.h.C2AD642DDD3A228D.idx
+.qtc_clangd/.cache/clangd/index/ostream.B8414DEB728822A9.idx
+.qtc_clangd/.cache/clangd/index/ostream.tcc.AB5361896F7D8A3D.idx
+.qtc_clangd/.cache/clangd/index/parse_numbers.h.37F1CFBD1DBB7EB9.idx
+.qtc_clangd/.cache/clangd/index/poly_hermite.tcc.CEC6AE8F14EC0856.idx
+.qtc_clangd/.cache/clangd/index/poly_laguerre.tcc.B66EA03E3CD05EE6.idx
+.qtc_clangd/.cache/clangd/index/postypes.h.767EFD0AC45EFE0A.idx
+.qtc_clangd/.cache/clangd/index/predefined_ops.h.4B777076FBAACF94.idx
+.qtc_clangd/.cache/clangd/index/process.h.1AA4ED8302EFC572.idx
+.qtc_clangd/.cache/clangd/index/pstl_config.h.7831C167DE4C9386.idx
+.qtc_clangd/.cache/clangd/index/pthread_compat.h.5567CB6BAA7F0534.idx
+.qtc_clangd/.cache/clangd/index/pthread_signal.h.1C73AE3E74E998B6.idx
+.qtc_clangd/.cache/clangd/index/pthread_time.h.E578CA29EEDC27E8.idx
+.qtc_clangd/.cache/clangd/index/pthread_unistd.h.B29600E3F61C58B9.idx
+.qtc_clangd/.cache/clangd/index/pthread.h.99B9F7DCCCD56CE0.idx
+.qtc_clangd/.cache/clangd/index/ptr_traits.h.6CCA911A79B41D10.idx
+.qtc_clangd/.cache/clangd/index/q20functional.h.F556A9C9E346A9AF.idx
+.qtc_clangd/.cache/clangd/index/q20iterator.h.AEBCECC087BA5FCE.idx
+.qtc_clangd/.cache/clangd/index/q20memory.h.222218A0533B7D53.idx
+.qtc_clangd/.cache/clangd/index/q20type_traits.h.7DA44BF74235515C.idx
+.qtc_clangd/.cache/clangd/index/q20utility.h.EBDDCAC32C257648.idx
+.qtc_clangd/.cache/clangd/index/q23utility.h.E27BFEB1E9B8F0C3.idx
+.qtc_clangd/.cache/clangd/index/qabstractbutton.h.A93DC81E46CCFE1B.idx
+.qtc_clangd/.cache/clangd/index/qabstractitemdelegate.h.11B3D02F5C0D2DEA.idx
+.qtc_clangd/.cache/clangd/index/qabstractitemmodel.h.3E7B7129466F2439.idx
+.qtc_clangd/.cache/clangd/index/qabstractscrollarea.h.ECE63D941C2107E0.idx
+.qtc_clangd/.cache/clangd/index/qabstractslider.h.9D1F29DF3A20F1D5.idx
+.qtc_clangd/.cache/clangd/index/QAbstractSocket.96BB0108A48D20E4.idx
+.qtc_clangd/.cache/clangd/index/qabstractsocket.h.B58AB93043207F72.idx
+.qtc_clangd/.cache/clangd/index/qabstractspinbox.h.8E933A12CE404961.idx
+.qtc_clangd/.cache/clangd/index/qaction.h.D95A94B4C83F95C5.idx
+.qtc_clangd/.cache/clangd/index/qalgorithms.h.2D96507DB7C8448A.idx
+.qtc_clangd/.cache/clangd/index/qanystringview.h.A83AB7A5102F4544.idx
+.qtc_clangd/.cache/clangd/index/QApplication.57808A229ED8B616.idx
+.qtc_clangd/.cache/clangd/index/qapplication.h.A560C2FD309824DB.idx
+.qtc_clangd/.cache/clangd/index/qarraydata.h.F79D224D102930CE.idx
+.qtc_clangd/.cache/clangd/index/qarraydataops.h.E0F626C477AFDB28.idx
+.qtc_clangd/.cache/clangd/index/qarraydatapointer.h.B0A4144CBF8B9830.idx
+.qtc_clangd/.cache/clangd/index/qassert.h.366441C84D5ADACD.idx
+.qtc_clangd/.cache/clangd/index/qatomic_cxx11.h.684E947E12A1B255.idx
+.qtc_clangd/.cache/clangd/index/qatomic.h.5009CA85AF211310.idx
+.qtc_clangd/.cache/clangd/index/qbasicatomic.h.156F4B69FB4AFDAD.idx
+.qtc_clangd/.cache/clangd/index/qbasictimer.h.43AF8986797B3C56.idx
+.qtc_clangd/.cache/clangd/index/qbindingstorage.h.A9BA14B607F014A3.idx
+.qtc_clangd/.cache/clangd/index/qbitmap.h.6A28D5577A7FE7A1.idx
+.qtc_clangd/.cache/clangd/index/qboxlayout.h.C72B6B70112AD568.idx
+.qtc_clangd/.cache/clangd/index/qbrush.h.E6E00C59FBC63232.idx
+.qtc_clangd/.cache/clangd/index/qbytearray.h.0817CC8391B8E88E.idx
+.qtc_clangd/.cache/clangd/index/qbytearrayalgorithms.h.4DE23DAF2B80F729.idx
+.qtc_clangd/.cache/clangd/index/qbytearraylist.h.28EEB364414CED23.idx
+.qtc_clangd/.cache/clangd/index/qbytearrayview.h.85B4F146D03F59C2.idx
+.qtc_clangd/.cache/clangd/index/qcalendar.h.9C1791DE2900C26D.idx
+.qtc_clangd/.cache/clangd/index/qchar.h.0449EC310F2DF67E.idx
+.qtc_clangd/.cache/clangd/index/qcolor.h.F6B2A467BA1E931C.idx
+.qtc_clangd/.cache/clangd/index/QComboBox.3EA6B8A294CF2DD6.idx
+.qtc_clangd/.cache/clangd/index/qcombobox.h.35F0D282724FB6D8.idx
+.qtc_clangd/.cache/clangd/index/qcompare_impl.h.B2BA53630EB5E944.idx
+.qtc_clangd/.cache/clangd/index/qcompare.h.B71F9A6CA0D835A0.idx
+.qtc_clangd/.cache/clangd/index/qcomparehelpers.h.E81D22A44F82073C.idx
+.qtc_clangd/.cache/clangd/index/qcompilerdetection.h.C9484C0D1ACCE9CF.idx
+.qtc_clangd/.cache/clangd/index/qconfig.h.C6905E7173E9D97E.idx
+.qtc_clangd/.cache/clangd/index/qconstructormacros.h.1F6EFDB1518543DF.idx
+.qtc_clangd/.cache/clangd/index/qcontainerfwd.h.5C31B1A506F34385.idx
+.qtc_clangd/.cache/clangd/index/qcontainerinfo.h.B91E951F192FA521.idx
+.qtc_clangd/.cache/clangd/index/qcontainertools_impl.h.D3A6806A67C42A05.idx
+.qtc_clangd/.cache/clangd/index/qcontiguouscache.h.4BC165692C8FE4B1.idx
+.qtc_clangd/.cache/clangd/index/qcoreapplication_platform.h.2EBDBF4997E7930C.idx
+.qtc_clangd/.cache/clangd/index/qcoreapplication.h.921C45B24E4EBD88.idx
+.qtc_clangd/.cache/clangd/index/qcoreevent.h.20C93EFD047FD1C2.idx
+.qtc_clangd/.cache/clangd/index/qcryptographichash.h.61C63C5B9EDB0298.idx
+.qtc_clangd/.cache/clangd/index/qcursor.h.73DAC1CA17378B8F.idx
+.qtc_clangd/.cache/clangd/index/qdarwinhelpers.h.5C4243FBED1B09A6.idx
+.qtc_clangd/.cache/clangd/index/qdatastream.h.DD5CA9B584A580AA.idx
+.qtc_clangd/.cache/clangd/index/QDateTime.2410DF6C4A94D457.idx
+.qtc_clangd/.cache/clangd/index/qdatetime.h.37BB690CB06C7B60.idx
+.qtc_clangd/.cache/clangd/index/qdeadlinetimer.h.2B5669A62AF4BDF2.idx
+.qtc_clangd/.cache/clangd/index/QDebug.DB0F3F2F7AB20F70.idx
+.qtc_clangd/.cache/clangd/index/qdebug.h.B9D3C79B60C5D25D.idx
+.qtc_clangd/.cache/clangd/index/qdialog.h.8E10AA14CC804056.idx
+.qtc_clangd/.cache/clangd/index/qdialogbuttonbox.h.0488C1B660730BC1.idx
+.qtc_clangd/.cache/clangd/index/qdir.h.1A4E187CEA92E687.idx
+.qtc_clangd/.cache/clangd/index/qdirlisting.h.B579306F948FE617.idx
+.qtc_clangd/.cache/clangd/index/qelapsedtimer.h.BA35DD3C5C832A79.idx
+.qtc_clangd/.cache/clangd/index/qendian.h.9F2C592E868F9376.idx
+.qtc_clangd/.cache/clangd/index/qeventloop.h.80BD94B779EE800E.idx
+.qtc_clangd/.cache/clangd/index/qexceptionhandling.h.14B55F2DC8FD6E03.idx
+.qtc_clangd/.cache/clangd/index/QFile.42970DF66CB40945.idx
+.qtc_clangd/.cache/clangd/index/qfile.h.5951F1FFEDE4F652.idx
+.qtc_clangd/.cache/clangd/index/qfiledevice.h.2D055F7B470F6A0A.idx
+.qtc_clangd/.cache/clangd/index/QFileDialog.6F8101F505B27BF6.idx
+.qtc_clangd/.cache/clangd/index/qfiledialog.h.E1D7B7E0E7B8100B.idx
+.qtc_clangd/.cache/clangd/index/qfileinfo.h.ACC966B3D29FE361.idx
+.qtc_clangd/.cache/clangd/index/QFlags.B52B596253F8A619.idx
+.qtc_clangd/.cache/clangd/index/qflags.h.74859E20944C3EE3.idx
+.qtc_clangd/.cache/clangd/index/qfloat16.h.0D67C407FDD9152B.idx
+.qtc_clangd/.cache/clangd/index/qfont.h.47D816733B38CCEF.idx
+.qtc_clangd/.cache/clangd/index/qfontinfo.h.D770E8CBB4D74A57.idx
+.qtc_clangd/.cache/clangd/index/qfontmetrics.h.01137E554346BEF5.idx
+.qtc_clangd/.cache/clangd/index/qforeach.h.ABDF947CAF8A049E.idx
+.qtc_clangd/.cache/clangd/index/QFormLayout.4ECC508CB9F20D54.idx
+.qtc_clangd/.cache/clangd/index/qformlayout.h.8BAC86534EA65585.idx
+.qtc_clangd/.cache/clangd/index/qframe.h.4A98886B90DC2104.idx
+.qtc_clangd/.cache/clangd/index/qfunctionaltools_impl.h.5993CDEC915566BA.idx
+.qtc_clangd/.cache/clangd/index/qfunctionpointer.h.176FA9B3E79B506F.idx
+.qtc_clangd/.cache/clangd/index/qgenericatomic.h.5CBEA8C517057EB2.idx
+.qtc_clangd/.cache/clangd/index/qglobal.h.94F72C55AB09A1D4.idx
+.qtc_clangd/.cache/clangd/index/qglobalstatic.h.C67E3A492F6B86A7.idx
+.qtc_clangd/.cache/clangd/index/QGridLayout.A97197DCC1422720.idx
+.qtc_clangd/.cache/clangd/index/qgridlayout.h.17B3D57423E170BE.idx
+.qtc_clangd/.cache/clangd/index/QGroupBox.382ECF1A9CF90A2A.idx
+.qtc_clangd/.cache/clangd/index/qgroupbox.h.70A25893532D1309.idx
+.qtc_clangd/.cache/clangd/index/qguiapplication_platform.h.EEE4FB47F8F62EFA.idx
+.qtc_clangd/.cache/clangd/index/qguiapplication.h.3A806F1C5E3945FE.idx
+.qtc_clangd/.cache/clangd/index/qhash.h.862DAB205EB42B82.idx
+.qtc_clangd/.cache/clangd/index/qhashfunctions.h.2826382F6FAA1E4D.idx
+.qtc_clangd/.cache/clangd/index/QHBoxLayout.7A23DC9F730BB9D6.idx
+.qtc_clangd/.cache/clangd/index/qhostaddress.h.4BEF1824CF617929.idx
+.qtc_clangd/.cache/clangd/index/qicon.h.DF2971FC117F3CAC.idx
+.qtc_clangd/.cache/clangd/index/qimage.h.5FF3CB89F2D45651.idx
+.qtc_clangd/.cache/clangd/index/qinputmethod.h.E399EABBBB6395F5.idx
+.qtc_clangd/.cache/clangd/index/qiodevice.h.6A72F768318DF508.idx
+.qtc_clangd/.cache/clangd/index/qiodevicebase.h.D30A0449D41DB95B.idx
+.qtc_clangd/.cache/clangd/index/qiterable.h.614A0AD4B5529B7B.idx
+.qtc_clangd/.cache/clangd/index/qiterator.h.A4EEA6588C3CEA81.idx
+.qtc_clangd/.cache/clangd/index/qkeysequence.h.292FBA57FD5C693C.idx
+.qtc_clangd/.cache/clangd/index/QLabel.D77F4D0326A2FEEA.idx
+.qtc_clangd/.cache/clangd/index/qlabel.h.9F096CF36D7D384B.idx
+.qtc_clangd/.cache/clangd/index/qlatin1stringview.h.13A962ECD069F56B.idx
+.qtc_clangd/.cache/clangd/index/QLayout.CC3F1DE89C26F778.idx
+.qtc_clangd/.cache/clangd/index/qlayout.h.5A22BE7F7410BF1C.idx
+.qtc_clangd/.cache/clangd/index/qlayoutitem.h.3075853FFE928ED0.idx
+.qtc_clangd/.cache/clangd/index/qline.h.8BF28DA32A8B6DA0.idx
+.qtc_clangd/.cache/clangd/index/QLineEdit.69587DDB10AB41E7.idx
+.qtc_clangd/.cache/clangd/index/qlineedit.h.FA007EB7371FDDC0.idx
+.qtc_clangd/.cache/clangd/index/qlist.h.EA0937CE0939A515.idx
+.qtc_clangd/.cache/clangd/index/qlocale.h.6A478FDF1FF4A84A.idx
+.qtc_clangd/.cache/clangd/index/qlogging.h.4FD69B85DC5B29FF.idx
+.qtc_clangd/.cache/clangd/index/qmalloc.h.0922BF4E2CF6025F.idx
+.qtc_clangd/.cache/clangd/index/qmap.h.C36A85ECDB232062.idx
+.qtc_clangd/.cache/clangd/index/qmargins.h.24EFD3ED97BACE8C.idx
+.qtc_clangd/.cache/clangd/index/qmath.h.ADB2E98E33F94C2E.idx
+.qtc_clangd/.cache/clangd/index/QMessageBox.285A505C07DF2438.idx
+.qtc_clangd/.cache/clangd/index/qmessagebox.h.6E227709D800E481.idx
+.qtc_clangd/.cache/clangd/index/qmetacontainer.h.14C6F49C88BA5F4C.idx
+.qtc_clangd/.cache/clangd/index/qmetatype.h.CB0DB084543B83C0.idx
+.qtc_clangd/.cache/clangd/index/qminmax.h.594CB953470548AB.idx
+.qtc_clangd/.cache/clangd/index/qnamespace.h.D407B559D95BB876.idx
+.qtc_clangd/.cache/clangd/index/qnativeinterface.h.894D9DA913D1B957.idx
+.qtc_clangd/.cache/clangd/index/qnumeric.h.B901744E6646DC43.idx
+.qtc_clangd/.cache/clangd/index/qobject_impl.h.2B613456C5F66F28.idx
+.qtc_clangd/.cache/clangd/index/QObject.1FD5C2C140337D79.idx
+.qtc_clangd/.cache/clangd/index/qobject.h.D7B9B62E66D4F385.idx
+.qtc_clangd/.cache/clangd/index/qobjectdefs_impl.h.0DC5708CE9309540.idx
+.qtc_clangd/.cache/clangd/index/qobjectdefs.h.4231851FBE4E6BB4.idx
+.qtc_clangd/.cache/clangd/index/qobjectdefs.h.52552309B4975986.idx
+.qtc_clangd/.cache/clangd/index/qoverload.h.D767292A1BF7E993.idx
+.qtc_clangd/.cache/clangd/index/qpaintdevice.h.8998467BCB426BDA.idx
+.qtc_clangd/.cache/clangd/index/qpair.h.848077ADBC84C717.idx
+.qtc_clangd/.cache/clangd/index/qpalette.h.6F3C8AF2C3C3F27C.idx
+.qtc_clangd/.cache/clangd/index/qpen.h.7FA96790B0DBCD08.idx
+.qtc_clangd/.cache/clangd/index/qpicture.h.389F1D66ED1AADD9.idx
+.qtc_clangd/.cache/clangd/index/qpixelformat.h.E48D48B879AE1761.idx
+.qtc_clangd/.cache/clangd/index/qpixmap.h.5537991DEE07A967.idx
+.qtc_clangd/.cache/clangd/index/qpoint.h.F4ABACAF45CC851A.idx
+.qtc_clangd/.cache/clangd/index/qpolygon.h.19C02DB1722A4355.idx
+.qtc_clangd/.cache/clangd/index/QProcess.00B8FD6AC8973D69.idx
+.qtc_clangd/.cache/clangd/index/qprocess.h.E21A5A41D2DFA34C.idx
+.qtc_clangd/.cache/clangd/index/qprocessordetection.h.ECAC680154EE35C8.idx
+.qtc_clangd/.cache/clangd/index/QPushButton.6713A927935ADC70.idx
+.qtc_clangd/.cache/clangd/index/qpushbutton.h.31A0718E4811B588.idx
+.qtc_clangd/.cache/clangd/index/qrect.h.48B5584ABDBB3438.idx
+.qtc_clangd/.cache/clangd/index/qrefcount.h.226C38A2B8B4977B.idx
+.qtc_clangd/.cache/clangd/index/qregion.h.08DA5C29897F5D4C.idx
+.qtc_clangd/.cache/clangd/index/QRegularExpression.FD3435C89F5E67E9.idx
+.qtc_clangd/.cache/clangd/index/qregularexpression.h.9313E4ACCE10EDA6.idx
+.qtc_clangd/.cache/clangd/index/qrgb.h.C6DF069C4E296B45.idx
+.qtc_clangd/.cache/clangd/index/qrgba64.h.D7500A5F549450FD.idx
+.qtc_clangd/.cache/clangd/index/qrubberband.h.775BCD2BEFA3E257.idx
+.qtc_clangd/.cache/clangd/index/qscopedpointer.h.8938FE22597CD9B3.idx
+.qtc_clangd/.cache/clangd/index/qscopeguard.h.590118DB84D0F300.idx
+.qtc_clangd/.cache/clangd/index/QScrollBar.933780AB07F7899B.idx
+.qtc_clangd/.cache/clangd/index/qscrollbar.h.67D258E2515661FE.idx
+.qtc_clangd/.cache/clangd/index/qset.h.39B796AC7261150F.idx
+.qtc_clangd/.cache/clangd/index/QSettings.2409E0E2F4E21294.idx
+.qtc_clangd/.cache/clangd/index/qsettings.h.FD6E7973448A77A4.idx
+.qtc_clangd/.cache/clangd/index/qshareddata_impl.h.5D9CACD8C5D08B9A.idx
+.qtc_clangd/.cache/clangd/index/qshareddata.h.9CB62DEEDE1BFBAE.idx
+.qtc_clangd/.cache/clangd/index/qsharedpointer_impl.h.8D0E82B397CCC49C.idx
+.qtc_clangd/.cache/clangd/index/qsharedpointer.h.7A70C8E4429608F9.idx
+.qtc_clangd/.cache/clangd/index/qsize.h.51FFB35621F7AC37.idx
+.qtc_clangd/.cache/clangd/index/qsizepolicy.h.880B8B18EACD2E74.idx
+.qtc_clangd/.cache/clangd/index/qslider.h.49B725D70D4FC632.idx
+.qtc_clangd/.cache/clangd/index/QSpacerItem.0C7617D2F39084DB.idx
+.qtc_clangd/.cache/clangd/index/qspan.h.B68BEC55EC70D319.idx
+.qtc_clangd/.cache/clangd/index/QSpinBox.170E1AB9E8D2534E.idx
+.qtc_clangd/.cache/clangd/index/qspinbox.h.8F56C48C997C15A2.idx
+.qtc_clangd/.cache/clangd/index/qssl.h.64F7D752CD9C9CB4.idx
+.qtc_clangd/.cache/clangd/index/qsslcertificate.h.001A7085C173AA09.idx
+.qtc_clangd/.cache/clangd/index/QSslCipher.C6A2D1721B820C51.idx
+.qtc_clangd/.cache/clangd/index/qsslcipher.h.47BCE57B3C270B45.idx
+.qtc_clangd/.cache/clangd/index/QSslConfiguration.26A594C63581174C.idx
+.qtc_clangd/.cache/clangd/index/qsslconfiguration.h.2DF9EC558F9235F2.idx
+.qtc_clangd/.cache/clangd/index/qsslerror.h.9B756323E8A6FA1C.idx
+.qtc_clangd/.cache/clangd/index/QSslSocket.8E417D93CE08DE8F.idx
+.qtc_clangd/.cache/clangd/index/qsslsocket.h.D94CFC3AF67DF2DC.idx
+.qtc_clangd/.cache/clangd/index/qstring.h.B7F00C2C069B1B7A.idx
+.qtc_clangd/.cache/clangd/index/qstringalgorithms.h.2592908BC28F4C54.idx
+.qtc_clangd/.cache/clangd/index/qstringbuilder.h.C0FE665A71063927.idx
+.qtc_clangd/.cache/clangd/index/qstringconverter_base.h.4704AEAA39F4938C.idx
+.qtc_clangd/.cache/clangd/index/qstringconverter.h.E7EF9D35F9C929A3.idx
+.qtc_clangd/.cache/clangd/index/qstringfwd.h.DB0A457F512DB9ED.idx
+.qtc_clangd/.cache/clangd/index/qstringlist.h.7FF1E3E1CE2CC13D.idx
+.qtc_clangd/.cache/clangd/index/qstringliteral.h.2AC419ACA564FC98.idx
+.qtc_clangd/.cache/clangd/index/qstringmatcher.h.6B70D4BF6F8AD40F.idx
+.qtc_clangd/.cache/clangd/index/qstringtokenizer.h.053E4EA3700D2665.idx
+.qtc_clangd/.cache/clangd/index/qstringview.h.6AD371681BEFC810.idx
+.qtc_clangd/.cache/clangd/index/QStyle.8389DD608690C202.idx
+.qtc_clangd/.cache/clangd/index/qstyle.h.E0C9523AFE4EFAB1.idx
+.qtc_clangd/.cache/clangd/index/qstyleoption.h.00A5A488F7D26E83.idx
+.qtc_clangd/.cache/clangd/index/qswap.h.237393D36310727A.idx
+.qtc_clangd/.cache/clangd/index/qsysinfo.h.9E7341B3AC57F88D.idx
+.qtc_clangd/.cache/clangd/index/qsystemdetection.h.3B5ED060513E5A52.idx
+.qtc_clangd/.cache/clangd/index/qtabbar.h.5BED5D8CDE0E0493.idx
+.qtc_clangd/.cache/clangd/index/qtabwidget.h.B7FE489E599676F6.idx
+.qtc_clangd/.cache/clangd/index/qtaggedpointer.h.D4F3F2842E03FD23.idx
+.qtc_clangd/.cache/clangd/index/qtclasshelpermacros.h.1B5217263E4C9722.idx
+.qtc_clangd/.cache/clangd/index/qtconfiginclude.h.0DF047291411D43D.idx
+.qtc_clangd/.cache/clangd/index/qtconfigmacros.h.7BF6612D36F6AD30.idx
+.qtc_clangd/.cache/clangd/index/qtcore-config.h.878C9CA1072A6A6D.idx
+.qtc_clangd/.cache/clangd/index/qtcoreexports.h.79EB9984CB0DD298.idx
+.qtc_clangd/.cache/clangd/index/qtcpsocket.h.5A4E12A19D5CBF95.idx
+.qtc_clangd/.cache/clangd/index/qtdeprecationdefinitions.h.F5B9D4F3EEC348CD.idx
+.qtc_clangd/.cache/clangd/index/qtdeprecationmarkers.h.0BBAB5102E4363C3.idx
+.qtc_clangd/.cache/clangd/index/qtenvironmentvariables.h.8FF43BC12911720A.idx
+.qtc_clangd/.cache/clangd/index/QTextBrowser.4E7B863451551588.idx
+.qtc_clangd/.cache/clangd/index/qtextbrowser.h.BCCFC292E89B6D63.idx
+.qtc_clangd/.cache/clangd/index/qtextcursor.h.D385FD49E61C34CF.idx
+.qtc_clangd/.cache/clangd/index/qtextdocument.h.734DC66CF98BB201.idx
+.qtc_clangd/.cache/clangd/index/QTextEdit.7956F90473863B04.idx
+.qtc_clangd/.cache/clangd/index/qtextedit.h.AF700023959F7B2B.idx
+.qtc_clangd/.cache/clangd/index/qtextformat.h.1DD570CB1960F603.idx
+.qtc_clangd/.cache/clangd/index/qtextoption.h.EAF5FFD36109B469.idx
+.qtc_clangd/.cache/clangd/index/qtextstream.h.76A27C7D82F5BE3B.idx
+.qtc_clangd/.cache/clangd/index/qtgui-config.h.C31CF7219A031278.idx
+.qtc_clangd/.cache/clangd/index/qtguiexports.h.A6A4E3A9F7040AFC.idx
+.qtc_clangd/.cache/clangd/index/qtguiglobal.h.224741EA52633830.idx
+.qtc_clangd/.cache/clangd/index/QTimer.8626F435E6ED26D5.idx
+.qtc_clangd/.cache/clangd/index/qtimer.h.813A4E42F24B7AAC.idx
+.qtc_clangd/.cache/clangd/index/qtimezone.h.BD24A1F956187D35.idx
+.qtc_clangd/.cache/clangd/index/qtmetamacros.h.99D6CF0CE7799ED7.idx
+.qtc_clangd/.cache/clangd/index/qtnetwork-config.h.7A5716C918878B0E.idx
+.qtc_clangd/.cache/clangd/index/qtnetworkexports.h.EA29E4B776BF5CB8.idx
+.qtc_clangd/.cache/clangd/index/qtnetworkglobal.h.E8F61E4448BA4825.idx
+.qtc_clangd/.cache/clangd/index/qtnoop.h.4DD32008349EDA06.idx
+.qtc_clangd/.cache/clangd/index/QToolButton.EA54303A0AAD393B.idx
+.qtc_clangd/.cache/clangd/index/qtoolbutton.h.3A769FA70ADBAD6D.idx
+.qtc_clangd/.cache/clangd/index/qtpreprocessorsupport.h.EFD47F4DDFD93C07.idx
+.qtc_clangd/.cache/clangd/index/qtransform.h.031693ED934FCAF2.idx
+.qtc_clangd/.cache/clangd/index/qtresource.h.566DC4E619CBD39F.idx
+.qtc_clangd/.cache/clangd/index/qttranslation.h.8424F2E4308C9F26.idx
+.qtc_clangd/.cache/clangd/index/qttypetraits.h.CD8D58D0A97B9891.idx
+.qtc_clangd/.cache/clangd/index/qtversion.h.4CA179603EF09FA2.idx
+.qtc_clangd/.cache/clangd/index/qtversionchecks.h.09A9E34231322376.idx
+.qtc_clangd/.cache/clangd/index/qtwidgets-config.h.75CDFC8392B563F5.idx
+.qtc_clangd/.cache/clangd/index/qtwidgetsexports.h.071268AB221520E5.idx
+.qtc_clangd/.cache/clangd/index/qtwidgetsglobal.h.94C5E2EBED70789E.idx
+.qtc_clangd/.cache/clangd/index/qtypeinfo.h.3600C99C5016BD1E.idx
+.qtc_clangd/.cache/clangd/index/qtypes.h.4CE097BF8935A5F0.idx
+.qtc_clangd/.cache/clangd/index/quoted_string.h.7ABF745CB33D1541.idx
+.qtc_clangd/.cache/clangd/index/qurl.h.33DBB14C236D2411.idx
+.qtc_clangd/.cache/clangd/index/qutf8stringview.h.15E6E858A239B64E.idx
+.qtc_clangd/.cache/clangd/index/qvalidator.h.416143F257B78650.idx
+.qtc_clangd/.cache/clangd/index/QVariant.5EDAE02F9B5A7848.idx
+.qtc_clangd/.cache/clangd/index/qvariant.h.BAC3A32B16783CCA.idx
+.qtc_clangd/.cache/clangd/index/qvarlengtharray.h.65C79B5EEBD5D12E.idx
+.qtc_clangd/.cache/clangd/index/QVBoxLayout.252112EF09D40D63.idx
+.qtc_clangd/.cache/clangd/index/qversiontagging.h.76596DFBEE8B5E42.idx
+.qtc_clangd/.cache/clangd/index/QWidget.443F6CEDAE20AC93.idx
+.qtc_clangd/.cache/clangd/index/qwidget.h.94D432FA10D1930E.idx
+.qtc_clangd/.cache/clangd/index/qwindowdefs_win.h.1BB25C3E55D5C121.idx
+.qtc_clangd/.cache/clangd/index/qwindowdefs.h.1016A1611E228B96.idx
+.qtc_clangd/.cache/clangd/index/qxmlstream.h.0DDC89420A81E41C.idx
+.qtc_clangd/.cache/clangd/index/QXmlStreamWriter.F35B9C63795800E7.idx
+.qtc_clangd/.cache/clangd/index/qxptype_traits.h.A8305AEB85D7F6FF.idx
+.qtc_clangd/.cache/clangd/index/qyieldcpu.h.6C15FD710AA7E49D.idx
+.qtc_clangd/.cache/clangd/index/range_access.h.749D08E89E173790.idx
+.qtc_clangd/.cache/clangd/index/ratio.AB19A0BE77A21DC7.idx
+.qtc_clangd/.cache/clangd/index/refwrap.h.06D94A77DAE109DB.idx
+.qtc_clangd/.cache/clangd/index/requires_hosted.h.AE2E04E7A3D4521C.idx
+.qtc_clangd/.cache/clangd/index/riemann_zeta.tcc.09B1119C2F9F2835.idx
+.qtc_clangd/.cache/clangd/index/shared_ptr_atomic.h.7C97509591D7E249.idx
+.qtc_clangd/.cache/clangd/index/shared_ptr_base.h.3820C464A7DE880D.idx
+.qtc_clangd/.cache/clangd/index/shared_ptr.h.FCCFBE5F541FCC46.idx
+.qtc_clangd/.cache/clangd/index/signal.h.558E75D3E32F3442.idx
+.qtc_clangd/.cache/clangd/index/specfun.h.99E8752B82213800.idx
+.qtc_clangd/.cache/clangd/index/special_function_util.h.2138596660D53412.idx
+.qtc_clangd/.cache/clangd/index/sstream.13E7C6F566C4734E.idx
+.qtc_clangd/.cache/clangd/index/sstream.tcc.BB7B62731F86016C.idx
+.qtc_clangd/.cache/clangd/index/std_abs.h.370E26F946FE6E96.idx
+.qtc_clangd/.cache/clangd/index/std_function.h.B21AE497949AF254.idx
+.qtc_clangd/.cache/clangd/index/stdarg.h.69C0F22F28ECAECD.idx
+.qtc_clangd/.cache/clangd/index/stdbool.h.3679A92FB57ACFC6.idx
+.qtc_clangd/.cache/clangd/index/stddef.h.A7461BBA3A1BF70E.idx
+.qtc_clangd/.cache/clangd/index/stdexcept.6A5EC8DA95773792.idx
+.qtc_clangd/.cache/clangd/index/stdint.h.4B616584BCA33555.idx
+.qtc_clangd/.cache/clangd/index/stdint.h.C30B27D3BCE2E0E1.idx
+.qtc_clangd/.cache/clangd/index/stdio_s.h.45F5304733E3F719.idx
+.qtc_clangd/.cache/clangd/index/stdio.h.CC12DC24E7E68D52.idx
+.qtc_clangd/.cache/clangd/index/stdlib_s.h.CB0F3BA930F2809A.idx
+.qtc_clangd/.cache/clangd/index/stdlib.h.5E6BC43231C79126.idx
+.qtc_clangd/.cache/clangd/index/stdlib.h.8D0F1DEFFE1AE1DA.idx
+.qtc_clangd/.cache/clangd/index/stl_algo.h.A715D1186CF5D664.idx
+.qtc_clangd/.cache/clangd/index/stl_algobase.h.2DC311F84626BA8B.idx
+.qtc_clangd/.cache/clangd/index/stl_bvector.h.62B583B872F451D9.idx
+.qtc_clangd/.cache/clangd/index/stl_construct.h.A5E78E5803707BF7.idx
+.qtc_clangd/.cache/clangd/index/stl_function.h.27D56F2C9EF78C8A.idx
+.qtc_clangd/.cache/clangd/index/stl_heap.h.0665172BD82429AD.idx
+.qtc_clangd/.cache/clangd/index/stl_iterator_base_funcs.h.2ECBB655E0DBE104.idx
+.qtc_clangd/.cache/clangd/index/stl_iterator_base_types.h.74432AC36BC140DF.idx
+.qtc_clangd/.cache/clangd/index/stl_iterator.h.89763A663F209469.idx
+.qtc_clangd/.cache/clangd/index/stl_list.h.730440D61D218B5F.idx
+.qtc_clangd/.cache/clangd/index/stl_map.h.62249D8289CB309B.idx
+.qtc_clangd/.cache/clangd/index/stl_multimap.h.47BC3CEB6F9E0789.idx
+.qtc_clangd/.cache/clangd/index/stl_numeric.h.AB2298224C8D3256.idx
+.qtc_clangd/.cache/clangd/index/stl_pair.h.84E6B6FDEB68E84B.idx
+.qtc_clangd/.cache/clangd/index/stl_raw_storage_iter.h.2C6A965D191971B4.idx
+.qtc_clangd/.cache/clangd/index/stl_relops.h.9F732C9B2C96F9CE.idx
+.qtc_clangd/.cache/clangd/index/stl_tempbuf.h.A73F9EE4AF9BA8BE.idx
+.qtc_clangd/.cache/clangd/index/stl_tree.h.60D213E088B543A0.idx
+.qtc_clangd/.cache/clangd/index/stl_uninitialized.h.1CA7ED6A451806E2.idx
+.qtc_clangd/.cache/clangd/index/stl_vector.h.DD4A065200251080.idx
+.qtc_clangd/.cache/clangd/index/stream_iterator.h.EE1E2D0FB38ECE1C.idx
+.qtc_clangd/.cache/clangd/index/streambuf_iterator.h.024AE2C14519C669.idx
+.qtc_clangd/.cache/clangd/index/streambuf.C811A4D8D10A9529.idx
+.qtc_clangd/.cache/clangd/index/streambuf.tcc.08A527F072325708.idx
+.qtc_clangd/.cache/clangd/index/string_conversions.h.51BA8BF586C58A64.idx
+.qtc_clangd/.cache/clangd/index/string_s.h.41D0EE84BFC16097.idx
+.qtc_clangd/.cache/clangd/index/string_view.6225AFC4F285F2F8.idx
+.qtc_clangd/.cache/clangd/index/string_view.tcc.28C15DFFF2AB78B3.idx
+.qtc_clangd/.cache/clangd/index/string.8EE977D3302182FB.idx
+.qtc_clangd/.cache/clangd/index/string.h.CB20D6D1A1BD3AD7.idx
+.qtc_clangd/.cache/clangd/index/stringfwd.h.6674494E99D8F4ED.idx
+.qtc_clangd/.cache/clangd/index/swprintf.inl.AE70B8BCF650DCFC.idx
+.qtc_clangd/.cache/clangd/index/system_error.858417C8A2D30ABA.idx
+.qtc_clangd/.cache/clangd/index/time_members.h.89AC2269CD8310C4.idx
+.qtc_clangd/.cache/clangd/index/time.h.1216C48A41338F4E.idx
+.qtc_clangd/.cache/clangd/index/timeb_s.h.46E857CB39817C62.idx
+.qtc_clangd/.cache/clangd/index/timeb.h.91561FE0549354DB.idx
+.qtc_clangd/.cache/clangd/index/tuple.13427624F7402634.idx
+.qtc_clangd/.cache/clangd/index/type_traits.00020A29A4B8493F.idx
+.qtc_clangd/.cache/clangd/index/type_traits.h.292A5E5AE1B92F01.idx
+.qtc_clangd/.cache/clangd/index/typeinfo.5434356D4CFD9A5E.idx
+.qtc_clangd/.cache/clangd/index/types.h.985855666084EFB6.idx
+.qtc_clangd/.cache/clangd/index/ui_sslclient.h.272876E1212A1CAC.idx
+.qtc_clangd/.cache/clangd/index/ui_wsfeform.h.3372320AECAF5EC6.idx
+.qtc_clangd/.cache/clangd/index/uniform_int_dist.h.DF2FE0AABED4F283.idx
+.qtc_clangd/.cache/clangd/index/unique_ptr.h.62A6D2D2E567B2B5.idx
+.qtc_clangd/.cache/clangd/index/unordered_map.1A1088D0CE9A3B5D.idx
+.qtc_clangd/.cache/clangd/index/unordered_map.h.DE73995C565A2028.idx
+.qtc_clangd/.cache/clangd/index/uses_allocator_args.h.13E4958803C199A5.idx
+.qtc_clangd/.cache/clangd/index/uses_allocator.h.8862A744330D2485.idx
+.qtc_clangd/.cache/clangd/index/utility.7BFB8DA7D488204B.idx
+.qtc_clangd/.cache/clangd/index/utility.h.7500E2C306154EE9.idx
+.qtc_clangd/.cache/clangd/index/vadefs.h.48DB63EB6D35626F.idx
+.qtc_clangd/.cache/clangd/index/vadefs.h.BA4C17CD5B8731D8.idx
+.qtc_clangd/.cache/clangd/index/variant.73EA2BC38FFF8EC5.idx
+.qtc_clangd/.cache/clangd/index/vector.CCB3521E7A45D8B9.idx
+.qtc_clangd/.cache/clangd/index/vector.tcc.068316E453B71F26.idx
+.qtc_clangd/.cache/clangd/index/version.389249C51A13D645.idx
+.qtc_clangd/.cache/clangd/index/wchar_s.h.81D5C78A8ADBFBF8.idx
+.qtc_clangd/.cache/clangd/index/wchar.h.220CF985C2B3C038.idx
+.qtc_clangd/.cache/clangd/index/wctype.h.4FA6B72DD102165C.idx
+.qtc_clangd/.cache/clangd/index/wsaalogin.cpp.3BECEDE74C9233A2.idx
+.qtc_clangd/.cache/clangd/index/wsaalogin.h.DCE2754AFDD3DF78.idx
+.qtc_clangd/.cache/clangd/index/wsfemanager.cpp.1237806D210D0E4C.idx
+.qtc_clangd/.cache/clangd/index/wsfemanager.h.79B0FA0859F2F795.idx
+bin.20250416/.qmake.stash
+bin.20250416/ac_root.der
+bin.20250416/ADICFACA.TXT
+bin.20250416/ADICFACB.TXT
+bin.20250416/ADICIONALES.TXT
+bin.20250416/adicnca.txt
+bin.20250416/adicnda.txt
+bin.20250416/afip-homo.crt
+bin.20250416/AFIPRootCA2.cacert_2015-2035.crt
+bin.20250416/AFIPRootCA2.cacert_2015-2035.pem
+bin.20250416/AFIPRootCA2.pem
+bin.20250416/alicfaca.txt
+bin.20250416/alicfacb.txt
+bin.20250416/alicnca.txt
+bin.20250416/alicuotanda.txt
+bin.20250416/alicuotandb.txt
+bin.20250416/alicuotas.txt
+bin.20250416/alicuotncb.txt
+bin.20250416/cae.txt
+bin.20250416/Capodurijorgehomologacion.crt
+bin.20250416/CapoduriJorgeProduccion.crt
+bin.20250416/CapoduriJorgeProduccion2024.crt
+bin.20250416/Carreteras2000.homologacion.crt
+bin.20250416/Carreteras2000.produccion.crt
+bin.20250416/CBTEORIG.txt
+bin.20250416/Computadores.cacert_2024-2035.crt
+bin.20250416/Computadores.cacert_2024-2035.pem
+bin.20250416/error.txt
+bin.20250416/FacElectronica.exe.20160519
+bin.20250416/FacElectronica.exe.20170712
+bin.20250416/FacElectronica.exe.suarez
+bin.20250416/galsera.prod.crt
+bin.20250416/galsera.test.crt
+bin.20250416/GeoTrust_Global_CA_DER.cer
+bin.20250416/libcore.a
+bin.20250416/libeay32.dll
+bin.20250416/libssl-1_1.dll
+bin.20250416/libws.a
+bin.20250416/Makefile
+bin.20250416/Miros.homologacion.CRT
+bin.20250416/Miros.produccion.crt
+bin.20250416/MUNI.produccion.crt
+bin.20250416/neodymium.test.crt
+bin.20250416/openssl.cfg
+bin.20250416/PaponHomologacion.crt
+bin.20250416/pedfaca.txt
+bin.20250416/pedfacb.txt
+bin.20250416/pedidonca.txt
+bin.20250416/pedidoncb.txt
+bin.20250416/pedidonda.txt
+bin.20250416/pedidondb.txt
+bin.20250416/pedidos.txt
+bin.20250416/privada.miros.pem
+bin.20250416/privada.neodynium.pem
+bin.20250416/privada.pem
+bin.20250416/Rex.homologacion.crt
+bin.20250416/Rex.produccion.crt
+bin.20250416/rex.zip
+bin.20250416/ruta51.crt
+bin.20250416/sectigo_intermediate.pem
+bin.20250416/sertigo.pem
+bin.20250416/sign
+bin.20250416/ssleay32.dll
+bin.20250416/ticket.xml
+bin.20250416/ticket.xml.cms
+bin.20250416/token
+bin.20250416/TRIBUTOS.TXT
+bin.20250416/USERTrustRSA.pem
+bin.20250416/wsferesponse.txt
+bin.20250416/abramo/cae.txt
+bin.20250416/abramo/error.txt
+bin.20250416/abramo/GENERAPRIVADA.TXT
+bin.20250416/abramo/GENERARPEDIDO.TXT
+bin.20250416/abramo/GeoTrust_Global_CA_DER.cer
+bin.20250416/abramo/MUNI.produccion.crt
+bin.20250416/abramo/pedido
+bin.20250416/abramo/pedido.csr
+bin.20250416/abramo/pepe.xml
+bin.20250416/abramo/privada.pem
+bin.20250416/abramo/ticket.xml
+bin.20250416/abramo/ticket.xml.cms
+bin.20250416/afip/wsaarequest.txt
+bin.20250416/afip/wsaaresponse.txt
+bin.20250416/afip/wsferequest.txt
+bin.20250416/afip/wsferesponse.txt
+bin.20250416/capoduri/AFIP-cert-prod.cer
+bin.20250416/capoduri/afip-homo.crt
+bin.20250416/capoduri/AFIP-produccion.crt
+bin.20250416/capoduri/b5c64105bb022b7b7c8f18d5db1bdabe.jpg
+bin.20250416/capoduri/capoduri.7z
+bin.20250416/capoduri/CapoduriJorgeProduccion.crt
+bin.20250416/capoduri/CapoduriJorgeProduccion.crt.viejo
+bin.20250416/capoduri/PaponHomologacion.crt
+bin.20250416/capoduri/pedido
+bin.20250416/capoduri/privada.pem
+bin.20250416/carreteras2000/carreteras2000.7z
+bin.20250416/carreteras2000/Carreteras2000.homologacion.crt
+bin.20250416/carreteras2000/Carreteras2000.produccion.crt
+bin.20250416/carreteras2000/comandos.txt
+bin.20250416/carreteras2000/pedido
+bin.20250416/carreteras2000/privada.pem
+bin.20250416/fce/ADICFACA.TXT
+bin.20250416/fce/ADICFACB.TXT
+bin.20250416/fce/adicnca.txt
+bin.20250416/fce/adicnda.txt
+bin.20250416/fce/alicfaca.txt
+bin.20250416/fce/alicfacb.txt
+bin.20250416/fce/alicnca.txt
+bin.20250416/fce/alicuotanda.txt
+bin.20250416/fce/alicuotandb.txt
+bin.20250416/fce/ALICUOTAS.TXT
+bin.20250416/fce/alicuotncb.txt
+bin.20250416/fce/pedfaca.txt
+bin.20250416/fce/pedfacb.txt
+bin.20250416/fce/pedidonca.txt
+bin.20250416/fce/pedidoncb.txt
+bin.20250416/fce/pedidonda.txt
+bin.20250416/fce/pedidondb.txt
+bin.20250416/galsera/config.ini.bk
+bin.20250416/galsera/galsera.prod.crt
+bin.20250416/galsera/galsera.test.crt
+bin.20250416/galsera/privada.pem
+bin.20250416/miros/comandos.txt
+bin.20250416/miros/miros.7z
+bin.20250416/miros/Miros.homologacion.CRT
+bin.20250416/miros/Miros.produccion.crt
+bin.20250416/miros/pedido
+bin.20250416/miros/privada.miros.pem
+bin.20250416/old/AFIP-cert-prod.cer
+bin.20250416/old/afip-homo.crt
+bin.20250416/old/afip-produccion.crt
+bin.20250416/old/miros.prod.crt
+bin.20250416/old/privada.pem
+bin.20250416/pringels.bk/pedido
+bin.20250416/pringels.bk/privada.pem
+bin.20250416/pringels.bk/rpringles.crt
+bin.20250416/rex/comandos.txt
+bin.20250416/rex/pedido
+bin.20250416/rex/privada.pem
+bin.20250416/rex/Rex.homologacion.crt
+bin.20250416/rex/Rex.produccion.crt
+bin.20250416/ruta51.bk/cae.txt
+bin.20250416/ruta51.bk/pedido.csr
+bin.20250416/ruta51.bk/privada.pem
+bin.20250416/ruta51.bk/ruta51.crt
+bin.20250416/shaka/GeoTrust_Global_CA_DER.cer
+bin.20250416/shaka/neodymium.test.crt
+bin.20250416/shaka/pedido.shaka.csr
+bin.20250416/shaka/privada.pem
+bin.20250416/shaka/README.md
+bin.20250416/src/Makefile
+bin.20250416/src/Makefile.Release
+bin.20250416/src/ui_sslclient.h
+bin.20250416/src/ui_wsfeform.h
+bin.20250416/src/release/qrc_securesocketclient.cpp
+bin.20250416/test/alicuotascaso1.txt
+bin.20250416/test/alicuotascaso2.txt
+bin.20250416/test/alicuotascaso3.txt
+bin.20250416/test/alicuotascaso4.txt
+bin.20250416/test/pedidoscaso1.txt
+bin.20250416/test/pedidoscaso2.txt
+bin.20250416/test/pedidoscaso3.txt
+bin.20250416/test/pedidoscaso4.txt
+bin.20250416/test/tributoscaso1.txt
+bin.20250416/test/tributoscaso2.txt
+bin.20250416/test/tributoscaso3.txt
+bin.20250416/test/tributoscaso4.txt
+dist.20250416/cae.txt
+dist.20250416/CapoduriJorgeProduccion.crt
+dist.20250416/error.txt
+dist.20250416/FacElectronica.Win11.x64.zip
+dist.20250416/FacElectronica.working.zip
+dist.20250416/GeoTrust_Global_CA_DER.cer
+dist.20250416/libcrypto-1_1.dll
+dist.20250416/libeay32.dll
+dist.20250416/libgcc_s_dw2-1.dll
+dist.20250416/libssl-1_1.dll
+dist.20250416/libstdc++-6.dll
+dist.20250416/libwinpthread-1.dll
+dist.20250416/MUNI.produccion.crt
+dist.20250416/privada.pem
+dist.20250416/Qt5Core.dll
+dist.20250416/Qt5Gui.dll
+dist.20250416/Qt5Network.dll
+dist.20250416/Qt5Widgets.dll
+dist.20250416/Rex.homologacion.crt
+dist.20250416/sign
+dist.20250416/ssleay32.dll
+dist.20250416/ticket.xml
+dist.20250416/ticket.xml.cms
+dist.20250416/token
+dist.20250416/wsferesponse.txt
+dist.20250416/old/CapoduriJorgeProduccion.crt
+dist.20250416/old/FacElectronica.Capoduri.zip
+dist.20250416/old/FacElectronica.zip
+dist.20250416/old/GeoTrust_Global_CA_DER.cer
+dist.20250416/old/icudt53.dll
+dist.20250416/old/icuin53.dll
+dist.20250416/old/icuuc53.dll
+dist.20250416/old/libeay32.dll
+dist.20250416/old/libgcc_s_dw2-1.dll
+dist.20250416/old/libstdc++-6.dll
+dist.20250416/old/libwinpthread-1.dll
+dist.20250416/old/privada.pem
+dist.20250416/old/Qt5Core.dll
+dist.20250416/old/Qt5Gui.dll
+dist.20250416/old/Qt5Network.dll
+dist.20250416/old/Qt5Widgets.dll
+dist.20250416/old/Rex.produccion.crt
+dist.20250416/old/sign
+dist.20250416/old/ssleay32.dll
+dist.20250416/old/ticket.xml
+dist.20250416/old/ticket.xml.cms
+dist.20250416/old/token
+dist.20250416/old/wsferesponse.txt
+dist.20250416/platforms/qdirect2d.dll
+dist.20250416/platforms/qminimal.dll
+dist.20250416/platforms/qoffscreen.dll
+dist.20250416/platforms/qwebgl.dll
+dist.20250416/platforms/qwindows.dll
+src/release/qrc_securesocketclient.cpp
+obj/main.o
+obj/moc_sslclient.cpp
+obj/moc_sslclient.o
+obj/qrc_securesocketclient.o
+obj/sslclient.o
+facturas/ADICFACA.TXT
+facturas/ADICIONALES.TXT
+facturas/ALICUOTAS.TXT
+facturas/Bancos.dat
+facturas/Bancos.K01
+facturas/c2si.png
+facturas/CAE.DAT
+facturas/cae.txt
+facturas/caenc.txt
+facturas/caeshaka.txt
+facturas/CapoduriJorgeProduccion.crt
+facturas/CapoduriJorgeProduccion.crt.viejo
+facturas/CapoduriJorgeProduccion.crtnotanvieo
+facturas/CapoduriJorgeProduccion.crtviejo
+facturas/CapoduriJorgeProduccion2024.crt
+facturas/CBTEORIGnnnnn.txt
+facturas/cheques.DAT
+facturas/cheques.K01
+facturas/cheques.K02
+facturas/cheques.K03
+facturas/cheques.K04
+facturas/cheques.K05
+facturas/cheques.K06
+facturas/clientes.dat
+facturas/clientes.K01
+facturas/clientes.K02
+facturas/clientes.K03
+facturas/clientes.MEM
+facturas/clitrans.dat
+facturas/clitrans.K01
+facturas/Codigo2.dat
+facturas/Codigo2.K01
+facturas/codigos tributos.txt
+facturas/CODQR.bmp
+facturas/comprobante 331.txt
+facturas/Condvent.dat
+facturas/Condvent.K01
+facturas/CONTROLC.DAT
+facturas/CONTROLC.K01
+facturas/ctasvari.dat
+facturas/Cupones.dat
+facturas/Cupones.K01
+facturas/Cupones.K02
+facturas/Cupones.K03
+facturas/Cupones.K04
+facturas/Cupones.K05
+facturas/Cupones.K06
+facturas/EMPRESA.DAT
+facturas/error.txt
+facturas/facturas.zip
+facturas/GeoTrust_Global_CA_DER.cer
+facturas/icudt53.dll
+facturas/icuin53.dll
+facturas/icuuc53.dll
+facturas/ivacompr.dat
+facturas/ivacompr.K01
+facturas/ivacompr.K02
+facturas/ivacompr.K03
+facturas/ivacompr.K04
+facturas/ivacompr.K05
+facturas/ivacompr.K06
+facturas/ivacompr.K07
+facturas/ivacompr.K08
+facturas/ivaventa.dat
+facturas/ivaventa.K01
+facturas/ivaventa.K02
+facturas/ivaventa.K03
+facturas/ivaventa.K04
+facturas/ivaventa.K05
+facturas/libcrypto-1_1.dll
+facturas/libeay32.dll
+facturas/libgcc_s_dw2-1.dll
+facturas/libssl-1_1.dll
+facturas/libstdc++-6.dll
+facturas/libwinpthread-1.dll
+facturas/liquidacion.xlsx
+facturas/LISTADO.DAT
+facturas/LISTADO.K01
+facturas/listas.dat
+facturas/listas.K01
+facturas/listas.K02
+facturas/miscel.dat
+facturas/Miscela.dat
+facturas/Miscela.K01
+facturas/MISCIB.DAT
+facturas/modificacion ARCA.txt
+facturas/MOVPRODU.DAT
+facturas/MOVPRODU.K01
+facturas/MOVPRODU.K02
+facturas/MOVPRODU.K03
+facturas/MUCHAMIS.DAT
+facturas/noerror.txt
+facturas/Npcabece.dat
+facturas/Npcabece.K01
+facturas/Npcabece.K02
+facturas/Npcabece.K03
+facturas/Npcabece.K04
+facturas/Nprenglo.dat
+facturas/Nprenglo.K01
+facturas/Numerado.dat
+facturas/Numerado.K01
+facturas/pagos.dat
+facturas/pagos.K0A
+facturas/pagos.K01
+facturas/pagos.K02
+facturas/pagos.K03
+facturas/pagos.K04
+facturas/pagos.K05
+facturas/pagos.K06
+facturas/pagos.K07
+facturas/pagos.K08
+facturas/pagos.K09
+facturas/PEDIDOS.TXT
+facturas/PENFAC.DAT
+facturas/PENFAC.K01
+facturas/PENFAC.K02
+facturas/PENFAC.K03
+facturas/PENFAC.K04
+facturas/pepe.xml
+facturas/pepe.xml.cms
+facturas/plan.dat
+facturas/plan.K01
+facturas/privada.pem
+facturas/Producto.dat
+facturas/Producto.K01
+facturas/Producto.K02
+facturas/Producto.K03
+facturas/Producto.K04
+facturas/Producto.K05
+facturas/Producto.K06
+facturas/proveedo.DAT
+facturas/proveedo.K01
+facturas/proveedo.K02
+facturas/proveedo.K03
+facturas/proveedo.K04
+facturas/proveedo.K05
+facturas/proveedo.MEM
+facturas/provinci.dat
+facturas/provinci.K01
+facturas/QRCodeLib.dll
+facturas/QRCodeLib.lib
+facturas/Qt5Core.dll
+facturas/Qt5Gui.dll
+facturas/Qt5Network.dll
+facturas/Qt5Widgets.dll
+facturas/RECIBOS.DAT
+facturas/RECIBOS.K01
+facturas/RETENIDO.DAT
+facturas/RETENIDO.K01
+facturas/RETENIDO.K02
+facturas/RETENIDO.K03
+facturas/SELLOS.DAT
+facturas/SELLOS.K01
+facturas/sign
+facturas/ssleay32.dll
+facturas/STRAUX
+facturas/Tarjetas.dat
+facturas/Tarjetas.K01
+facturas/ticket.xml
+facturas/ticket.xml.cms
+facturas/tipoca.dat
+facturas/tipoca.K01
+facturas/token
+facturas/TRANSFE.DAT
+facturas/TRANSFE.K01
+facturas/Vencimie.dat
+facturas/Vencimie.K01
+facturas/Vencimie.K02
+facturas/Vencimie.K03
+facturas/Venprove.dat
+facturas/Venprove.K01
+facturas/Venprove.K02
+facturas/Venprove.K03
+facturas/Viajante.dat
+facturas/Viajante.K01
+facturas/Viajante.MEM
+facturas/wsferesponse.txt
+facturas/Comprobantes/Alejandro Galsera 0003-00000141.pdf
+facturas/Comprobantes/Alejandro Galsera 0003-00000191.pdf
+facturas/Comprobantes/Capoduri Jorge Luis  0003-00000187.pdf
+facturas/Comprobantes/Carreteras 2000 0003-00000111.pdf
+facturas/Comprobantes/Carreteras 2000 0003-00000129.pdf
+facturas/Comprobantes/Carreteras 2000 0003-00000150.pdf
+facturas/Comprobantes/Carreteras 2000 0003-00000182.pdf
+facturas/Comprobantes/Carreteras 2000 0003-00000190.pdf
+facturas/Comprobantes/Carreteras 2000 0003-00000203.pdf
+facturas/Comprobantes/Carreteras 2000 0003-00000217.pdf
+facturas/Comprobantes/Carreteras 2000 0003-00000243.pdf
+facturas/Comprobantes/Carreteras 2000 0003-00000261.pdf
+facturas/Comprobantes/Carreteras 2000 0003-00000279.pdf
+facturas/Comprobantes/Carreteras 2000 0003-00000339.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000103.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000106.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000108.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000113.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000115.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000118.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000121.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000124.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000128.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000132.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000135.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000138.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000142.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000145.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000148.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000151.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000153.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000155.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000157.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000161.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000163.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000169.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000173.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000175.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000177.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000179.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000181.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000185.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000188.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000194.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000198.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000202.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000205.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000209.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000211.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000215.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000218.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000220.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000222.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000225.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000227.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000231.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000233.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000235.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000238.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000240.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000244.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000246.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000250.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000252.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000254.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000256.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000258.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000264.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000268.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000272.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000277.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000281.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000284.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000286.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000288.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000291.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000293.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000296.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000298.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000302.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000304.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000309.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000313.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000315.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000323.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000327.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000333.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000336.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000338.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000341.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000343.pdf
+facturas/Comprobantes/Casa de Piedra 0003-00000345.pdf
+facturas/Comprobantes/Casa de Piedra durante  Agosto 2019.pdf
+facturas/Comprobantes/Casa de Piedra durante  Diciembre 2019.pdf
+facturas/Comprobantes/Casa de Piedra durante  Enero 2020.pdf
+facturas/Comprobantes/Casa de Piedra durante  Febrero 2020.pdf
+facturas/Comprobantes/Casa de Piedra durante  Julio 2019.pdf
+facturas/Comprobantes/Casa de Piedra durante  Junio 2019.pdf
+facturas/Comprobantes/Casa de Piedra durante  Marzo 2020.pdf
+facturas/Comprobantes/Casa de Piedra durante  Noviembre 2019.pdf
+facturas/Comprobantes/Casa de Piedra durante  Octubre 2019.pdf
+facturas/Comprobantes/Casa de Piedra durante  Septiembre 2019.pdf
+facturas/Comprobantes/Casa de Piedra durante Abril 2019.pdf
+facturas/Comprobantes/Casa de Piedra durante Abril 2020.pdf
+facturas/Comprobantes/Casa de Piedra durante Abril 2021.pdf
+facturas/Comprobantes/Casa de Piedra durante Abril 2022.pdf
+facturas/Comprobantes/Casa de Piedra durante Abril 2023.pdf
+facturas/Comprobantes/Casa de Piedra durante Abril 2024.pdf
+facturas/Comprobantes/Casa de Piedra durante Agosto 2020.pdf
+facturas/Comprobantes/Casa de Piedra durante Agosto 2021.pdf
+facturas/Comprobantes/Casa de Piedra durante Agosto 2022.pdf
+facturas/Comprobantes/Casa de Piedra durante Agosto 2023.pdf
+facturas/Comprobantes/Casa de Piedra durante Agosto 2024.pdf
+facturas/Comprobantes/Casa de Piedra durante Diciembre 2018.pdf
+facturas/Comprobantes/Casa de Piedra durante Diciembre 2020.pdf
+facturas/Comprobantes/Casa de Piedra durante Diciembre 2021.pdf
+facturas/Comprobantes/Casa de Piedra durante Diciembre 2023.pdf
+facturas/Comprobantes/Casa de Piedra durante Diciembre 2024.pdf
+facturas/Comprobantes/Casa de Piedra durante Diciembre de 2022.pdf
+facturas/Comprobantes/Casa de Piedra durante Enero 2019.pdf
+facturas/Comprobantes/Casa de Piedra durante Enero 2021.pdf
+facturas/Comprobantes/Casa de Piedra durante Enero 2022.pdf
+facturas/Comprobantes/Casa de Piedra durante Enero 2023.pdf
+facturas/Comprobantes/Casa de Piedra durante Enero 2024.pdf
+facturas/Comprobantes/Casa de Piedra durante Enero de 2025.pdf
+facturas/Comprobantes/Casa de Piedra durante Febrero  2024.pdf
+facturas/Comprobantes/Casa de Piedra durante Febrero 2019.pdf
+facturas/Comprobantes/Casa de Piedra durante Febrero 2021.pdf
+facturas/Comprobantes/Casa de Piedra durante Febrero 2022.pdf
+facturas/Comprobantes/Casa de Piedra durante Febrero 2023.pdf
+facturas/Comprobantes/Casa de Piedra durante Febrero de 2025.pdf
+facturas/Comprobantes/Casa de Piedra durante Julio 2020.pdf
+facturas/Comprobantes/Casa de Piedra durante Julio 2021.pdf
+facturas/Comprobantes/Casa de Piedra durante Julio 2022.pdf
+facturas/Comprobantes/Casa de Piedra durante Julio 2023.pdf
+facturas/Comprobantes/Casa de Piedra durante Junio 2020.pdf
+facturas/Comprobantes/Casa de Piedra durante Junio 2021.pdf
+facturas/Comprobantes/Casa de Piedra durante Junio 2022.pdf
+facturas/Comprobantes/Casa de Piedra durante Junio 2023.pdf
+facturas/Comprobantes/Casa de Piedra durante Junio 2024.pdf
+facturas/Comprobantes/Casa de Piedra durante Marzo 2019.pdf
+facturas/Comprobantes/Casa de Piedra durante Marzo 2021.pdf
+facturas/Comprobantes/Casa de Piedra durante Marzo 2022.pdf
+facturas/Comprobantes/Casa de Piedra durante Marzo 2023.pdf
+facturas/Comprobantes/Casa de Piedra durante Marzo 2024.pdf
+facturas/Comprobantes/Casa de Piedra durante Marzo 2025.pdf
+facturas/Comprobantes/Casa de Piedra durante Mayo 2019.pdf
+facturas/Comprobantes/Casa de Piedra durante Mayo 2021.pdf
+facturas/Comprobantes/Casa de Piedra durante Mayo 2022.pdf
+facturas/Comprobantes/Casa de Piedra durante Mayo 2023.pdf
+facturas/Comprobantes/Casa de Piedra durante Mayo 2024.pdf
+facturas/Comprobantes/Casa de Piedra durante Mayol 2020.pdf
+facturas/Comprobantes/Casa de Piedra durante Noviembre 2018.pdf
+facturas/Comprobantes/Casa de Piedra durante Noviembre 2020.pdf
+facturas/Comprobantes/Casa de Piedra durante Noviembre 2021.pdf
+facturas/Comprobantes/Casa de Piedra durante Noviembre 2023.pdf
+facturas/Comprobantes/Casa de Piedra durante Noviembre 2024.pdf
+facturas/Comprobantes/Casa de Piedra durante Noviembre de 2022.pdf
+facturas/Comprobantes/Casa de Piedra durante Octube 2022.pdf
+facturas/Comprobantes/Casa de Piedra durante Octubre 2018.pdf
+facturas/Comprobantes/Casa de Piedra durante Octubre 2020.pdf
+facturas/Comprobantes/Casa de Piedra durante Octubre 2021.pdf
+facturas/Comprobantes/Casa de Piedra durante Octubre 2023.pdf
+facturas/Comprobantes/Casa de Piedra durante Septiembre 2020.pdf
+facturas/Comprobantes/Casa de Piedra durante Septiembre 2021.pdf
+facturas/Comprobantes/Casa de Piedra durante Septiembre 2022.pdf
+facturas/Comprobantes/Casa de Piedra durante Septiembre 2023.pdf
+facturas/Comprobantes/Casa de Piedra durante Septiembre 2024.pdf
+facturas/Comprobantes/CF 0003-00000120.PDF
+facturas/Comprobantes/CMS  0003-00000146.pdf
+facturas/Comprobantes/CMS  0003-00000147.pdf
+facturas/Comprobantes/CMS  0003-00000149.pdf
+facturas/Comprobantes/CMS  0003-00000271 mala.pdf
+facturas/Comprobantes/CMS  0003-00000271.pdf
+facturas/Comprobantes/CMS  0003-00000290.pdf
+facturas/Comprobantes/CMS 0003-00000283.pdf
+facturas/Comprobantes/Consumidor Final 0003-00000255.pdf
+facturas/Comprobantes/Consumidor Final 0003-00000320.pdf
+facturas/Comprobantes/Consumidor Final 0003-00000322.pdf
+facturas/Comprobantes/Consumidor Final 0003-00000324.pdf
+facturas/Comprobantes/Consumidor Final 0003-00000326.pdf
+facturas/Comprobantes/debug.log
+facturas/Comprobantes/enebe producciones 0002-00000012.pdf
+facturas/Comprobantes/enebe producciones 0002-00000014.pdf
+facturas/Comprobantes/enebe producciones 0002-00000016.pdf
+facturas/Comprobantes/enebe producciones 0002-00000017.pdf
+facturas/Comprobantes/enebe producciones 0002-00000019.pdf
+facturas/Comprobantes/enebe producciones 0002-00000021.pdf
+facturas/Comprobantes/Huenchuman 0004-00000001.pdf
+facturas/Comprobantes/Huenchuman 0004-00000002.pdf
+facturas/Comprobantes/Huenchuman 0004-00000003.pdf
+facturas/Comprobantes/Huenchuman 0004-00000005.pdf
+facturas/Comprobantes/Huenchuman 0004-00000006.pdf
+facturas/Comprobantes/Imágenes - Acceso directo.lnk
+facturas/Comprobantes/Logistica Ruta 51 0003-00000112.pdf
+facturas/Comprobantes/Logistica Ruta 51 0003-00000119.pdf
+facturas/Comprobantes/Logistica Ruta 51 0003-00000136.pdf
+facturas/Comprobantes/Logistica Ruta 51 0003-00000164.pdf
+facturas/Comprobantes/Logistica Ruta 51 0003-00000171.pdf
+facturas/Comprobantes/Logistica Ruta 51 0003-00000192.pdf
+facturas/Comprobantes/Logistica Ruta 51 0003-00000200.pdf
+facturas/Comprobantes/Logistica Ruta 51 0003-00000212.pdf
+facturas/Comprobantes/Logistica Ruta 51 0003-00000226.pdf
+facturas/Comprobantes/Logistica Ruta 51 0003-00000241.pdf
+facturas/Comprobantes/Logistica Ruta 51 0003-00000259.pdf
+facturas/Comprobantes/Logistica Ruta 51 0003-00000280.pdf
+facturas/Comprobantes/Logistica Ruta 51 0003-00000294.pdf
+facturas/Comprobantes/Logistica Ruta 51 0003-00000301.pdf
+facturas/Comprobantes/Logistica Ruta 51 0003-00000305.pdf
+facturas/Comprobantes/Logistica Ruta 51 0003-00000308.pdf
+facturas/Comprobantes/Logistica Ruta 51 0003-00000311.pdf
+facturas/Comprobantes/Logistica Ruta 51 0003-00000316.pdf
+facturas/Comprobantes/Logistica Ruta 51 0003-00000318.pdf
+facturas/Comprobantes/Logistica Ruta 51 0003-00000329.pdf
+facturas/Comprobantes/matermec 0003-00000116.pdf
+facturas/Comprobantes/matermec 0003-0000122,pdf.pdf
+facturas/Comprobantes/matermec 0003-0000130,pdf.pdf
+facturas/Comprobantes/Matermec 0003-00000140.pdf
+facturas/Comprobantes/Matermec 0003-00000207.pdf
+facturas/Comprobantes/Matermec 0003-00000214.pdf
+facturas/Comprobantes/matermec 0003-00000223.pdf
+facturas/Comprobantes/matermec 0003-00000236.pdf
+facturas/Comprobantes/matermec 0003-00000276.pdf
+facturas/Comprobantes/matermec 0003-00000319.pdf
+facturas/Comprobantes/Motores Santi C 0002-00000006.pdf
+facturas/Comprobantes/Muncipalidad de Abramo 0003-00000196.pdf
+facturas/Comprobantes/Muncipalidad de Abramo 0003-00000299.pdf
+facturas/Comprobantes/nota de credito petropringles.txt
+facturas/Comprobantes/petropringles  0003-00000166.pdf
+facturas/Comprobantes/plazo fijo ICBC.pdf
+facturas/Comprobantes/Reouestos Pringles 0003-00000109.PDF
+facturas/Comprobantes/Reouestos Pringles 0003-00000117.PDF
+facturas/Comprobantes/Reouestos Pringles 0003-00000328.PDF
+facturas/Comprobantes/Reouestos Pringles 0003-00000330.pdf
+facturas/Comprobantes/Repuestos Pringles  0003-00000170.pdf
+facturas/Comprobantes/repuestos pringles 0003-00000139.pdf
+facturas/Comprobantes/repuestos pringles 0003-00000158.pdf
+facturas/Comprobantes/repuestos pringles 0003-00000189.pdf
+facturas/Comprobantes/repuestos pringles 0003-00000199.pdf
+facturas/Comprobantes/repuestos pringles 0003-00000260.pdf
+facturas/Comprobantes/repuestos pringles 0003-00000267.pdf
+facturas/Comprobantes/repuestos pringles 0003-00000274.pdf
+facturas/Comprobantes/repuestos pringles 0003-00000297.pdf
+facturas/Comprobantes/REX  0003-00000105.pdf
+facturas/Comprobantes/REX  0003-00000107.pdf
+facturas/Comprobantes/REX  0003-00000110.pdf
+facturas/Comprobantes/REX  0003-00000114.pdf
+facturas/Comprobantes/REX  0003-00000154.pdf
+facturas/Comprobantes/REX  0003-00000156.pdf
+facturas/Comprobantes/REX  0003-00000165.pdf
+facturas/Comprobantes/REX  0003-00000167.pdf
+facturas/Comprobantes/REX  0003-00000168.pdf
+facturas/Comprobantes/REX  0003-00000172.pdf
+facturas/Comprobantes/REX  0003-00000174.pdf
+facturas/Comprobantes/REX  0003-00000176.pdf
+facturas/Comprobantes/REX  0003-00000178.pdf
+facturas/Comprobantes/REX  0003-00000180.pdf
+facturas/Comprobantes/REX  0003-00000183.pdf
+facturas/Comprobantes/REX  0003-00000186  QR.pdf
+facturas/Comprobantes/REX  0003-00000186.pdf
+facturas/Comprobantes/REX  0003-00000193.pdf
+facturas/Comprobantes/REX  0003-00000197.pdf
+facturas/Comprobantes/REX  0003-00000201.pdf
+facturas/Comprobantes/REX  0003-00000204.pdf
+facturas/Comprobantes/REX  0003-00000206.pdf
+facturas/Comprobantes/REX  0003-00000210.pdf
+facturas/Comprobantes/REX  0003-00000213.pdf
+facturas/Comprobantes/REX  0003-00000216.pdf
+facturas/Comprobantes/REX  0003-00000219.pdf
+facturas/Comprobantes/REX  0003-00000221.pdf
+facturas/Comprobantes/REX  0003-00000224.pdf
+facturas/Comprobantes/REX  0003-00000228.pdf
+facturas/Comprobantes/REX  0003-00000229.pdf
+facturas/Comprobantes/REX  0003-00000230.pdf
+facturas/Comprobantes/REX  0003-00000232.pdf
+facturas/Comprobantes/REX  0003-00000234.pdf
+facturas/Comprobantes/REX  0003-00000237.pdf
+facturas/Comprobantes/REX  0003-00000239.pdf
+facturas/Comprobantes/REX  0003-00000242.pdf
+facturas/Comprobantes/REX  0003-00000245.pdf
+facturas/Comprobantes/REX  0003-00000249.pdf
+facturas/Comprobantes/REX  0003-00000251.pdf
+facturas/Comprobantes/REX  0003-00000253.pdf
+facturas/Comprobantes/REX  0003-00000262.pdf
+facturas/Comprobantes/REX  0003-00000265.pdf
+facturas/Comprobantes/REX  0003-00000266.pdf
+facturas/Comprobantes/REX  0003-00000269.pdf
+facturas/Comprobantes/REX  0003-00000270.pdf
+facturas/Comprobantes/REX  0003-00000273.pdf
+facturas/Comprobantes/REX  0003-00000278.pdf
+facturas/Comprobantes/REX  0003-00000282.pdf
+facturas/Comprobantes/REX  0003-00000285.pdf
+facturas/Comprobantes/REX  0003-00000287.pdf
+facturas/Comprobantes/REX  0003-00000289.pdf
+facturas/Comprobantes/REX  0003-00000292.pdf
+facturas/Comprobantes/REX  0003-00000295.pdf
+facturas/Comprobantes/REX  0003-00000300.pdf
+facturas/Comprobantes/REX  0003-00000303.pdf
+facturas/Comprobantes/REX  0003-00000306.pdf
+facturas/Comprobantes/REX  0003-00000312.pdf
+facturas/Comprobantes/REX  0003-00000314.pdf
+facturas/Comprobantes/REX  0003-00000321.pdf
+facturas/Comprobantes/REX  0003-00000325.pdf
+facturas/Comprobantes/REX  0003-00000332.pdf
+facturas/Comprobantes/REX  0003-00000335.pdf
+facturas/Comprobantes/REX  0003-00000337.pdf
+facturas/Comprobantes/REX  0003-00000340.pdf
+facturas/Comprobantes/REX  0003-00000342.pdf
+facturas/Comprobantes/REX  0003-00000344.pdf
+facturas/Comprobantes/Rurales Don Oscar  0003-00000184.pdf
+facturas/Comprobantes/Rurales Don Oscar  0003-00000208.pdf
+facturas/Comprobantes/Rurales Don Oscar 0003-00000103.pdf
+facturas/Comprobantes/Rurales Don Oscar 0003-00000307.pdf
+facturas/Comprobantes/Rurales Don Oscar 0003-00000317.pdf
+facturas/Comprobantes/Rurales Don Oscar 0003-00000334.pdf
+facturas/Comprobantes/UPSO 003-00000310.pdf
+facturas/Comprobantes/UPSO MODELO.pdf
+facturas/codigoqr/BASE6BC.CLW
+facturas/codigoqr/BASE6BC0.CLW
+facturas/codigoqr/base64.app
+facturas/codigoqr/BASE64.B1$
+facturas/codigoqr/base64.BPP
+facturas/codigoqr/base64.clw
+facturas/codigoqr/BASE64.EXP
+facturas/codigoqr/base64.lib
+facturas/codigoqr/base64.lnk
+facturas/codigoqr/base64.MAP
+facturas/codigoqr/base64.shp
+facturas/codigoqr/base6001.BAK
+facturas/codigoqr/base6001.clw
+facturas/codigoqr/BASE6001.INC
+facturas/codigoqr/codigoqr.bmp
+facturas/codigoqr/CODQR.bmp
+facturas/codigoqr/FACTURA.pdf
+facturas/codigoqr/Gener001.clw
+facturas/codigoqr/GENER001.INC
+facturas/codigoqr/Gener002.clw
+facturas/codigoqr/GENER002.INC
+facturas/codigoqr/Gener003.clw
+facturas/codigoqr/GENER003.INC
+facturas/codigoqr/Gener004.clw
+facturas/codigoqr/GENER004.INC
+facturas/codigoqr/GeneraQR.app
+facturas/codigoqr/GENERAQR.BCT
+facturas/codigoqr/GeneraQR.BPP
+facturas/codigoqr/GeneraQR.clw
+facturas/codigoqr/GENERAQR.dct
+facturas/codigoqr/GENERAQR.EXP
+facturas/codigoqr/GeneraQR.lib
+facturas/codigoqr/GeneraQR.lnk
+facturas/codigoqr/GeneraQR.MAP
+facturas/codigoqr/GeneraQR.shp
+facturas/codigoqr/GENERBC.CLW
+facturas/codigoqr/GENERBC0.CLW
+facturas/codigoqr/IIQRC001.clw
+facturas/codigoqr/IIQRC001.INC
+facturas/codigoqr/IIQRCBC.CLW
+facturas/codigoqr/IIQRCBC0.CLW
+facturas/codigoqr/IIQRCODE.app
+facturas/codigoqr/IIQRCODE.BPP
+facturas/codigoqr/IIQRCODE.clw
+facturas/codigoqr/IIQRCODE.EXP
+facturas/codigoqr/IIQRCODE.lib
+facturas/codigoqr/IIQRCODE.lnk
+facturas/codigoqr/IIQRCODE.MAP
+facturas/codigoqr/IIQRCODE.shp
+facturas/codigoqr/Libro1.xlsx
+facturas/codigoqr/PREPARAQR.txt
+facturas/codigoqr/QRCLA5.BCT
+facturas/codigoqr/QRCLA5.dct
+facturas/codigoqr/QRCodeLib.dll
+facturas/codigoqr/QRCodeLib.lib
+facturas/codigoqr/STRAUX
+facturas/codigoqr/TRANSFE.DAT
+facturas/codigoqr/TRANSFE.K01
+facturas/codigoqr/ENVIO/QR font tfb.ttf
+facturas/codigoqr/ENVIO/QRCodeLib.dll
+facturas/codigoqr/ENVIO/QRCodeLib.lib
+facturas/platforms/qdirect2d.dll
+facturas/platforms/qminimal.dll
+facturas/platforms/qminimald.dll
+facturas/platforms/qoffscreen.dll
+facturas/platforms/qoffscreend.dll
+facturas/platforms/qwebgl.dll
+facturas/platforms/qwindows.dll
+facturas/platforms/qwindowsd.dll
+FacElectronica.pro.user

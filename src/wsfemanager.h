@@ -30,6 +30,7 @@ struct wsfeRecipe {
     double percep_prov;
     double percep_muni;
     double percep_otros;
+    int    condicion_IVA_receptor_id;
 };
 
 struct wsfeRecipeTax  {
@@ -104,6 +105,7 @@ signals:
     void    serverDataSent(QString data);
 public slots:
     void    dataReceived();
+    void    connectionClosed();
 
 protected:
     wsfeRecipe    parseRecipies(QString fileLocation);
@@ -112,11 +114,17 @@ protected:
     QList<wsfeOptionals> parseOptionalsRecipes(QString fileLocation);
     QList<wsfeCbteAsoc> parseCbtesAsoc(QString fileLocation);
     void          doRequset(QString op, QByteArray data);
+    void          processResponseBuffer(bool connectionClosed);
+    QByteArray    decodeChunkedBody(const QByteArray &chunked, bool *complete) const;
+    QByteArray    httpHeaderValue(const QByteArray &headers, const QByteArray &name) const;
+    bool          hasSoapEnvelope(const QByteArray &body) const;
 
     QSslSocket *socket;
     wsaaLogin  *wsaa;
     QString    serviceUrl;
     bool       testing;
+    QByteArray responseBuffer;
+    bool       responseEmitted = false;
 };
 
 #endif // WSFEMANAGER_H

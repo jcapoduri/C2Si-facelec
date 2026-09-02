@@ -102,8 +102,7 @@ void client::updateEnabledState()
     if(!form->connectButton->isEnabled()){
         form->connectButton->setEnabled(unconnected && !form->hostNameEdit->text().isEmpty());
     };
-    bool connected = socket && socket->state() == QAbstractSocket::ConnectedState;
-    form->sessionOutput->setEnabled(connected);    
+    form->sessionOutput->setEnabled(true); 
     if(this->wsaaok){
         form->connectButton->setEnabled(false);
         form->doButton->setEnabled(true);
@@ -122,6 +121,11 @@ void client::socketStateChanged(QAbstractSocket::SocketState state)
         return;
 
     updateEnabledState();
+    if (state == QAbstractSocket::UnconnectedState && form->connectButton->isEnabled()) {
+        //se desconecto y no se logeo
+        this->cleanCae("error de conexion a wssa");
+        if (_justcae) qApp->quit();
+    }
     qDebug() << "Estado: " << state;
 }
 
@@ -269,6 +273,18 @@ void client::getRecipeInfo() {
     wsfe->getRecipeInfo(tipo_comp, pto_venta, nro_comp);
 }
 
+static QString extractXmlTag(const QString &data, const QString &beginToken, const QString &endToken)
+{
+    int start = data.indexOf(beginToken, 0, Qt::CaseInsensitive);
+    if (start < 0)
+        return QString();
+    start += beginToken.length();
+    int end = data.indexOf(endToken, start, Qt::CaseInsensitive);
+    if (end < 0)
+        return QString();
+    return data.mid(start, end - start).trimmed();
+}
+
 void client::logSessionData(QString data)
 {
     if (data.isEmpty()) return;
@@ -276,37 +292,34 @@ void client::logSessionData(QString data)
     qDebug() << data;
     QString op = form->operationComboBox->currentText();
 
-    if (op == "Obtener CAE p/Comprobante") {
-        QString caeBeginToken = "<CAE>";
-        QString caeEndToken = "</CAE>";
-        QString fecvenBeginToken = "CAEFchVto>";
-        QString fecvenEndToken = "</CAEFchVto>";
-        QString pererrBeginToken = "<Msg>";
-        QString pererrEndToken = "</Msg>";
-
-        int caeStart = data.indexOf(caeBeginToken) + caeBeginToken.length();
-        int caeLength = data.indexOf(caeEndToken) - caeStart;
-        int fecvenStart = data.indexOf(fecvenBeginToken) + fecvenBeginToken.length();
-        int fecvenLength = data.indexOf(fecvenEndToken) - fecvenStart;
-        int errorStart = data.indexOf(pererrBeginToken) + pererrBeginToken.length();
-        int errorLength = data.indexOf(pererrEndToken) - errorStart;
+    if (op == "Obtener CAE p/Comprobante" || _justcae) {
+        QString cae = extractXmlTag(data, "<CAE>", "</CAE>");
+        QString fecven = extractXmlTag(data, "<CAEFchVto>", "</CAEFchVto>");
+        if (fecven.isEmpty())
+            fecven = extractXmlTag(data, "CAEFchVto>", "</CAEFchVto>");
 
         QFile file("cae.txt");
         file.open(QIODevice::WriteOnly);
-        if (caeLength > 0) {
-            file.write(data.mid(caeStart, caeLength).toLatin1());
+        if (!cae.isEmpty()) {
+            file.write(cae.toLatin1());
         } else {
             file.write("00000000");
-        };
-        if (fecvenLength > 0) {
-            file.write(data.mid(fecvenStart, fecvenLength).toLatin1());
+        }
+        if (!fecven.isEmpty()) {
+            file.write(fecven.toLatin1());
         } else {
             file.write("00000000");
-        };
-        if (errorLength > 0) {
-            this->writeError(data.mid(errorStart, errorLength));
         }
         file.close();
+
+        QString errorsBlock = extractXmlTag(data, "<Errors>", "</Errors>");
+        QString errMsg = extractXmlTag(errorsBlock, "<Msg>", "</Msg>");
+        if (errMsg.isEmpty() && cae.isEmpty()) {
+            QString obsBlock = extractXmlTag(data, "<Observaciones>", "</Observaciones>");
+            errMsg = extractXmlTag(obsBlock, "<Msg>", "</Msg>");
+        }
+        if (!errMsg.isEmpty())
+            this->writeError(errMsg);
     }
 
     QFile fileRes(QString("wsferesponse.txt"));
@@ -314,7 +327,7 @@ void client::logSessionData(QString data)
     fileRes.write(data.toLatin1());
     fileRes.close();
     if (secondsToClose > 0) closeTimer.start(secondsToClose * 1000);
-    if (_justcae) qApp->quit();    
+    if (_justcae) qApp->quit();
 }
 
 void client::getLastApproveRecipe() {

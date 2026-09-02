@@ -185,7 +185,7 @@ QString wsaaLogin::makeTicket(QString cms)
 
     header = "POST " +  wsaaLogin::wsaaService +  " HTTP/1.1\r\n" //"POST https://wsaahomo.afip.gov.ar/ws/services/LoginCms HTTP/1.1\n"
                 "Content-Type: text/xml;charset=UTF-8\r\n"
-                "Accept-Encoding: gzip,deflate\r\n"
+                "Accept-Encoding: identity\r\n"
                 "SOAPAction: \"\"\r\n"
                 "Connection: Keep-Alive\r\n"
                 "User-Agent: Apache-HttpClient/4.5.5 (Java/17.0.12)\r\n"

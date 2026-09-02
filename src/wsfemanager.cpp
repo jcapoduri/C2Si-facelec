@@ -47,7 +47,8 @@ QString wsfeManager::wsfeXMLRecipeTemplate = ""
                                              "                  <ar:FchVtoPago>%21</ar:FchVtoPago>\n"
                                              "                  <ar:MonId>%22</ar:MonId>\n"
                                              "                  <ar:MonCotiz>%23</ar:MonCotiz>\n"
-                                             "                  %24"
+                                             "                  <ar:CondicionIVAReceptorId>%24</ar:CondicionIVAReceptorId>\n"
+                                             "                  %25"
                                              "               </ar:FECAEDetRequest>\n"
                                              "            </ar:FeDetReq>\n"
                                              "         </ar:FeCAEReq>\n"
@@ -235,6 +236,7 @@ void wsfeManager::validateRecipies(QString fileLocation, QString extrasFileLocat
     data = data.arg(recipe.fechaVtoPago);
     data = data.arg(recipe.mon_id);
     data = data.arg(recipe.mon_cotiz);
+    data = data.arg(recipe.condicion_IVA_receptor_id);
 
     if (!ivaRecords.isEmpty()) {
         wsfeRecipeTax iva;
@@ -351,7 +353,116 @@ void wsfeManager::getData(QString op)
 
 void wsfeManager::dataReceived()
 {
-    QString data = QString::fromUtf8(socket->readAll());
+    responseBuffer.append(socket->readAll());
+    processResponseBuffer(false);
+}
+
+void wsfeManager::connectionClosed()
+{
+    processResponseBuffer(true);
+}
+
+QByteArray wsfeManager::httpHeaderValue(const QByteArray &headers, const QByteArray &name) const
+{
+    QByteArray needle = name + ":";
+    int index = headers.indexOf(needle, 0);
+    if (index < 0) {
+        index = headers.toLower().indexOf(needle.toLower());
+        if (index < 0)
+            return QByteArray();
+    }
+    int start = index + needle.size();
+    int end = headers.indexOf("\r\n", start);
+    if (end < 0)
+        end = headers.size();
+    return headers.mid(start, end - start).trimmed();
+}
+
+bool wsfeManager::hasSoapEnvelope(const QByteArray &body) const
+{
+    QByteArray lower = body.toLower();
+    return lower.contains("</soap:envelope>")
+        || lower.contains("</soapenv:envelope>")
+        || lower.contains("</soap-env:envelope>");
+}
+
+QByteArray wsfeManager::decodeChunkedBody(const QByteArray &chunked, bool *complete) const
+{
+    QByteArray result;
+    int pos = 0;
+    *complete = false;
+    while (pos < chunked.size()) {
+        int lineEnd = chunked.indexOf("\r\n", pos);
+        if (lineEnd < 0)
+            return QByteArray();
+        bool ok = false;
+        int size = chunked.mid(pos, lineEnd - pos).trimmed().toInt(&ok, 16);
+        if (!ok)
+            return QByteArray();
+        pos = lineEnd + 2;
+        if (size == 0) {
+            *complete = true;
+            return result;
+        }
+        if (pos + size > chunked.size())
+            return QByteArray();
+        result.append(chunked.mid(pos, size));
+        pos += size;
+        if (pos + 2 <= chunked.size() && chunked.mid(pos, 2) == "\r\n")
+            pos += 2;
+    }
+    return QByteArray();
+}
+
+void wsfeManager::processResponseBuffer(bool connectionClosed)
+{
+    if (responseEmitted || responseBuffer.isEmpty())
+        return;
+
+    int headerEnd = responseBuffer.indexOf("\r\n\r\n");
+    if (headerEnd < 0) {
+        if (connectionClosed) {
+            responseEmitted = true;
+            QString data = QString::fromUtf8(responseBuffer);
+            qDebug() << data;
+            emit serverResponse(data);
+        }
+        return;
+    }
+
+    QByteArray headers = responseBuffer.left(headerEnd);
+    QByteArray body = responseBuffer.mid(headerEnd + 4);
+    QByteArray transferEncoding = httpHeaderValue(headers, "Transfer-Encoding").toLower();
+    QByteArray contentLengthValue = httpHeaderValue(headers, "Content-Length");
+    QByteArray completeBody;
+    bool bodyComplete = false;
+
+    if (transferEncoding.contains("chunked")) {
+        completeBody = decodeChunkedBody(body, &bodyComplete);
+    } else if (!contentLengthValue.isEmpty()) {
+        bool ok = false;
+        int contentLength = contentLengthValue.toInt(&ok);
+        if (ok && contentLength >= 0 && body.size() >= contentLength) {
+            completeBody = body.left(contentLength);
+            bodyComplete = true;
+        }
+    }
+
+    if (!bodyComplete && hasSoapEnvelope(body)) {
+        completeBody = body;
+        bodyComplete = true;
+    }
+
+    if (!bodyComplete && connectionClosed) {
+        completeBody = body;
+        bodyComplete = true;
+    }
+
+    if (!bodyComplete)
+        return;
+
+    responseEmitted = true;
+    QString data = QString::fromUtf8(completeBody);
     qDebug() << data;
     emit serverResponse(data);
 }
@@ -390,6 +501,7 @@ wsfeRecipe wsfeManager::parseRecipies(QString fileLocation)
     recipe.imp_trib = recipe.imp_no_resp + recipe.percep_nac + recipe.percep_prov + recipe.percep_muni + recipe.percep_otros;
     recipe.mon_id = "PES";
     recipe.mon_cotiz = 1;
+    recipe.condicion_IVA_receptor_id = buffer.mid(243, 2).toInt();
     /*
     imp no responsable 138, 15
     imp percep nacional 168,15
@@ -511,9 +623,13 @@ void wsfeManager::doRequset(QString op, QByteArray data)
 {
     QString header;
 
+    disconnect(socket, SIGNAL(disconnected()), this, SLOT(connectionClosed()));
     if (socket->isOpen()) socket->close();
+    responseBuffer.clear();
+    responseEmitted = false;
 
-    connect(socket, SIGNAL(readyRead()), this, SLOT(dataReceived()));
+    connect(socket, SIGNAL(readyRead()), this, SLOT(dataReceived()), Qt::UniqueConnection);
+    connect(socket, SIGNAL(disconnected()), this, SLOT(connectionClosed()), Qt::UniqueConnection);
     qDebug() << serviceUrl;
     socket->setPeerVerifyName(serviceUrl);
     socket->connectToHostEncrypted(serviceUrl, 443);
@@ -525,7 +641,7 @@ void wsfeManager::doRequset(QString op, QByteArray data)
     "Host: " + serviceUrl + "\r\n"
     //Content-Type: application/soap+xml;charset=UTF-8;action="http://ar.gov.afip.dif.FEV1/FEParamGetTiposCbte"
     "Content-Type: application/soap+xml;charset=UTF-8;action=\"http://ar.gov.afip.dif.FEV1/" + op + "\"\r\n"
-    "Accept-Encoding: gzip,deflate\r\n"
+    "Accept-Encoding: identity\r\n"
     "Connection: Keep-Alive\r\n"
     "User-Agent: Apache-HttpClient/4.5.5 (Java/17.0.12)\r\n"
     "Content-Length: " + QString::number(data.length()) + "\r\n\r\n";
