@@ -52,11 +52,20 @@ jobs:
 
       - name: Configure (qmake)
         shell: cmd
-        run: qmake FacElectronica.pro -spec win32-g++ "CONFIG+=release"
+        run: |
+          if exist Makefile del /f Makefile
+          if exist src\Makefile del /f src\Makefile
+          if exist src\Makefile.Release del /f src\Makefile.Release
+          if exist src\Makefile.Debug del /f src\Makefile.Debug
+          qmake FacElectronica.pro -spec win32-g++ "CONFIG+=release"
+          mingw32-make qmake_all
 
       - name: Build
         shell: cmd
-        run: mingw32-make -j%NUMBER_OF_PROCESSORS%
+        run: |
+          where mingw32-make
+          where g++
+          mingw32-make -j%NUMBER_OF_PROCESSORS%
 
       - name: Deploy Qt runtime
         shell: pwsh
