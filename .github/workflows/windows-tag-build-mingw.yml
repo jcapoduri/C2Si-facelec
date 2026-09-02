@@ -57,6 +57,9 @@ jobs:
           if exist src\Makefile del /f src\Makefile
           if exist src\Makefile.Release del /f src\Makefile.Release
           if exist src\Makefile.Debug del /f src\Makefile.Debug
+          if exist obj rmdir /s /q obj
+          if exist src\release rmdir /s /q src\release
+          mkdir obj
           qmake FacElectronica.pro -spec win32-g++ "CONFIG+=release"
           mingw32-make qmake_all
 
@@ -65,7 +68,7 @@ jobs:
         run: |
           where mingw32-make
           where g++
-          mingw32-make -j%NUMBER_OF_PROCESSORS%
+          mingw32-make
 
       - name: Deploy Qt runtime
         shell: pwsh
