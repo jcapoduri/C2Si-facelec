@@ -32,17 +32,23 @@ jobs:
       - name: Setup MSVC
         uses: ilammy/msvc-dev-cmd@v1
 
-      - name: Configure and build
+      - name: Configure
         shell: cmd
         run: |
           mkdir build
           cd build
-          qt-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_MSVC_RUNTIME_LIBRARY=MultiThreaded ..
+          call qt-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_MSVC_RUNTIME_LIBRARY=MultiThreaded ..
+
+      - name: Build
+        shell: cmd
+        run: |
+          cd build
           cmake --build . --config Release --parallel
 
       - name: Package single exe
         shell: pwsh
         run: |
+          Get-ChildItem -Path build -Recurse -Filter *.exe | Format-Table FullName, Length
           $exe = Get-ChildItem -Path build -Recurse -Filter "${{ env.APP_NAME }}.exe" |
             Select-Object -First 1
           if (-not $exe) {
