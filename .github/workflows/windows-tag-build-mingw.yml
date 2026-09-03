@@ -15,11 +15,10 @@ permissions:
   contents: write
 
 env:
-  QT_VERSION: "6.8.3"
   APP_NAME: FacElectronica
 
 jobs:
-  build:
+  build-static:
     runs-on: windows-latest
     timeout-minutes: 45
 
@@ -27,72 +26,40 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install Qt ${{ env.QT_VERSION }} (MinGW)
-        uses: jurplel/install-qt-action@v4
-        with:
-          version: ${{ env.QT_VERSION }}
-          host: windows
-          target: desktop
-          arch: win64_mingw
-          tools: tools_mingw1310
-          add-tools-to-path: true
-          cache: true
+      - name: Install static Qt 6.8.3
+        uses: AllanChain/install-qt-static@v6.8.3-1
 
-      - name: Add MinGW to PATH
+      - name: Setup MSVC
+        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Configure and build
+        shell: cmd
+        run: |
+          mkdir build
+          cd build
+          qt-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_MSVC_RUNTIME_LIBRARY=MultiThreaded ..
+          cmake --build . --config Release --parallel
+
+      - name: Package single exe
         shell: pwsh
         run: |
-          $mingw = Get-ChildItem -Path "$env:IQTA_TOOLS" -Recurse -Filter "mingw32-make.exe" -ErrorAction SilentlyContinue |
+          $exe = Get-ChildItem -Path build -Recurse -Filter "${{ env.APP_NAME }}.exe" |
             Select-Object -First 1
-          if (-not $mingw) {
-            throw "mingw32-make.exe not found under IQTA_TOOLS=$env:IQTA_TOOLS"
+          if (-not $exe) {
+            throw "Build output not found"
           }
-          $bin = $mingw.Directory.FullName
-          Add-Content -Path $env:GITHUB_PATH -Value $bin
-          Write-Host "MinGW bin: $bin"
-
-      - name: Configure (qmake)
-        shell: cmd
-        run: |
-          if exist Makefile del /f Makefile
-          if exist src\Makefile del /f src\Makefile
-          if exist src\Makefile.Release del /f src\Makefile.Release
-          if exist src\Makefile.Debug del /f src\Makefile.Debug
-          if exist obj rmdir /s /q obj
-          if exist src\release rmdir /s /q src\release
-          mkdir obj
-          qmake FacElectronica.pro -spec win32-g++ "CONFIG+=release"
-          mingw32-make qmake_all
-
-      - name: Build
-        shell: cmd
-        run: |
-          where mingw32-make
-          where g++
-          mingw32-make
-
-      - name: Deploy Qt runtime
-        shell: pwsh
-        run: |
-          $exe = Join-Path $env:GITHUB_WORKSPACE "bin\${{ env.APP_NAME }}.exe"
-          if (-not (Test-Path $exe)) {
-            throw "Build output not found: $exe"
-          }
-          & "$env:QT_ROOT_DIR\bin\windeployqt.exe" --release --compiler-runtime --no-translations $exe
-
-      - name: Package ZIP
-        shell: pwsh
-        run: |
-          $name = "${{ env.APP_NAME }}-${{ github.sha }}-win64.zip"
+          $name = "${{ env.APP_NAME }}-${{ github.sha }}-win64-static.exe"
           if ("${{ github.ref_type }}" -eq "tag") {
-            $name = "${{ env.APP_NAME }}-${{ github.ref_name }}-win64.zip"
+            $name = "${{ env.APP_NAME }}-${{ github.ref_name }}-win64-static.exe"
           }
-          7z a -tzip $name .\bin\*
+          Copy-Item $exe.FullName $name
           echo "ASSET_NAME=$name" >> $env:GITHUB_ENV
+          Write-Host "Packed $($exe.FullName) -> $name ($([math]::Round($exe.Length/1MB, 1)) MB)"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.APP_NAME }}-win64
+          name: ${{ env.APP_NAME }}-win64-static
           path: ${{ env.ASSET_NAME }}
 
       - name: Publish GitHub Release
