@@ -42,5 +42,5 @@ set_target_properties(FacElectronica PROPERTIES
 
 if(MSVC)
     set_property(TARGET FacElectronica PROPERTY
-        MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+        MSVC_RUNTIME_LIBRARY "MultiThreadedDLL$<$<CONFIG:Debug>:Debug>")
 endif()
