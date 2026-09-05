@@ -372,7 +372,7 @@ void client::validateRecipe()
 
 void client::appendString(const QString &line)
 {
-    qDebug() << '-----------------------------------------------------------------------------------------';
+    qDebug() << "-----------------------------------------------------------------------------------------";
     QTextCursor cursor(form->sessionOutput->textCursor());
     cursor.movePosition(QTextCursor::End);
     cursor.insertText(line);
